@@ -3,7 +3,7 @@
 void	megaphone(std::string msg)
 {
 	for (int i = 0; msg[i]; i++)
-		std::cout << (char)toupper(msg[i]);
+		std::cout << static_cast<unsigned char>(std::toupper(msg[i]));
 }
 
 int	main(int argc, char **argv)
@@ -13,7 +13,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		for (int i = 1; i < argc; i++)
-			megaphone(argv[i]);
+			megaphone(static_cast<std::string>(argv[i]));
 	}
 	std::cout << std::endl;
 	return 0;

@@ -3,7 +3,7 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror
 
 HDR = PhoneBook.hpp Contact.hpp
-SRC = PhoneBook.cpp Contact.cpp
+SRC = PhoneBook.cpp Contact.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

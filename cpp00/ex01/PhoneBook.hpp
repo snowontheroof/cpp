@@ -1,9 +1,14 @@
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
+# include "Contact.hpp"
+
 class PhoneBook
 {
-private:
-	/* data */
-public:
-	PhoneBook(/* args */);
-	~PhoneBook();
+	public:
+		Contact array[8];
+
+		PhoneBook();
+		~PhoneBook();
 };
 
+#endif
