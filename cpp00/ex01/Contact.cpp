@@ -3,25 +3,50 @@
 
 Contact::Contact()
 {
-	std::cout << "Contact constructor called" << std::endl;
-	return ;
+	_IsSet = false;
 }
 
 Contact::Contact(std::string first_name, std::string last_name, std::string nickname,
-	std::string phone_number, std::string darkest_secret)
+	std::string phone_number, std::string darkest_secret, bool is_set)
 {
-	std::cout << "Contact constructor called" << std::endl;
-
-	this->first_name = first_name;
-	this->last_name = last_name;
-	this->nickname = nickname;
-	this->phone_number = phone_number;
-	this->darkest_secret = darkest_secret;
-	return ;
+	_FirstName = first_name;
+	_LastName = last_name;
+	_Nickname = nickname;
+	_PhoneNumber = phone_number;
+	_DarkestSecret = darkest_secret;
+	_IsSet = is_set;
 }
 
 Contact::~Contact()
 {
-	std::cout << "Contact destructor called" << std::endl;
-	return ;
+}
+
+std::string	Contact::getFirstName() const
+{
+	return (_FirstName);
+}
+
+std::string	Contact::getLastName() const
+{
+	return (_LastName);
+}
+
+std::string	Contact::getNickname() const
+{
+	return (_Nickname);
+}
+
+std::string	Contact::getPhoneNumber() const
+{
+	return (_PhoneNumber);
+}
+
+std::string	Contact::getDarkestSecret() const
+{
+	return (_DarkestSecret);
+}
+
+bool	Contact::getIsSet() const
+{
+	return (_IsSet);
 }

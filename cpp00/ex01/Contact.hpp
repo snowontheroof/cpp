@@ -4,17 +4,26 @@
 
 class Contact
 {
-public:
-	std::string	first_name;
-	std::string	last_name;
-	std::string	nickname;
-	std::string	phone_number;
-	std::string	darkest_secret;
+	private:
+		std::string	_FirstName;
+		std::string	_LastName;
+		std::string	_Nickname;
+		std::string	_PhoneNumber;
+		std::string	_DarkestSecret;
+		bool		_IsSet;
 
-	Contact();
-	Contact(std::string first_name, std::string last_name, std::string nickname,
-		std::string phone_number, std::string darkest_secret);
-	~Contact();
+	public:
+		Contact();
+		Contact(std::string first_name, std::string last_name, std::string nickname,
+			std::string phone_number, std::string darkest_secret, bool is_set);
+		~Contact();
+
+		std::string	getFirstName() const;
+		std::string	getLastName() const;
+		std::string	getNickname() const;
+		std::string	getPhoneNumber() const;
+		std::string	getDarkestSecret() const;
+		bool		getIsSet() const;
 };
 
 #endif

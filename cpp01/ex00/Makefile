@@ -1,9 +1,9 @@
-NAME = MyPhoneBook
+NAME = Zombie
 CC = c++
 CFLAGS = -Wall -Wextra -Werror
 
-HDR = PhoneBook.hpp Contact.hpp
-SRC = PhoneBook.cpp Contact.cpp main.cpp
+HDR = Zombie.hpp
+SRC = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
