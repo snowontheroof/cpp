@@ -11,11 +11,11 @@ class PhoneBook
 		PhoneBook();
 		~PhoneBook();
 
-	void	add_contact_to_phonebook(PhoneBook& MyPhoneBook, int i,
+	void	setContact(PhoneBook& MyPhoneBook, int i,
 			std::string first_name, std::string last_name, std::string nickname,
 			std::string phone_number, std::string darkest_secret);
-	void	display_contacts(PhoneBook& MyPhoneBook);
-	void	search_contact(PhoneBook& MyPhoneBook);
+	void	displayContacts(PhoneBook& MyPhoneBook);
+	void	searchContact(PhoneBook& MyPhoneBook);
 };
 
 #endif

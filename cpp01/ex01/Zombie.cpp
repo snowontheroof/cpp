@@ -6,11 +6,11 @@ Zombie::Zombie()
 	return ;
 }
 
-Zombie::Zombie(std::string pname)
+Zombie::Zombie(std::string name)
 {
 	std::cout << "Zombie: Constructor called" << std::endl;
 
-	name = pname;
+	this->name = name;
 	return ;
 }
 

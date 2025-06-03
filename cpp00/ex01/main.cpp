@@ -3,7 +3,7 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
-std::string	add_contact_info(std::string msg, std::string& field)
+std::string	addContactInfo(std::string msg, std::string& field)
 {
 	std::cout << msg;
 	if (!std::getline(std::cin, field))
@@ -12,11 +12,24 @@ std::string	add_contact_info(std::string msg, std::string& field)
 		exit(0);
 	}
 	if (field == "")
+	{
 		std::cerr << "You must type something to each field!" << std::endl;
+		std::cout << msg;
+		if (!std::getline(std::cin, field))
+		{
+			std::cout << "\nExiting phonebook" << std::endl;
+			exit(0);
+		}
+		if (field == "")
+		{
+			std::cerr << "You must type something to each field!" << std::endl;
+			std::cerr << "Returning back to main menu" << std::endl;
+		}
+	}
 	return (field);
 }
 
-void	add_contact(PhoneBook& MyPhoneBook, int& i)
+void	addContact(PhoneBook& MyPhoneBook, int& i)
 {
 	std::string first_name;
 	std::string last_name;
@@ -27,29 +40,28 @@ void	add_contact(PhoneBook& MyPhoneBook, int& i)
 	if (i == 8)
 		i = 0;
 	std::cout << "Let's add a new contact! Please give me some info:" << std::endl;
-	if (add_contact_info("First name: ", first_name) == "")
+	if (addContactInfo("First name: ", first_name) == "")
 		return ;
-	if (add_contact_info("Last name: ", last_name) == "")
+	if (addContactInfo("Last name: ", last_name) == "")
 		return ;
-	if (add_contact_info("Nickname: ", nickname) == "")
+	if (addContactInfo("Nickname: ", nickname) == "")
 		return ;
-	if (add_contact_info("Phone number: ", phone_number) == "")
+	if (addContactInfo("Phone number: ", phone_number) == "")
 		return ;
-	if (add_contact_info("Darkest secret: ", darkest_secret) == "")
+	if (addContactInfo("Darkest secret: ", darkest_secret) == "")
 		return ;
-	MyPhoneBook.add_contact_to_phonebook(MyPhoneBook, i, first_name, last_name, nickname,
+	MyPhoneBook.setContact(MyPhoneBook, i, first_name, last_name, nickname,
 		phone_number, darkest_secret);
 	i++;
 	return ;
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **)
 {
 	std::string buf;
 	PhoneBook MyPhoneBook;
 	int	i = 0;
 
-	(void)argv;
 	if (argc != 1)
 		std::cerr << "No arguments accepted at this point!" << std::endl;
 	else
@@ -63,9 +75,9 @@ int	main(int argc, char **argv)
 				break ;
 			}
 			if (buf == "ADD")
-				add_contact(MyPhoneBook, i);
+				addContact(MyPhoneBook, i);
 			else if (buf == "SEARCH")
-				MyPhoneBook.search_contact(MyPhoneBook);
+				MyPhoneBook.searchContact(MyPhoneBook);
 			else if (buf == "EXIT")
 				break ;
 			else

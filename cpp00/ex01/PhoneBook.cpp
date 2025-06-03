@@ -11,7 +11,7 @@ PhoneBook::~PhoneBook()
 {
 }
 
-void	PhoneBook::add_contact_to_phonebook(PhoneBook& MyPhoneBook, int i,
+void	PhoneBook::setContact(PhoneBook& MyPhoneBook, int i,
 			std::string first_name,	std::string last_name, std::string nickname,
 			std::string phone_number, std::string darkest_secret)
 {
@@ -19,7 +19,7 @@ void	PhoneBook::add_contact_to_phonebook(PhoneBook& MyPhoneBook, int i,
 		nickname, phone_number, darkest_secret, true);
 }
 
-void	PhoneBook::display_contacts(PhoneBook& MyPhoneBook)
+void	PhoneBook::displayContacts(PhoneBook& MyPhoneBook)
 {
 	std::cout << std::setw(10) << "Index";
 	std::cout << "|" << std::setw(10) << "First name";
@@ -46,7 +46,7 @@ void	PhoneBook::display_contacts(PhoneBook& MyPhoneBook)
 	return ;
 }
 
-void	PhoneBook::search_contact(PhoneBook& MyPhoneBook)
+void	PhoneBook::searchContact(PhoneBook& MyPhoneBook)
 {
 	std::string index;
 	int i;
@@ -56,19 +56,30 @@ void	PhoneBook::search_contact(PhoneBook& MyPhoneBook)
 		std::cout << "There are no contacts in the phonebook! Please add some!" << std::endl;
 		return ;
 	}
-	MyPhoneBook.display_contacts(MyPhoneBook);
+	MyPhoneBook.displayContacts(MyPhoneBook);
 	std::cout << "Please give me the index of the contact you're looking for: ";
 	if (!std::getline(std::cin, index))
 	{
 		std::cout << "\nExiting phonebook" << std::endl;
 		exit(0);
 	}
-	if (index.length() != 1 || index[0] < '0' || index[0] > '9')
+	if (index.length() != 1 || index[0] < '1' || index[0] > '8')
 	{
 		std::cerr << "That is not a valid index number!" << std::endl;
-		return ;
+		std::cout << "Please give me the index of the contact you're looking for: ";
+		if (!std::getline(std::cin, index))
+		{
+			std::cout << "\nExiting phonebook" << std::endl;
+			exit(0);
+		}
+		if (index.length() != 1 || index[0] < '1' || index[0] > '8')
+		{
+			std::cerr << "That is not a valid index number!" << std::endl;
+			std::cerr << "Returning back to main menu" << std::endl;
+			return ;
+		}
 	}
-	i = std::stoi(index);
+	i = (std::stoi(index) - 1);
 	if (!MyPhoneBook.array[i].getIsSet())
 	{
 		std::cerr << "Unfortunately there is no contact saved at that index!" << std::endl;

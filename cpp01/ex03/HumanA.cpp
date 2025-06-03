@@ -10,8 +10,8 @@ HumanA::HumanA(std::string name, Weapon weapon)
 {
 	std::cout << "HumanA: Constructor called" << std::endl;
 
-	_myName = name;
-	_myWeapon = weapon;
+	this->name = name;
+	this->weapon = weapon;
 	return ;
 }
 
@@ -21,7 +21,7 @@ HumanA::~HumanA()
 	return ;
 }
 
-void	HumanA::attack() const;	//WHAT'S WRONG HERE??
+void	HumanA::attack() const
 {
-	std::cout << _myName << " attacks with their " << _myWeapon << std::endl;
+	std::cout << name << " attacks with their " << weapon.getType() << std::endl;
 }

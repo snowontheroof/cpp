@@ -1,21 +1,21 @@
 #include <iostream>
 
-void	BrainReference(std::string brain)
+void	brainReference(std::string stringSTR)
 {
-	std::string*	stringPTR = &brain;
-	std::string&	stringREF = brain;
+	std::string*	stringPTR = &stringSTR;
+	std::string&	stringREF = stringSTR;
 
-	std::cout << "Memory address of brain: " << &brain << std::endl;
+	std::cout << "Memory address of stringSTR: " << &stringSTR << std::endl;
 	std::cout << "Memory address of stringPTR: " << &stringPTR << std::endl;
 	std::cout << "Memory address of stringREF: " << &stringREF << std::endl;
 
-	std::cout << "Value of brain: " << brain << std::endl;
+	std::cout << "Value of stringSTR: " << stringSTR << std::endl;
 	std::cout << "Value of stringPTR: " << *stringPTR << std::endl;
 	std::cout << "Value of stringREF: " << stringREF << std::endl;
 }
 
 int	main()
 {
-	BrainReference("I am testing this!");
+	brainReference("I am testing this!");
 	return 0;
 }
