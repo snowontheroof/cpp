@@ -1,14 +1,12 @@
-#include <iostream>
-#include <string>
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
-std::string	addContactInfo(std::string msg, std::string& field)
+int	addContactInfo(std::string msg, std::string& field)
 {
 	std::cout << msg;
 	if (!std::getline(std::cin, field))
 	{
-		std::cout << "\nExiting phonebook" << std::endl;
+		std::cout << std::endl << "Exiting phonebook" << std::endl;
 		exit(0);
 	}
 	if (field == "")
@@ -17,50 +15,53 @@ std::string	addContactInfo(std::string msg, std::string& field)
 		std::cout << msg;
 		if (!std::getline(std::cin, field))
 		{
-			std::cout << "\nExiting phonebook" << std::endl;
+			std::cout << std::endl << "Exiting phonebook" << std::endl;
 			exit(0);
 		}
 		if (field == "")
 		{
 			std::cerr << "You must type something to each field!" << std::endl;
-			std::cerr << "Returning back to main menu" << std::endl;
+			std::cout << "Returning to main menu" << std::endl;
+			std::cout << "----------------------------" << std::endl;
+			return (-1);
 		}
 	}
-	return (field);
+	return (0);
 }
 
 void	addContact(PhoneBook& MyPhoneBook, int& i)
 {
-	std::string first_name;
-	std::string last_name;
-	std::string nickname;
-	std::string phone_number;
-	std::string darkest_secret;
+	std::string	first_name;
+	std::string	last_name;
+	std::string	nickname;
+	std::string	phone_number;
+	std::string	darkest_secret;
 
 	if (i == 8)
 		i = 0;
 	std::cout << "Let's add a new contact! Please give me some info:" << std::endl;
-	if (addContactInfo("First name: ", first_name) == "")
+	if (addContactInfo("First name: ", first_name) < 0)
 		return ;
-	if (addContactInfo("Last name: ", last_name) == "")
+	if (addContactInfo("Last name: ", last_name) < 0)
 		return ;
-	if (addContactInfo("Nickname: ", nickname) == "")
+	if (addContactInfo("Nickname: ", nickname) < 0)
 		return ;
-	if (addContactInfo("Phone number: ", phone_number) == "")
+	if (addContactInfo("Phone number: ", phone_number) < 0)
 		return ;
-	if (addContactInfo("Darkest secret: ", darkest_secret) == "")
+	if (addContactInfo("Darkest secret: ", darkest_secret) < 0)
 		return ;
+	std::cout << "Contact added!" << std::endl;
+	std::cout << "----------------------------" << std::endl;
 	MyPhoneBook.setContact(MyPhoneBook, i, first_name, last_name, nickname,
 		phone_number, darkest_secret);
 	i++;
-	return ;
 }
 
 int	main(int argc, char **)
 {
-	std::string buf;
-	PhoneBook MyPhoneBook;
-	int	i = 0;
+	std::string	buf;
+	PhoneBook	MyPhoneBook;
+	int			i = 0;
 
 	if (argc != 1)
 		std::cerr << "No arguments accepted at this point!" << std::endl;
@@ -68,7 +69,9 @@ int	main(int argc, char **)
 	{
 		while (1)
 		{
-			std::cout << "What should we do? ADD, SEARCH or EXIT?" << std::endl;
+			std::cout << "What should we do?" << std::endl << "ADD: save a new contact"
+				<< std::endl << "SEARCH: display a specific contact" << std::endl
+				<< "EXIT: exit phonebook" << std::endl;
 			if (!std::getline(std::cin, buf))
 			{
 				std::cout << "Exiting phonebook" << std::endl;
@@ -81,8 +84,11 @@ int	main(int argc, char **)
 			else if (buf == "EXIT")
 				break ;
 			else
+			{
 				std::cerr << "Invalid prompt!" << std::endl;
+				std::cout << "----------------------------" << std::endl;
+			}
 		}
 	}
-	return 0;
+	return (0);
 }

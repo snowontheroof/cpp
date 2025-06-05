@@ -1,4 +1,4 @@
-NAME = MyPhoneBook
+NAME = MyAwesomePhoneBook
 CC = c++
 CFLAGS = -Wall -Wextra -Werror
 

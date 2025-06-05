@@ -1,7 +1,4 @@
-#include <iostream>
-#include <iomanip>
 #include "PhoneBook.hpp"
-#include "Contact.hpp"
 
 PhoneBook::PhoneBook()
 {
@@ -19,7 +16,7 @@ void	PhoneBook::setContact(PhoneBook& MyPhoneBook, int i,
 		nickname, phone_number, darkest_secret, true);
 }
 
-void	PhoneBook::displayContacts(PhoneBook& MyPhoneBook)
+void	PhoneBook::displayContacts(PhoneBook MyPhoneBook) const
 {
 	std::cout << std::setw(10) << "Index";
 	std::cout << "|" << std::setw(10) << "First name";
@@ -43,24 +40,24 @@ void	PhoneBook::displayContacts(PhoneBook& MyPhoneBook)
 		else
 			std::cout << std::setw(10) << MyPhoneBook.array[i].getNickname() << std::endl;
 	}
-	return ;
 }
 
-void	PhoneBook::searchContact(PhoneBook& MyPhoneBook)
+void	PhoneBook::searchContact(PhoneBook MyPhoneBook) const
 {
-	std::string index;
-	int i;
+	std::string	index;
+	int			i;
 
 	if (!MyPhoneBook.array[0].getIsSet())
 	{
-		std::cout << "There are no contacts in the phonebook! Please add some!" << std::endl;
+		std::cerr << "There are no contacts in the phonebook! Please add some!" << std::endl;
+		std::cout << "----------------------------" << std::endl;
 		return ;
 	}
 	MyPhoneBook.displayContacts(MyPhoneBook);
 	std::cout << "Please give me the index of the contact you're looking for: ";
 	if (!std::getline(std::cin, index))
 	{
-		std::cout << "\nExiting phonebook" << std::endl;
+		std::cout << std::endl << "Exiting phonebook" << std::endl;
 		exit(0);
 	}
 	if (index.length() != 1 || index[0] < '1' || index[0] > '8')
@@ -69,13 +66,14 @@ void	PhoneBook::searchContact(PhoneBook& MyPhoneBook)
 		std::cout << "Please give me the index of the contact you're looking for: ";
 		if (!std::getline(std::cin, index))
 		{
-			std::cout << "\nExiting phonebook" << std::endl;
+			std::cout << std::endl << "Exiting phonebook" << std::endl;
 			exit(0);
 		}
 		if (index.length() != 1 || index[0] < '1' || index[0] > '8')
 		{
 			std::cerr << "That is not a valid index number!" << std::endl;
-			std::cerr << "Returning back to main menu" << std::endl;
+			std::cout << "Returning to main menu" << std::endl;
+			std::cout << "----------------------------" << std::endl;
 			return ;
 		}
 	}
@@ -83,6 +81,7 @@ void	PhoneBook::searchContact(PhoneBook& MyPhoneBook)
 	if (!MyPhoneBook.array[i].getIsSet())
 	{
 		std::cerr << "Unfortunately there is no contact saved at that index!" << std::endl;
+		std::cout << "----------------------------" << std::endl;
 		return ;
 	}
 	std::cout << "First name: " << MyPhoneBook.array[i].getFirstName() << std::endl;
@@ -90,5 +89,5 @@ void	PhoneBook::searchContact(PhoneBook& MyPhoneBook)
 	std::cout << "Nickname: " << MyPhoneBook.array[i].getNickname() << std::endl;
 	std::cout << "Phone number: " << MyPhoneBook.array[i].getPhoneNumber() << std::endl;
 	std::cout << "Darkest secret: " << MyPhoneBook.array[i].getDarkestSecret() << std::endl;
-	return ;
+	std::cout << "----------------------------" << std::endl;
 }
