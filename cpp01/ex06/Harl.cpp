@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 10:35:13 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/06 14:30:36 by sojala           ###   ########.fr       */
+/*   Updated: 2025/06/06 14:34:52 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,13 @@ void	Harl::complain(std::string level)
 {
 	std::string	levelMsg[4] = { "DEBUG", "INFO", "WARNING", "ERROR" };
 	int			i;
+
 	for (i = 0; i < 4; i++)
 	{
 		if (level == levelMsg[i])
 		break ;
 	}
-	switch(i)
+	switch (i)
 	{
 		case 0:
 			debug();
