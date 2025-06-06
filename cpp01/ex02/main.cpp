@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/06 10:33:57 by sojala            #+#    #+#             */
+/*   Updated: 2025/06/06 10:47:04 by sojala           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 
-void	brainReference(std::string stringSTR)
+void	brainReference(void)
 {
+	std::string		stringSTR = "HI THIS IS BRAIN";
 	std::string*	stringPTR = &stringSTR;
 	std::string&	stringREF = stringSTR;
 
@@ -16,6 +29,6 @@ void	brainReference(std::string stringSTR)
 
 int	main()
 {
-	brainReference("I am testing this!");
+	brainReference();
 	return 0;
 }

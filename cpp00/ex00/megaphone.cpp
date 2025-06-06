@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 16:56:20 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/05 16:56:21 by sojala           ###   ########.fr       */
+/*   Updated: 2025/06/06 14:17:05 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		for (int i = 1; i < argc; i++)
-			megaphone(static_cast<std::string>(argv[i]));
+			megaphone(argv[i]);
 	}
 	std::cout << std::endl;
 	return 0;

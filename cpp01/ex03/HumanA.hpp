@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   HumanA.hpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/06 10:34:05 by sojala            #+#    #+#             */
+/*   Updated: 2025/06/06 11:02:10 by sojala           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef HUMANA_HPP
 # define HUMANA_HPP
 # include <iostream>
@@ -7,7 +19,7 @@ class HumanA
 {
 	private:
 		std::string	name;
-		Weapon&	weapon;
+		Weapon&		weapon;
 
 	public:
 		HumanA();
