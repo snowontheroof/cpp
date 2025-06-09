@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 10:33:57 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/06 10:47:04 by sojala           ###   ########.fr       */
+/*   Updated: 2025/06/09 18:14:11 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	brainReference(void)
 	std::cout << "Value of stringREF: " << stringREF << std::endl;
 }
 
-int	main()
+int	main(void)
 {
 	brainReference();
 	return 0;

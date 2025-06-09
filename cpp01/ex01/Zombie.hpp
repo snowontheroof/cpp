@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 10:33:41 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/06 10:42:05 by sojala           ###   ########.fr       */
+/*   Updated: 2025/06/09 18:13:04 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class Zombie
 	private:
 		std::string	name;
 
-		public:
+	public:
 		Zombie();
 		Zombie(std::string name);
 		~Zombie();

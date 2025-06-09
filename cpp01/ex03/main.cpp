@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 10:34:26 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/06 10:48:58 by sojala           ###   ########.fr       */
+/*   Updated: 2025/06/09 18:15:22 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "HumanB.hpp"
 #include "Weapon.hpp"
 
-int	main()
+int	main(void)
 {
 	{
 		Weapon club = Weapon("crude spiked club");
@@ -26,7 +26,7 @@ int	main()
 	}
 	{
 		Weapon club = Weapon("crude spiked club");
-		
+
 		HumanB jim("Jim");
 		jim.setWeapon(club);
 		jim.attack();

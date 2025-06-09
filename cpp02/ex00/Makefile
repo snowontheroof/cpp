@@ -1,6 +1,6 @@
 NAME = Fixed
 CC = c++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -std=c++20
 
 HDR = Fixed.hpp
 SRC = main.cpp Fixed.cpp
