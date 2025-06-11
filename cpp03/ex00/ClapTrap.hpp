@@ -1,19 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 13:01:05 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/10 13:01:06 by sojala           ###   ########.fr       */
+/*   Created: 2025/06/10 14:33:52 by sojala            #+#    #+#             */
+/*   Updated: 2025/06/10 14:35:46 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef CLAPTRAP_HPP
+# define CLAPTRAP_HPP
+# include <iostream>>
 
-Zombie*	newZombie(std::string name)
+class	ClapTrap
 {
-	Zombie*	newFella = new Zombie(name);
-	return (newFella);
-}
+	private:
+		std::string		name;
+		unsigned int	hitPoints;
+		unsigned int	energyPoints;
+		unsigned int	attackDamage;
+
+	public:
+		ClapTrap();
+		ClapTrap(std::string name);
+		~ClapTrap();
+
+		void	attack(const std::string& target);
+		void	takeDamage(unsigned int amount);
+		void	beRepaired(unsigned int amount);
+};
+
+#endif

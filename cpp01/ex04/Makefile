@@ -1,17 +1,20 @@
 NAME = Replacer
 CC = c++
-CFLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
 SRC = main.cpp
 
 all: $(NAME)
 
-$(NAME):
-	$(CC) $(CFLAGS) -o $(NAME) $(SRC)
+$(NAME): $(SRC)
+	$(CC) $(FLAGS) -o $(NAME) $(SRC)
+
+clean:
+	@echo "clean: Nothing to clean."
 
 fclean:
 	@rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY: all fclean re
+.PHONY: all clean fclean re

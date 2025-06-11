@@ -1,40 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 10:33:37 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/11 09:55:42 by sojala           ###   ########.fr       */
+/*   Created: 2025/06/10 14:33:48 by sojala            #+#    #+#             */
+/*   Updated: 2025/06/10 14:38:29 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "ClapTrap.hpp"
 
-Zombie::Zombie()
+ClapTrap::ClapTrap()
 {
-	std::cout << "A generic Zombie: Constructor called" << std::endl;
-
-	this->name = "A generic Zombie";
+	std::cout << name << ": Default constructor called" << std::endl;
+	return ;
 }
 
-Zombie::Zombie(std::string name) : name(name)
+ClapTrap::ClapTrap(std::string name)
 {
 	std::cout << name << ": Constructor called" << std::endl;
+
+	this->name = name;
+	return ;
 }
 
-Zombie::~Zombie()
+ClapTrap::~ClapTrap()
 {
 	std::cout << name << ": Destructor called" << std::endl;
+	return ;
 }
 
-void	Zombie::announce(void)
+void	ClapTrap::attack(const std::string& target)
 {
-	std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << "ClapTrap " << name << " attacks " << target << ", causing " << attackDamage
+		<< " points of damage!" << std::endl;
+
+	takeDamage(attackDamage);
+	return ;
 }
 
-void	Zombie::setName(std::string name)
+void	ClapTrap::takeDamage(unsigned int amount)
 {
-	this->name = name;
+
+}
+
+void	ClapTrap::beRepaired(unsigned int amount)
+{
+
 }

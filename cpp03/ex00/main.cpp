@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 13:01:05 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/10 13:01:06 by sojala           ###   ########.fr       */
+/*   Created: 2025/06/10 14:33:55 by sojala            #+#    #+#             */
+/*   Updated: 2025/06/10 14:33:56 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "ClapTrap.hpp"
 
-Zombie*	newZombie(std::string name)
+int	main(void)
 {
-	Zombie*	newFella = new Zombie(name);
-	return (newFella);
+
 }

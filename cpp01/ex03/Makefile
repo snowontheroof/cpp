@@ -1,6 +1,6 @@
 NAME = Weapons
 CC = c++
-CFLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
 HDR = HumanA.hpp HumanB.hpp Weapon.hpp
 SRC = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
@@ -9,10 +9,10 @@ OBJ = $(SRC:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp $(HDR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ)

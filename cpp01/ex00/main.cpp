@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 10:33:18 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/09 18:11:47 by sojala           ###   ########.fr       */
+/*   Updated: 2025/06/11 09:41:52 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,20 @@
 
 int	main(void)
 {
-	Zombie	Kimmo("Kimmo");
-	Kimmo.announce();
+	try
+	{
+		Zombie	Kimmo("Kimmo");
+		Kimmo.announce();
 
-	Zombie*	Tero = newZombie("Tero");
-	Tero->announce();
-	delete (Tero);
+		Zombie*	Tero = newZombie("Tero");
+		Tero->announce();
+		delete (Tero);
 
-	randomChump("Markku");
+		randomChump("Markku");
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 	return 0;
 }

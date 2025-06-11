@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 10:34:39 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/06 13:51:40 by sojala           ###   ########.fr       */
+/*   Updated: 2025/06/11 11:33:20 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void	replacer(std::string filename, std::string s1, std::string s2)
 		std::cerr << "Error: could not open file" << std::endl;
 		return ;
 	}
-	std::string	newFileName = filename + ".replace";
+	std::string		newFileName = filename + ".replace";
 	std::ofstream	newFile(newFileName);
 	if (!newFile)
 	{
 		std::cerr << "Error: could not create .replace file" << std::endl;
 		return ;
 	}
-	std::string	line;
-	std::size_t	found;
+	std::string		line;
+	std::size_t		found;
 
 	while (std::getline(myFile, line))
 	{
@@ -46,13 +46,40 @@ void	replacer(std::string filename, std::string s1, std::string s2)
 		}
 		newFile << line << std::endl;
 	}
+	myFile.close();
+	newFile.close();
 }
 
 int main(void)
 {
-	replacer("testfile", "testing", "_TRYING_");
-	replacer("anothertest", "", "HELLOO");
-	replacer("thirdtest", "s", "j");
-	replacer("fourthtest", "11", "");
+	try
+	{
+		replacer("testfile", "testing", "_TRYING_");
+		replacer("anothertest", "", "HELLOO");
+		replacer("thirdtest", "s", "j");
+		replacer("fourthtest", "11", "");
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 	return 0;
 }
+
+/*int main(int argc, char **argv)
+{
+	if (argc == 4)
+	{
+		try
+		{
+			replacer(argv[1], argv[2], argv[3]);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+	}
+	else
+		std::cout << "Expected usage: ./Replacer <filename> <s1> <s2>" << std::endl;
+	return 0;
+}*/

@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 10:34:34 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/06 10:34:35 by sojala           ###   ########.fr       */
+/*   Updated: 2025/06/11 11:25:59 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ class Weapon {
 		std::string	type;
 
 	public:
-		Weapon();
 		Weapon(std::string type);
 		~Weapon();
 
