@@ -1,9 +1,9 @@
-NAME = ClapTrap
+NAME = Fixed
 CC = c++
 FLAGS = -Wall -Wextra -Werror
 
-HDR = ClapTrap.hpp
-SRC = main.cpp ClapTrap.cpp
+HDR = Fixed.hpp
+SRC = main.cpp Fixed.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

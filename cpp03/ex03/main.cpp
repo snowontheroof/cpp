@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 14:33:52 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/12 12:02:57 by sojala           ###   ########.fr       */
+/*   Created: 2025/06/10 14:33:55 by sojala            #+#    #+#             */
+/*   Updated: 2025/06/13 10:39:28 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
-# include <iostream>
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
-class	ClapTrap
+int	main(void)
 {
-	private:
-		std::string		name;
-		unsigned int	hitPoints;
-		unsigned int	energyPoints;
-		unsigned int	attackDamage;
+	ScavTrap	Joe("Joe");
+	ScavTrap	Martin("Martin");
 
-	public:
-		ClapTrap();
-		ClapTrap(std::string name);
-		~ClapTrap();
-
-		void	attack(const std::string& target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
-};
-
-#endif
+	Joe.attack("Martin");
+	Martin.takeDamage(8);
+	Martin.attack("Joe");
+	Joe.takeDamage(4);
+	Joe.attack("Martin");
+	Martin.takeDamage(3);
+	Martin.attack("Joe");
+	Martin.beRepaired(2);
+}

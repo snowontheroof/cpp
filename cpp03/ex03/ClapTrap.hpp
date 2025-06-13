@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 14:36:05 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/13 15:47:40 by sojala           ###   ########.fr       */
+/*   Created: 2025/06/10 14:33:52 by sojala            #+#    #+#             */
+/*   Updated: 2025/06/13 10:25:47 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_HPP
-# define FIXED_HPP
+#ifndef CLAPTRAP_HPP
+# define CLAPTRAP_HPP
 # include <iostream>
-# include <cmath>
 
-class Fixed
+class	ClapTrap
 {
-	private:
-		int		_RawBits;
-		static const int	_FractBits;
+	protected:
+		std::string		name;
+		unsigned int	hitPoints;
+		unsigned int	energyPoints;
+		unsigned int	attackDamage;
 
 	public:
-		Fixed();
-		Fixed(const int nbr);
-		Fixed(const float nbr);
-		Fixed (const Fixed& obj);
-		Fixed &operator=(const Fixed& f);
-		~Fixed();
+		ClapTrap();
+		ClapTrap(std::string name);
+		~ClapTrap();
 
-		float	toFloat(void) const;
-		int		toInt(void) const;
+		void	attack(const std::string& target);
+		void	takeDamage(unsigned int amount);
+		void	beRepaired(unsigned int amount);
 };
-
-std::ostream&	operator<<(std::ostream& os, const Fixed& obj);
 
 #endif
