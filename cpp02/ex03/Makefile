@@ -2,8 +2,8 @@ NAME = Fixed
 CC = c++
 FLAGS = -Wall -Wextra -Werror
 
-HDR = Fixed.hpp
-SRC = main.cpp Fixed.cpp
+HDR = Fixed.hpp Point.hpp
+SRC = main.cpp Fixed.cpp Point.cpp bsp.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

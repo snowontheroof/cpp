@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:36:13 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/13 16:45:53 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/11 16:54:21 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ Fixed::Fixed(const Fixed& obj) : _RawBits(obj._RawBits)
 	// *this = obj;	//why is this preferred in the subject output??
 }
 
-Fixed	&Fixed::operator=(const Fixed& f)
+Fixed&	Fixed::operator=(const Fixed& f)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 

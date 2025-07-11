@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:36:05 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/13 18:07:04 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/11 16:52:01 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class Fixed
 {
 	private:
-		int		_RawBits;
+		int					_RawBits;
 		static const int	_FractBits;
 
 	public:
@@ -26,17 +26,24 @@ class Fixed
 		Fixed(const int nbr);
 		Fixed(const float nbr);
 		Fixed (const Fixed& obj);
-		Fixed &operator=(const Fixed& f);
+		Fixed& operator=(const Fixed& f);
 		~Fixed();
 
-		static int&			min(int& fixedP1, int& fixedP2);
-		static const int&	min(const int& fixedP1, const int& fixedP2);
-		static int&			max(int& fixedP1, int& fixedP2);
-		static const int&	max(const int& fixedP1, const int& fixedP2);
+		static Fixed&		min(Fixed& a, Fixed& b);
+		static const Fixed&	min(const Fixed& a, const Fixed& b);
+		static Fixed&		max(Fixed& a, Fixed& b);
+		static const Fixed&	max(const Fixed& a, const Fixed& b);
 
-		// int		operator+(int& fixedP);
+		Fixed	operator++(void) const;
+		Fixed	operator--(void) const;
+		Fixed	operator+(const Fixed& other) const;
+		Fixed	operator-(const Fixed& other) const;
+		Fixed	operator*(const Fixed& other) const;
+		Fixed	operator/(const Fixed& other) const;
 		float	toFloat(void) const;
 		int		toInt(void) const;
+		int		getRawBits(void) const;
+		void	setRawBits(int const raw);
 };
 
 std::ostream&	operator<<(std::ostream& os, const Fixed& obj);

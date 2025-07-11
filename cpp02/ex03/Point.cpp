@@ -25,3 +25,13 @@ Point& Point::operator=(const Point& other)
 Point::~Point()
 {
 }
+
+const Fixed&	Point::getX()
+{
+	return (this->x);
+}
+
+const Fixed&	Point::getY()
+{
+	return (this->y);
+}

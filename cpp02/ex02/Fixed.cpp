@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:36:13 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/13 18:07:16 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/11 16:51:46 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ const int	Fixed::_FractBits = 8;
 Fixed::Fixed()
 {
 	std::cout << "Default constructor called" << std::endl;
+
+	this->_RawBits = 0;
 }
 
 Fixed::Fixed(const int nbr)
@@ -44,7 +46,7 @@ Fixed::Fixed(const Fixed& obj) : _RawBits(obj._RawBits)
 	// *this = obj;	//why is this preferred in the subject output??
 }
 
-Fixed	&Fixed::operator=(const Fixed& f)
+Fixed&	Fixed::operator=(const Fixed& f)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 
@@ -73,30 +75,104 @@ std::ostream&	operator<<(std::ostream& os, const Fixed& obj)
 	return (os);
 }
 
-int&	Fixed::min(int& fixedP1, int& fixedP2)
+Fixed&	Fixed::min(Fixed& a, Fixed& b)
 {
-	if (fixedP1 < fixedP2)
-		return (fixedP1);
-	return (fixedP2);
+	if (a.getRawBits() < b.getRawBits())
+		return (a);
+	return (b);
 }
 
-const int&	Fixed::min(const int& fixedP1, const int& fixedP2)
+const Fixed&	Fixed::min(const Fixed& a, const Fixed& b)
 {
-	if (fixedP1 < fixedP2)
-		return (fixedP1);
-	return (fixedP2);
+	if (a.getRawBits() < b.getRawBits())
+		return (a);
+	return (b);
 }
 
-int&	Fixed::max(int& fixedP1, int& fixedP2)
+Fixed&	Fixed::max(Fixed& a, Fixed& b)
 {
-	if (fixedP1 > fixedP2)
-		return (fixedP1);
-	return (fixedP2);
+	if (a.getRawBits() > b.getRawBits())
+		return (a);
+	return (b);
 }
 
-const int&	Fixed::max(const int& fixedP1, const int& fixedP2)
+const Fixed&	Fixed::max(const Fixed& a, const Fixed& b)
 {
-	if (fixedP1 > fixedP2)
-		return (fixedP1);
-	return (fixedP2);
+	if (a.getRawBits() > b.getRawBits())
+		return (a);
+	return (b);
+}
+
+int	Fixed::getRawBits(void) const
+{
+	std::cout << "getRawBits member function called" << std::endl;
+
+	return (this->_RawBits);
+}
+
+void	Fixed::setRawBits(int const raw)
+{
+	this->_RawBits = raw;
+}
+
+Fixed	Fixed::operator++(void) const
+{
+	Fixed		result;
+	long long	rawresult;
+
+	rawresult = this->_RawBits + 1;
+	result.setRawBits(rawresult);
+	return (result);
+}
+
+Fixed	Fixed::operator--(void) const
+{
+	Fixed		result;
+	long long	rawresult;
+
+	rawresult = this->_RawBits - 1;
+	result.setRawBits(rawresult);
+	return (result);
+}
+
+Fixed	Fixed::operator+(const Fixed& other) const
+{
+	Fixed		result;
+	long long	rawresult;
+
+	rawresult = this->_RawBits + other.getRawBits();
+	result.setRawBits(rawresult);
+	return (result);
+}
+
+Fixed	Fixed::operator-(const Fixed& other) const
+{
+	Fixed		result;
+	long long	rawresult;
+
+	rawresult = this->_RawBits - other.getRawBits();
+	result.setRawBits(rawresult);
+	return (result);
+}
+
+Fixed	Fixed::operator*(const Fixed& other) const
+{
+	Fixed		result;
+	long long	rawresult;
+
+	rawresult = this->_RawBits * other.getRawBits();
+	rawresult = rawresult >> _FractBits;
+	result.setRawBits(rawresult);
+	return (result);
+}
+
+Fixed	Fixed::operator/(const Fixed& other) const
+{
+	Fixed		result;
+	long long	rawresult;
+
+	rawresult = this->_RawBits / other.getRawBits();
+	rawresult = rawresult << _FractBits;
+	result.setRawBits(rawresult);
+	return (result);
 }

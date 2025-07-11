@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:36:05 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/13 15:47:40 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/11 15:43:57 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class Fixed
 {
 	private:
-		int		_RawBits;
+		int					_RawBits;
 		static const int	_FractBits;
 
 	public:
@@ -31,6 +31,8 @@ class Fixed
 
 		float	toFloat(void) const;
 		int		toInt(void) const;
+		int		getRawBits(void) const;
+		void	setRawBits(int const raw);
 };
 
 std::ostream&	operator<<(std::ostream& os, const Fixed& obj);
