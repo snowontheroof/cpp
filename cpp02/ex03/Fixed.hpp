@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:36:05 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/14 14:29:09 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/14 15:56:04 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 class Fixed
 {
 	private:
-		int					_RawBits;
-		static const int	_FractBits;
+		int					_rawBits;
+		static const int	_fractBits;
 
 	public:
 		Fixed();

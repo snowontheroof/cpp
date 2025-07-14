@@ -6,20 +6,20 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:36:13 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/14 15:06:39 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/14 15:46:47 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-const int	Fixed::_FractBits = 8;
+const int	Fixed::_fractBits = 8;
 
-Fixed::Fixed() : _RawBits(0)
+Fixed::Fixed() : _rawBits(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& obj) : _RawBits(obj._RawBits)
+Fixed::Fixed(const Fixed& obj) : _rawBits(obj._rawBits)
 {
 	std::cout << "Copy constructor called" << std::endl;
 }
@@ -28,8 +28,8 @@ Fixed&	Fixed::operator=(const Fixed& other)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &other)
-		_RawBits = other.getRawBits();
-	return (*this);
+		_rawBits = other.getRawBits();
+	return *this;
 }
 
 Fixed::~Fixed()
@@ -40,11 +40,11 @@ Fixed::~Fixed()
 int	Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits member function called" << std::endl;
-	return (_RawBits);
+	return _rawBits;
 }
 
 void	Fixed::setRawBits(int const raw)
 {
 	std::cout << "setRawBits member function called" << std::endl;
-	_RawBits = raw;
+	_rawBits = raw;
 }

@@ -18,10 +18,10 @@ Point::~Point()
 
 const Fixed&	Point::getX() const
 {
-	return (_x);
+	return _x;
 }
 
 const Fixed&	Point::getY() const
 {
-	return (_y);
+	return _y;
 }

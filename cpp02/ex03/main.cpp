@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:35:56 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/14 14:09:08 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/14 15:58:42 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,20 @@
 
 #include <iostream>
 
-int main( void )
+int main(void)
 {
-	Point	a(0, 0);
-	Point	b(10, 30);
-	Point	c(20, 0);
-	Point	point(30, 15);
+	try
+	{
+		Point	a(0, 0);
+		Point	b(10, 30);
+		Point	c(20, 0);
+		Point	point(30, 15);
 
-	std::cout << bsp(a, b, c, point) << std::endl;
-
+		std::cout << bsp(a, b, c, point) << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 	return 0;
 }

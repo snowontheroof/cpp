@@ -10,7 +10,7 @@ float	findArea(Point const a, Point const b, Point const c)
 	float	x3 = (c.getX()).toFloat();
 	float	y3 = (c.getY()).toFloat();
 
-	return (fabs((x1*(y2-y3) + x2*(y3-y1)+ x3*(y1-y2))/2));
+	return fabs((x1*(y2-y3) + x2*(y3-y1)+ x3*(y1-y2))/2);
 }
 
 bool	bsp(Point const a, Point const b, Point const c, Point const point)
@@ -26,7 +26,7 @@ bool	bsp(Point const a, Point const b, Point const c, Point const point)
 	pointArea3 = findArea(a, b, point);
 
 	if (triangleArea == (pointArea1 + pointArea2 + pointArea3))
-		return (true);
+		return true;
 	else
-		return (false);
+		return false;
 }
