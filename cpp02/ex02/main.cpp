@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:35:56 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/11 16:32:20 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/14 13:33:54 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,20 @@
 
 int main( void )
 {
-	Fixed a;
-	Fixed const b(Fixed(5.05f) * Fixed(2));
-
+	Fixed a(10);
 	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	// std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-
+	Fixed b(2);
 	std::cout << b << std::endl;
+	Fixed c(a * b);
 
-	std::cout << Fixed::max(a, b) << std::endl;
+	// std::cout << a << std::endl;
+	// std::cout << ++a << std::endl;
+	// std::cout << a << std::endl;
+	// std::cout << a++ << std::endl;
+	// std::cout << a << std::endl;
 
+	// std::cout << b << std::endl;
+
+	// std::cout << Fixed::max(a, b) << std::endl;
 	return 0;
 }

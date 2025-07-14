@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:36:05 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/11 16:48:35 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/14 09:05:45 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ class Fixed
 
 	public:
 		Fixed();
-		Fixed (const Fixed& obj);
-		Fixed& operator=(const Fixed& f);
+		Fixed(const Fixed& obj);
+		Fixed& operator=(const Fixed& other);
 		~Fixed();
 
 		int		getRawBits(void) const;

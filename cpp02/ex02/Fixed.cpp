@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:36:13 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/11 16:51:46 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/14 15:08:31 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,21 @@
 
 const int	Fixed::_FractBits = 8;
 
-Fixed::Fixed()
+Fixed::Fixed() : _RawBits(0)
 {
 	std::cout << "Default constructor called" << std::endl;
-
-	this->_RawBits = 0;
 }
 
 Fixed::Fixed(const int nbr)
 {
 	std::cout << "Int constructor called" << std::endl;
-
-	this->_RawBits = nbr * 256;
+	_RawBits = nbr * 256;
 }
 
 Fixed::Fixed(const float nbr) : _RawBits(nbr)
 {
 	std::cout << "Float constructor called" << std::endl;
-
-	this->_RawBits = static_cast<int>(roundf(nbr * 256));
+	_RawBits = static_cast<int>(roundf(nbr * 256));
 }
 
 Fixed::~Fixed()
@@ -43,15 +39,14 @@ Fixed::~Fixed()
 Fixed::Fixed(const Fixed& obj) : _RawBits(obj._RawBits)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	// *this = obj;	//why is this preferred in the subject output??
 }
 
-Fixed&	Fixed::operator=(const Fixed& f)
+Fixed&	Fixed::operator=(const Fixed& other)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 
-	if (this != &f)
-		this->_RawBits = f._RawBits;
+	if (this != &other)
+		this->_RawBits = other._RawBits;
 	return (*this);
 }
 
@@ -106,33 +101,90 @@ const Fixed&	Fixed::max(const Fixed& a, const Fixed& b)
 int	Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits member function called" << std::endl;
-
-	return (this->_RawBits);
+	return (_RawBits);
 }
 
 void	Fixed::setRawBits(int const raw)
 {
-	this->_RawBits = raw;
+	_RawBits = raw;
 }
 
-Fixed	Fixed::operator++(void) const
+bool	Fixed::operator>(const Fixed& other) const
 {
-	Fixed		result;
-	long long	rawresult;
-
-	rawresult = this->_RawBits + 1;
-	result.setRawBits(rawresult);
-	return (result);
+	if (getRawBits() > other.getRawBits())
+		return (true);
+	else
+		return (false);
 }
 
-Fixed	Fixed::operator--(void) const
+bool	Fixed::operator<(const Fixed& other) const
 {
-	Fixed		result;
-	long long	rawresult;
+	if (getRawBits() < other.getRawBits())
+		return (true);
+	else
+		return (false);
+}
 
-	rawresult = this->_RawBits - 1;
-	result.setRawBits(rawresult);
-	return (result);
+bool	Fixed::operator>=(const Fixed& other) const
+{
+	if (getRawBits() >= other.getRawBits())
+		return (true);
+	else
+		return (false);
+}
+
+bool	Fixed::operator<=(const Fixed& other) const
+{
+	if (getRawBits() <= other.getRawBits())
+		return (true);
+	else
+		return (false);
+}
+
+bool	Fixed::operator==(const Fixed& other) const
+{
+	if (getRawBits() == other.getRawBits())
+		return (true);
+	else
+		return (false);
+}
+
+bool	Fixed::operator!=(const Fixed& other) const
+{
+	if (getRawBits() != other.getRawBits())
+		return (true);
+	else
+		return (false);
+}
+
+Fixed&	Fixed::operator++(void)
+{
+	_RawBits++;
+	return (*this);
+}
+
+Fixed&	Fixed::operator--(void)
+{
+	_RawBits--;
+	return (*this);
+}
+
+Fixed	Fixed::operator--(int)
+{
+	Fixed	tmp;
+
+	tmp = *this;
+	_RawBits--;
+	return (tmp);
+}
+
+Fixed	Fixed::operator++(int)
+{
+	Fixed	tmp;
+
+	tmp = *this;
+	_RawBits++;
+	return (tmp);
 }
 
 Fixed	Fixed::operator+(const Fixed& other) const
@@ -140,7 +192,7 @@ Fixed	Fixed::operator+(const Fixed& other) const
 	Fixed		result;
 	long long	rawresult;
 
-	rawresult = this->_RawBits + other.getRawBits();
+	rawresult = _RawBits + other.getRawBits();
 	result.setRawBits(rawresult);
 	return (result);
 }
@@ -150,7 +202,7 @@ Fixed	Fixed::operator-(const Fixed& other) const
 	Fixed		result;
 	long long	rawresult;
 
-	rawresult = this->_RawBits - other.getRawBits();
+	rawresult = _RawBits - other.getRawBits();
 	result.setRawBits(rawresult);
 	return (result);
 }
@@ -160,8 +212,8 @@ Fixed	Fixed::operator*(const Fixed& other) const
 	Fixed		result;
 	long long	rawresult;
 
-	rawresult = this->_RawBits * other.getRawBits();
-	rawresult = rawresult >> _FractBits;
+	rawresult = _RawBits * other.getRawBits();
+	rawresult /= 256;
 	result.setRawBits(rawresult);
 	return (result);
 }
@@ -171,8 +223,8 @@ Fixed	Fixed::operator/(const Fixed& other) const
 	Fixed		result;
 	long long	rawresult;
 
-	rawresult = this->_RawBits / other.getRawBits();
-	rawresult = rawresult << _FractBits;
+	rawresult = _RawBits / other.getRawBits();
+	rawresult *= 256;
 	result.setRawBits(rawresult);
 	return (result);
 }

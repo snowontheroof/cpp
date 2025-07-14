@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:36:05 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/13 15:47:40 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/14 14:29:09 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class Fixed
 {
 	private:
-		int		_RawBits;
+		int					_RawBits;
 		static const int	_FractBits;
 
 	public:
@@ -26,7 +26,7 @@ class Fixed
 		Fixed(const int nbr);
 		Fixed(const float nbr);
 		Fixed (const Fixed& obj);
-		Fixed &operator=(const Fixed& f);
+		Fixed& operator=(const Fixed& other);
 		~Fixed();
 
 		float	toFloat(void) const;
