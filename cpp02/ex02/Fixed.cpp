@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:36:13 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/15 09:26:43 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/15 11:34:09 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Fixed::Fixed(const int nbr)
 	_rawBits = nbr * 256;
 }
 
-Fixed::Fixed(const float nbr) : _rawBits(nbr)
+Fixed::Fixed(const float nbr)
 {
 	std::cout << "Float constructor called" << std::endl;
 	_rawBits = static_cast<int>(roundf(nbr * 256));
@@ -110,21 +110,21 @@ Fixed&	Fixed::operator--(void)
 	return *this;
 }
 
-Fixed	Fixed::operator--(int)
-{
-	Fixed	tmp;
-
-	tmp = *this;
-	_rawBits--;
-	return tmp;
-}
-
 Fixed	Fixed::operator++(int)
 {
 	Fixed	tmp;
 
 	tmp = *this;
 	_rawBits++;
+	return tmp;
+}
+
+Fixed	Fixed::operator--(int)
+{
+	Fixed	tmp;
+
+	tmp = *this;
+	_rawBits--;
 	return tmp;
 }
 
@@ -172,30 +172,34 @@ Fixed	Fixed::operator/(const Fixed& other) const
 
 Fixed&	Fixed::min(Fixed& a, Fixed& b)
 {
-	if (a.getRawBits() < b.getRawBits())
-	return a;
-	return b;
+	if (a < b)
+		return a;
+	else
+		return b;
 }
 
 const Fixed&	Fixed::min(const Fixed& a, const Fixed& b)
 {
-	if (a.getRawBits() < b.getRawBits())
-	return a;
-	return b;
+	if (a < b)
+		return a;
+	else
+		return b;
 }
 
 Fixed&	Fixed::max(Fixed& a, Fixed& b)
 {
-	if (a.getRawBits() > b.getRawBits())
-	return a;
-	return b;
+	if (a > b)
+		return a;
+	else
+		return b;
 }
 
 const Fixed&	Fixed::max(const Fixed& a, const Fixed& b)
 {
-	if (a.getRawBits() > b.getRawBits())
-	return a;
-	return b;
+	if (a > b)
+		return a;
+	else
+		return b;
 }
 
 float	Fixed::toFloat(void) const

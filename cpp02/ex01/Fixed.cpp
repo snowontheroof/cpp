@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:36:13 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/15 09:24:15 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/15 11:20:00 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 const int	Fixed::_fractBits = 8;
 
-Fixed::Fixed()
+Fixed::Fixed() : _rawBits(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
@@ -46,7 +46,7 @@ Fixed&	Fixed::operator=(const Fixed& other)
 	std::cout << "Copy assignment operator called" << std::endl;
 
 	if (this != &other)
-		_rawBits = other._rawBits;
+		_rawBits = other.getRawBits();
 	return *this;
 }
 

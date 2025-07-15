@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:36:13 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/15 10:46:55 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/15 11:37:27 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 const int	Fixed::_fractBits = 8;
 
-Fixed::Fixed()
+Fixed::Fixed() : _rawBits(0)
 {
 	// std::cout << "Fixed: Default constructor called" << std::endl;
 }
@@ -46,7 +46,7 @@ Fixed&	Fixed::operator=(const Fixed& other)
 	// std::cout << "Fixed: Copy assignment operator called" << std::endl;
 
 	if (this != &other)
-		_rawBits = other._rawBits;
+		_rawBits = other.getRawBits();
 	return *this;
 }
 
@@ -110,21 +110,21 @@ Fixed&	Fixed::operator--(void)
 	return *this;
 }
 
-Fixed	Fixed::operator--(int)
-{
-	Fixed	tmp;
-
-	tmp = *this;
-	_rawBits--;
-	return tmp;
-}
-
 Fixed	Fixed::operator++(int)
 {
 	Fixed	tmp;
 
 	tmp = *this;
 	_rawBits++;
+	return tmp;
+}
+
+Fixed	Fixed::operator--(int)
+{
+	Fixed	tmp;
+
+	tmp = *this;
+	_rawBits--;
 	return tmp;
 }
 
@@ -172,30 +172,34 @@ Fixed	Fixed::operator/(const Fixed& other) const
 
 Fixed&	Fixed::min(Fixed& a, Fixed& b)
 {
-	if (a.getRawBits() < b.getRawBits())
-	return a;
-	return b;
+	if (a < b)
+		return a;
+	else
+		return b;
 }
 
 const Fixed&	Fixed::min(const Fixed& a, const Fixed& b)
 {
-	if (a.getRawBits() < b.getRawBits())
-	return a;
-	return b;
+	if (a < b)
+		return a;
+	else
+		return b;
 }
 
 Fixed&	Fixed::max(Fixed& a, Fixed& b)
 {
-	if (a.getRawBits() > b.getRawBits())
-	return a;
-	return b;
+	if (a > b)
+		return a;
+	else
+		return b;
 }
 
 const Fixed&	Fixed::max(const Fixed& a, const Fixed& b)
 {
-	if (a.getRawBits() > b.getRawBits())
-	return a;
-	return b;
+	if (a > b)
+		return a;
+	else
+		return b;
 }
 
 float	Fixed::toFloat(void) const

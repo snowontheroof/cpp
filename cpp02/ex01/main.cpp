@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:35:56 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/15 10:40:42 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/15 11:20:50 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int main(void)
 		e.setRawBits(256);
 		std::cout << "now e is " << e.toInt() << " as integer and " << e.toFloat()
 			<< " as float" << std::endl;
-
 	}
 	catch(const std::exception& e)
 	{
