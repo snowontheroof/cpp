@@ -2,18 +2,22 @@
 
 Point::Point() : _x(0), _y(0)
 {
+	// std::cout << "Point: Default constructor called" << std::endl;
 }
 
 Point::Point(const int x, const int y) : _x(x), _y(y)
 {
+	// std::cout << "Point: Initializing constructor called" << std::endl;
 }
 
-Point::Point(const Point& obj) : _x(obj._x), _y(obj._y)
+Point::Point(const Point& obj) : _x(obj.getX()), _y(obj.getY())
 {
+	// std::cout << "Point: Copy constructor called" << std::endl;
 }
 
 Point::~Point()
 {
+	// std::cout << "Point: Destructor called" << std::endl;
 }
 
 const Fixed&	Point::getX() const

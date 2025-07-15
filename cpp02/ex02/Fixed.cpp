@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:36:13 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/14 16:20:30 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/15 09:26:43 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ Fixed::~Fixed()
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& obj) : _rawBits(obj._rawBits)
+Fixed::Fixed(const Fixed& obj) : _rawBits(obj.getRawBits())
 {
 	std::cout << "Copy constructor called" << std::endl;
 }
@@ -220,6 +220,7 @@ int	Fixed::getRawBits(void) const
 
 void	Fixed::setRawBits(int const raw)
 {
+	std::cout << "setRawBits member function called" << std::endl;
 	_rawBits = raw;
 }
 

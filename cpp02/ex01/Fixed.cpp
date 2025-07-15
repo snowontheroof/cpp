@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:36:13 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/14 16:04:36 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/15 09:24:15 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,9 @@ Fixed::~Fixed()
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& obj) : _rawBits(obj._rawBits)
+Fixed::Fixed(const Fixed& obj) : _rawBits(obj.getRawBits())
 {
 	std::cout << "Copy constructor called" << std::endl;
-	// *this = obj;	//why is this preferred in the subject output??
-	// it would then call the copy assignment operator
 }
 
 Fixed&	Fixed::operator=(const Fixed& other)

@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:36:13 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/14 15:46:47 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/15 09:24:01 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Fixed::Fixed() : _rawBits(0)
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& obj) : _rawBits(obj._rawBits)
+Fixed::Fixed(const Fixed& obj) : _rawBits(obj.getRawBits())
 {
 	std::cout << "Copy constructor called" << std::endl;
 }

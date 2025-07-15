@@ -1,4 +1,4 @@
-NAME = Fixed
+NAME = fixedTest
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror
 

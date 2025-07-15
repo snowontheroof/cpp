@@ -1,4 +1,4 @@
-NAME = Fixed
+NAME = fixedOperators
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror
 

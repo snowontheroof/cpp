@@ -1,4 +1,4 @@
-NAME = Fixed
+NAME = bsp
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror
 
