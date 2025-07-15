@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:36:05 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/15 09:27:22 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/15 16:10:46 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Fixed
 		Fixed(const int nbr);
 		Fixed(const float nbr);
 		Fixed (const Fixed& obj);
-		Fixed& operator=(const Fixed& other);
+		Fixed&	operator=(const Fixed& other);
 		~Fixed();
 
 		bool	operator>(const Fixed& other) const;

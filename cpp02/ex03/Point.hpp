@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 13:16:05 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/15 15:28:25 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/15 16:10:50 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Point
 		Point();
 		Point(const float x, const float y);
 		Point(const Point& obj);
-		Point& operator=(const Point& other) = delete;
+		Point&	operator=(const Point& other) = delete;
 		~Point();
 
 		const Fixed&	getX() const;
