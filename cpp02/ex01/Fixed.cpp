@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:36:13 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/15 11:20:00 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/15 15:32:44 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Fixed::Fixed() : _rawBits(0)
 Fixed::Fixed(const int nbr)
 {
 	std::cout << "Int constructor called" << std::endl;
-	_rawBits = nbr * 256;
+	_rawBits = nbr * 256;	//_rawBits = nbr << _fractBits;
 }
 
 Fixed::Fixed(const float nbr)

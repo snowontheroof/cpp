@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 13:16:10 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/15 13:16:11 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/15 15:28:18 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Point::Point() : _x(0), _y(0)
 	// std::cout << "Point: Default constructor called" << std::endl;
 }
 
-Point::Point(const int x, const int y) : _x(x), _y(y)
+Point::Point(const float x, const float y) : _x(x), _y(y)
 {
 	// std::cout << "Point: Initializing constructor called" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:35:56 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/15 11:20:50 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/15 15:36:10 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ int main(void)
 	{
 		Fixed a;
 		Fixed const b(10);
+		std::cout << b.getRawBits() << std::endl;
 		Fixed const c(42.42f);
+		std::cout << b.getRawBits() << std::endl;
 		Fixed const d(b);
 
 		a = Fixed(1234.4321f);
