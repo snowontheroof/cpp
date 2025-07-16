@@ -23,7 +23,6 @@ $(OBJ_DIR)%.o:$(SRC_DIR)%.cpp
 	$(CXX) $(CXXFLAGS) -I $(INC_DIR) -c $< -o $@
 
 clean:
-	@rm -rf $(OBJ)
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean
