@@ -2,20 +2,29 @@ NAME = DiamondTrap
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror
 
-HDR = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
-SRC = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
-OBJ = $(SRC:.cpp=.o)
+INC_DIR = inc/
+SRC_DIR = src/
+OBJ_DIR = obj/
+
+INC_FILES = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
+SRC_FILES = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
+OBJ_FILES = $(SRC_FILES:.cpp=.o)
+
+SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
+OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.cpp $(HDR)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+$(OBJ_DIR)%.o:$(SRC_DIR)%.cpp
+	@mkdir -p $(OBJ_DIR)
+	$(CXX) $(CXXFLAGS) -I $(INC_DIR) -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@rm -rf $(NAME)

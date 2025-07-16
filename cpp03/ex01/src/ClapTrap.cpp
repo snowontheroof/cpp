@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 14:33:48 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/15 16:05:40 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/16 13:42:24 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ ClapTrap::ClapTrap(const ClapTrap& obj) : _name(obj._name), _hitPoints(obj._hitP
 
 ClapTrap&	ClapTrap::operator=(const ClapTrap& other)
 {
-	std::cout << "ClapTrap " << _name << ": Copy assignment operator called" << std::endl;
+	std::cout << "ClapTrap: Copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		_name = other._name;
@@ -37,19 +37,19 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& other)
 		_energyPoints = other._energyPoints;
 		_attackDamage = other._attackDamage;
 	}
+	return *this;
 }
 
 ClapTrap::~ClapTrap()
 {
 	std::cout << "ClapTrap " << _name << ": Destructor called" << std::endl;
-	return ;
 }
 
 void	ClapTrap::attack(const std::string& target)
 {
 	if (_hitPoints == 0)
 	{
-		std::cout << "ClapTrap " << _name << " cannot attack - they are already dead!" << std::endl;
+		std::cout << "ClapTrap " << _name << " cannot attack - it is already dead!" << std::endl;
 		return ;
 	}
 	if (_energyPoints == 0)
@@ -58,7 +58,7 @@ void	ClapTrap::attack(const std::string& target)
 			<< " cannot attack - not enough energy points!" << std::endl;
 		return ;
 	}
-	_energyPoints -= 1;
+	_energyPoints--;
 	std::cout << "ClapTrap " << _name << " attacks " << target << ", causing " << _attackDamage
 		<< " points of damage!" << std::endl;
 }
@@ -67,7 +67,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (_hitPoints == 0)
 	{
-		std::cout << "ClapTrap " << _name << " is already dead. Don't try to hurt them anymore!" << std::endl;
+		std::cout << "ClapTrap " << _name << " is already dead. Don't try to hurt it anymore!" << std::endl;
 		return ;
 	}
 	if (amount >= _hitPoints)
@@ -85,7 +85,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 {
 	if (_hitPoints == 0)
 	{
-		std::cout << "ClapTrap " << _name << " cannot repair itself - they are already dead!" << std::endl;
+		std::cout << "ClapTrap " << _name << " cannot repair itself - it is already dead!" << std::endl;
 		return ;
 	}
 	if (_energyPoints == 0)
@@ -94,7 +94,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 			<< " cannot repair itself - not enough energy points!" << std::endl;
 		return ;
 	}
-	_energyPoints -= 1;
+	_energyPoints--;
 	_hitPoints += amount;
 	std::cout << "ClapTrap " << _name
 		<< " repaired itself and now has " << _hitPoints << " hit points!" << std::endl;

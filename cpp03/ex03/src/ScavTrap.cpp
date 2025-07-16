@@ -1,11 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/16 12:13:08 by sojala            #+#    #+#             */
+/*   Updated: 2025/07/16 14:17:25 by sojala           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ScavTrap.hpp"
+
+ScavTrap::ScavTrap()
+{
+	std::cout << "ScavTrap: Default constructor called" << std::endl;
+}
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
+	std::cout << "ScavTrap " << name << ": Constructor called" << std::endl;
 	_hitPoints =  100;
 	_energyPoints = 50;
 	_attackDamage = 20;
-	std::cout << "ScavTrap " << name << ": Constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& obj) : ClapTrap(obj)
@@ -23,6 +40,7 @@ ScavTrap&	ScavTrap::operator=(const ScavTrap& other)
 		_energyPoints = other._energyPoints;
 		_attackDamage = other._attackDamage;
 	}
+	return *this;
 }
 
 ScavTrap::~ScavTrap()
@@ -34,7 +52,7 @@ void	ScavTrap::attack(const std::string& target)
 {
 	if (_hitPoints == 0)
 	{
-		std::cout << "ScavTrap " << _name << " cannot attack - they are already dead!" << std::endl;
+		std::cout << "ScavTrap " << _name << " cannot attack - it already dead!" << std::endl;
 		return ;
 	}
 	if (_energyPoints == 0)

@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 14:33:55 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/12 12:02:44 by sojala           ###   ########.fr       */
+/*   Created: 2025/07/16 12:12:52 by sojala            #+#    #+#             */
+/*   Updated: 2025/07/16 14:50:37 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#ifndef DIAMONDTRAP_HPP
+# define DIAMONDTRAP_HPP
+# include "FragTrap.hpp"
+# include "ScavTrap.hpp"
 
-int	main(void)
+class DiamondTrap : public FragTrap, public ScavTrap
 {
-	ClapTrap	guy1("guy1");
-	ClapTrap	guy2("guy2");
+	private:
+		std::string	_name;
 
-	guy1.attack("guy2");
-	guy2.takeDamage(8);
-	guy2.attack("guy1");
-	guy1.takeDamage(4);
-	guy1.attack("guy2");
-	guy2.takeDamage(3);
-	guy2.attack("guy1");
-	guy2.beRepaired(2);
-}
+	public:
+		DiamondTrap(std::string name);
+		~DiamondTrap();
+
+		void	attack(const std::string& target) override;
+		void	whoAmI();
+};
+
+#endif

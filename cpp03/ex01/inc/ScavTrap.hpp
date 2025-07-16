@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 14:33:55 by sojala            #+#    #+#             */
-/*   Updated: 2025/06/13 10:39:28 by sojala           ###   ########.fr       */
+/*   Created: 2025/07/16 12:12:09 by sojala            #+#    #+#             */
+/*   Updated: 2025/07/16 15:15:41 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
+# include "ClapTrap.hpp"
 
-int	main(void)
+class ScavTrap : public ClapTrap
 {
-	ScavTrap	Joe("Joe");
-	ScavTrap	Martin("Martin");
+	public:
+		ScavTrap();
+		ScavTrap(std::string name);
+		ScavTrap(const ScavTrap& obj);
+		ScavTrap&	operator=(const ScavTrap& other);
+		~ScavTrap();
 
-	Joe.attack("Martin");
-	Martin.takeDamage(8);
-	Martin.attack("Joe");
-	Joe.takeDamage(4);
-	Joe.attack("Martin");
-	Martin.takeDamage(3);
-	Martin.attack("Joe");
-	Martin.beRepaired(2);
-}
+		void	attack(const std::string& target) override;
+		void	guardGate();
+};
+
+#endif

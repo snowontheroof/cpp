@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 14:33:52 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/15 16:10:35 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/16 11:59:21 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 class	ClapTrap
 {
-	protected:
+	private:
 		std::string		_name;
 		unsigned int	_hitPoints;
 		unsigned int	_energyPoints;
