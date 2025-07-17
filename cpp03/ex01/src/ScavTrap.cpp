@@ -6,20 +6,23 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 12:12:03 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/16 13:46:18 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/17 15:26:17 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap()
+ScavTrap::ScavTrap() : ClapTrap()
 {
 	std::cout << "ScavTrap: Default constructor called" << std::endl;
+	_hitPoints =  100;
+	_energyPoints = 50;
+	_attackDamage = 20;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-	std::cout << "ScavTrap " << name << ": Constructor called" << std::endl;
+	std::cout << "ScavTrap " << _name << ": Constructor called" << std::endl;
 	_hitPoints =  100;
 	_energyPoints = 50;
 	_attackDamage = 20;
@@ -32,7 +35,6 @@ ScavTrap::ScavTrap(const ScavTrap& obj) : ClapTrap(obj)
 
 ScavTrap&	ScavTrap::operator=(const ScavTrap& other)
 {
-	std::cout << "ScavTrap: Copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		_name = other._name;
@@ -40,6 +42,7 @@ ScavTrap&	ScavTrap::operator=(const ScavTrap& other)
 		_energyPoints = other._energyPoints;
 		_attackDamage = other._attackDamage;
 	}
+	std::cout << "ScavTrap " << _name << ": Copy assignment operator called" << std::endl;
 	return *this;
 }
 
@@ -58,7 +61,7 @@ void	ScavTrap::attack(const std::string& target)
 	if (_energyPoints == 0)
 	{
 		std::cout << "ScavTrap " << _name
-			<< " cannot attack - not enough energy points!" << std::endl;
+			<< " doesn't have enough energy to attack!" << std::endl;
 		return ;
 	}
 	_energyPoints--;
@@ -68,5 +71,18 @@ void	ScavTrap::attack(const std::string& target)
 
 void	ScavTrap::guardGate()
 {
+	if (_hitPoints == 0)
+	{
+		std::cout << "ScavTrap" << _name
+			<< "cannot activate Gate keeper mode - it is already dead!" << std::endl;
+		return ;
+	}
+	if (_energyPoints == 0)
+	{
+		std::cout << "ScavTrap" << _name
+			<< "doesn't have enough energy to gatekeep!" << std::endl;
+		return ;
+	}
 	std::cout << "ScavTrap " << _name << " is now in Gate keeper mode" << std::endl;
+	_energyPoints--;
 }

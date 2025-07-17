@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 14:33:55 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/16 11:43:46 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/17 16:26:20 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,17 @@
 
 int	main(void)
 {
-	DiamondTrap	Markku("Markku");
+	FragTrap	Tere("Tere");
+	FragTrap	Moro(Tere);
 
+	DiamondTrap	Markku("Markku");
+	DiamondTrap	Kerkko(Markku);
+	DiamondTrap	Terttu;
+
+	Terttu = Markku;
 	Markku.whoAmI();
+	Kerkko.whoAmI();
+	Terttu.whoAmI();
+
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 14:33:55 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/16 16:07:27 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/17 10:10:41 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(void)
 {
 	ClapTrap	guy1("Jari");
 	ClapTrap	guy2("Kari");
-	std::cout << "< Creating a copy of guy2 (Kari) using copy constructor: >" << std::endl;
+	std::cout << "<Creating a copy of guy2 (Kari) using copy constructor>" << std::endl;
 	ClapTrap	guy3(guy2);
 	ClapTrap	guy4;
 
@@ -30,7 +30,7 @@ int	main(void)
 	guy2.beRepaired(2);
 
 	std::cout << std::endl << "--------------------" << std::endl
-		<< "< Assigning guy4 the values of guy2 (Kari) using copy assignment operator: >"
+		<< "<Assigning guy4 the values of guy2 (Kari) using copy assignment operator>"
 		<< std::endl;
 	guy4 = guy2;
 	guy4.attack("Jari");

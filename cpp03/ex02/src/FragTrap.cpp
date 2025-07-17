@@ -6,15 +6,18 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 12:12:21 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/16 13:52:36 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/17 14:57:11 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap()
+FragTrap::FragTrap() : ClapTrap()
 {
 	std::cout << "FragTrap: Default constructor called" << std::endl;
+	_hitPoints = 100;
+	_energyPoints = 100;
+	_attackDamage = 30;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
@@ -32,7 +35,6 @@ FragTrap::FragTrap(const FragTrap& obj) : ClapTrap(obj)
 
 FragTrap&	FragTrap::operator=(const FragTrap& other)
 {
-	std::cout << "FragTrap: Copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		_name = other._name;
@@ -40,6 +42,7 @@ FragTrap&	FragTrap::operator=(const FragTrap& other)
 		_energyPoints = other._energyPoints;
 		_attackDamage = other._attackDamage;
 	}
+	std::cout << "FragTrap " << _name << ": Copy assignment operator called" << std::endl;
 	return *this;
 }
 
@@ -48,7 +51,20 @@ FragTrap::~FragTrap()
 	std::cout << "FragTrap " << _name << ": Destructor called" << std::endl;
 }
 
-void	FragTrap::highFivesGuys()
+void	FragTrap::highFivesGuys(void)
 {
-	std::cout << "FragTrap " << _name << ": high five, guys!!" << std::endl;
+	if (_hitPoints == 0)
+	{
+		std::cout << "FragTrap " << _name
+			<< " cannot give any high fives - it is already dead!" << std::endl;
+		return ;
+	}
+	if (_energyPoints == 0)
+	{
+		std::cout << "FragTrap " << _name
+			<< " does not have the energy high fives would take!" << std::endl;
+		return ;
+	}
+	std::cout << "FragTrap " << _name << ": high five, guys!! Wohoo!!" << std::endl;
+	_energyPoints--;
 }
