@@ -1,4 +1,4 @@
-NAME = ScavTrap
+NAME = Animal
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror
 
@@ -6,8 +6,8 @@ INC_DIR = inc/
 SRC_DIR = src/
 OBJ_DIR = obj/
 
-INC_FILES = ClapTrap.hpp ScavTrap.hpp
-SRC_FILES = main.cpp ClapTrap.cpp ScavTrap.cpp
+INC_FILES = Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp
+SRC_FILES = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
 
 INC = $(addprefix $(INC_DIR), $(INC_FILES))

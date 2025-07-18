@@ -1,4 +1,4 @@
-NAME = ScavTrap
+NAME = MateriaSource
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror
 
@@ -6,8 +6,8 @@ INC_DIR = inc/
 SRC_DIR = src/
 OBJ_DIR = obj/
 
-INC_FILES = ClapTrap.hpp ScavTrap.hpp
-SRC_FILES = main.cpp ClapTrap.cpp ScavTrap.cpp
+INC_FILES = AMateria.hpp Ice.hpp Cure.hpp Character.cpp MateriaSource.hpp
+SRC_FILES = main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
 
 INC = $(addprefix $(INC_DIR), $(INC_FILES))
