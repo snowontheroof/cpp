@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 14:33:48 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/18 10:56:02 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/18 12:12:03 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	else
 		std::cout << " points of damage! ";
 	if (_hitPoints == 0)
-		std::cout << "ClapTrap " << _name << " is now dead. Too bad!" << std::endl;
+		std::cout << "It is now dead. Too bad!" << std::endl;
 	else
-		std::cout << _name << " now has " << _hitPoints << " hit points" << std::endl;
+		std::cout << "It now has " << _hitPoints << " hit points" << std::endl;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
