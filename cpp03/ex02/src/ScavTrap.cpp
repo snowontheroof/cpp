@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 12:12:33 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/17 14:56:44 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/18 11:26:49 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ void	ScavTrap::guardGate()
 {
 	if (_hitPoints == 0)
 	{
-		std::cout << "ScavTrap" << _name
-			<< "cannot activate Gate keeper mode - it is already dead!" << std::endl;
+		std::cout << "ScavTrap " << _name
+			<< " cannot activate Gate keeper mode - it is already dead!" << std::endl;
 		return ;
 	}
 	if (_energyPoints == 0)
 	{
-		std::cout << "ScavTrap" << _name
-			<< "doesn't have enough energy to gatekeep!" << std::endl;
+		std::cout << "ScavTrap " << _name
+			<< " doesn't have enough energy to gatekeep!" << std::endl;
 		return ;
 	}
 	std::cout << "ScavTrap " << _name << " is now in Gate keeper mode" << std::endl;
