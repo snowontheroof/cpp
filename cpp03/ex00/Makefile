@@ -10,15 +10,16 @@ INC_FILES = ClapTrap.hpp
 SRC_FILES = main.cpp ClapTrap.cpp
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
 
+INC = $(addprefix $(INC_DIR), $(INC_FILES))
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(INC)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
-$(OBJ_DIR)%.o:$(SRC_DIR)%.cpp
+$(OBJ_DIR)%.o:$(SRC_DIR)%.cpp $(INC)
 	@mkdir -p $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -I $(INC_DIR) -c $< -o $@
 

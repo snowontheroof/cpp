@@ -6,13 +6,13 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 12:12:48 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/18 11:39:58 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/18 16:09:16 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap() : ClapTrap("Unknown_clap_name"), FragTrap("Unknown"), ScavTrap("Unknown"), _name("Unknown")
+DiamondTrap::DiamondTrap() : ClapTrap("Unknown_clap_name"), FragTrap(), ScavTrap(), _name("Unknown")
 {
 	std::cout << "DiamondTrap: Default constructor called" << std::endl;
 	_hitPoints = FT_HP;
@@ -38,10 +38,10 @@ DiamondTrap::DiamondTrap(const DiamondTrap& obj) : ClapTrap(obj._name + "_clap_n
 
 DiamondTrap&	DiamondTrap::operator=(const DiamondTrap& other)
 {
+	std::cout << "DiamondTrap " << _name << ": Copy assignment operator called" << std::endl;
 	ClapTrap::operator=(other);
 	if (this != &other)
 		_name = other._name;
-	std::cout << "DiamondTrap " << _name << ": Copy assignment operator called" << std::endl;
 	return *this;
 }
 
