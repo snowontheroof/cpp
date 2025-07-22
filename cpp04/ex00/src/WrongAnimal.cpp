@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 10:05:39 by sojala            #+#    #+#             */
+/*   Updated: 2025/07/22 10:12:06 by sojala           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal() : type("Default")
+WrongAnimal::WrongAnimal() : type("Default WrongAnimal")
 {
 	std::cout << "WrongAnimal: Default constructor called" << std::endl;
 }

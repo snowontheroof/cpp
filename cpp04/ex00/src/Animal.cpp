@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 10:05:23 by sojala            #+#    #+#             */
+/*   Updated: 2025/07/22 10:11:56 by sojala           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Animal.hpp"
 
-Animal::Animal() : type("Default")
+Animal::Animal() : type("Default Animal")
 {
 	std::cout << "Animal: Default constructor called" << std::endl;
 }

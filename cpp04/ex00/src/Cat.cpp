@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 10:05:28 by sojala            #+#    #+#             */
+/*   Updated: 2025/07/22 10:28:01 by sojala           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cat.hpp"
 
 Cat::Cat() : Animal()
@@ -9,15 +21,14 @@ Cat::Cat() : Animal()
 Cat::Cat(const Cat& obj) : Animal(obj)
 {
 	std::cout << "Cat: Copy constructor called" << std::endl;
-	type = "Cat";
 }
 
 Cat&	Cat::operator=(const Cat& other)
 {
 	std::cout << "Cat: Copy assignment operator called" << std::endl;
 	Animal::operator=(other);
-	if (this != &other)
-		type = "Cat";
+	// if (this != &other)
+	// 	type = other.type;
 	return *this;
 }
 
