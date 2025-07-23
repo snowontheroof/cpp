@@ -1,9 +1,9 @@
 #ifndef CAT_HPP
 # define CAT_HPP
-# include "Animal.hpp"
+# include "A_Animal.hpp"
 # include "Brain.hpp"
 
-class	Cat : public Animal
+class	Cat : public A_Animal
 {
 	private:
 		Brain*	ideas;
@@ -16,7 +16,7 @@ class	Cat : public Animal
 
 		void			setIdea(int index, std::string input);
 		std::string&	getIdea(int index) const;
-		void	makeSound() const override;
+		void			makeSound() const override;
 };
 
 #endif

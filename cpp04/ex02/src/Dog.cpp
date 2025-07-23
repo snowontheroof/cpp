@@ -1,13 +1,13 @@
-#include "Dog.hpp"
+#include "../inc/Dog.hpp"
 
-Dog::Dog() : Animal()
+Dog::Dog() : A_Animal()
 {
 	std::cout << "Dog: Default constructor called" << std::endl;
 	type = "Dog";
 	ideas = new Brain();
 }
 
-Dog::Dog(const Dog& obj) : Animal(obj)
+Dog::Dog(const Dog& obj) : A_Animal(obj)
 {
 	std::cout << "Dog: Copy constructor called" << std::endl;
 }
@@ -15,7 +15,7 @@ Dog::Dog(const Dog& obj) : Animal(obj)
 Dog&	Dog::operator=(const Dog& other)
 {
 	std::cout << "Dog: Copy assignment operator called" << std::endl;
-	Animal::operator=(other);
+	A_Animal::operator=(other);
 	if (this != &other)
 		type = other.type;
 	return *this;

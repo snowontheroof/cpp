@@ -1,10 +1,12 @@
-#include "Animal.hpp"
+#include "A_Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 int	main(void)
 {
-	Animal* array[30];
+	A_Animal* array[30];
 	for (int i = 0; i < 30; i++)
 	{
 		if (i % 2)
@@ -17,17 +19,12 @@ int	main(void)
 		std::cout << std::endl << array[i]->getType() << std::endl;
 		array[i]->makeSound();
 	}
-	std::cout << std::endl;
 	for (int i = 0; i < 30; i++)
 		delete array[i];
 
-	std::cout << std::endl;
 	Dog	puppy;
 
 	std::cout << std::endl << puppy.getIdea(3) << std::endl;
-	puppy.setIdea(3, "Should we get some bones??");
-	std::cout << std::endl << puppy.getIdea(3) << std::endl;
-	std::cout << std::endl << puppy.getIdea(99) << std::endl << std::endl;
 
 	return 0;
 }

@@ -1,9 +1,9 @@
 #ifndef DOG_HPP
 # define DOG_HPP
-# include "Animal.hpp"
+# include "A_Animal.hpp"
 # include "Brain.hpp"
 
-class	Dog : public Animal
+class	Dog : public A_Animal
 {
 	private:
 		Brain*	ideas;
@@ -14,7 +14,7 @@ class	Dog : public Animal
 		Dog&	operator=(const Dog& other);
 		~Dog();
 
-		void			setIdea(int index, std::string input);
+		void			setIdea(int index, std::string);
 		std::string&	getIdea(int index) const;
 		void			makeSound() const override;
 };
