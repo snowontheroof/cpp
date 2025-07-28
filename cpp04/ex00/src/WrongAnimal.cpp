@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:05:39 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/22 10:12:06 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/24 12:17:30 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ WrongAnimal::~WrongAnimal()
 
 std::string	WrongAnimal::getType() const
 {
-	return (type);
+	return type;
 }
 
 void	WrongAnimal::makeSound() const

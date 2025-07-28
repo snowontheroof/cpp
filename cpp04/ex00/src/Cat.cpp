@@ -6,11 +6,11 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:05:28 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/22 10:28:01 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/24 12:16:58 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "../inc/Cat.hpp"
 
 Cat::Cat() : Animal()
 {

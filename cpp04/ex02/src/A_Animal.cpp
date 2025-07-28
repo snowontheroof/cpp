@@ -25,5 +25,5 @@ A_Animal::~A_Animal()
 
 std::string	A_Animal::getType() const
 {
-	return (type);
+	return type;
 }

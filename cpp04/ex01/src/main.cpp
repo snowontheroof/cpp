@@ -22,12 +22,12 @@ int	main(void)
 		delete array[i];
 
 	std::cout << std::endl;
-	Dog	puppy;
+	const Dog	puppy;
 
-	std::cout << std::endl << puppy.getIdea(3) << std::endl;
-	puppy.setIdea(3, "Should we get some bones??");
-	std::cout << std::endl << puppy.getIdea(3) << std::endl;
-	std::cout << std::endl << puppy.getIdea(99) << std::endl << std::endl;
+	std::cout << std::endl << puppy.getBrain()->getIdea(3) << std::endl;
+	puppy.getBrain()->setIdea(3, "Should we get some bones??");
+	std::cout << std::endl << puppy.getBrain()->getIdea(3) << std::endl;
+	std::cout << std::endl << puppy.getBrain()->getIdea(99) << std::endl << std::endl;
 
 	return 0;
 }

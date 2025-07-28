@@ -24,7 +24,7 @@ int	main(void)
 
 	Dog	puppy;
 
-	std::cout << std::endl << puppy.getIdea(3) << std::endl;
+	std::cout << std::endl << puppy.getBrain()->getIdea(3) << std::endl;
 
 	return 0;
 }

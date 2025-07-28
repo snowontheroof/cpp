@@ -26,14 +26,9 @@ Dog::~Dog()
 	std::cout << "Dog: Destructor called" << std::endl;
 }
 
-void	Dog::setIdea(int index, std::string input)
+Brain*	Dog::getBrain() const
 {
-	ideas->ideas[index] = input;
-}
-
-std::string&	Dog::getIdea(int index) const
-{
-	return (ideas->ideas[index]);
+	return ideas;
 }
 
 void	Dog::makeSound() const

@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:05:23 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/22 10:11:56 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/24 12:16:38 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ Animal::~Animal()
 
 std::string	Animal::getType() const
 {
-	return (type);
+	return type;
 }
 
 void	Animal::makeSound() const

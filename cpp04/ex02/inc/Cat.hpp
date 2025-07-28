@@ -14,9 +14,8 @@ class	Cat : public A_Animal
 		Cat&	operator=(const Cat& other);
 		~Cat();
 
-		void			setIdea(int index, std::string input);
-		std::string&	getIdea(int index) const;
-		void			makeSound() const override;
+		Brain*	getBrain() const;
+		void	makeSound() const override;
 };
 
 #endif

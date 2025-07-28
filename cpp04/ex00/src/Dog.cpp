@@ -6,11 +6,11 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:05:32 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/22 10:09:48 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/24 12:17:06 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "../inc/Dog.hpp"
 
 Dog::Dog() : Animal()
 {

@@ -1,4 +1,4 @@
-#include "Cat.hpp"
+#include "../inc/Cat.hpp"
 
 Cat::Cat() : Animal()
 {
@@ -26,14 +26,9 @@ Cat::~Cat()
 	std::cout << "Cat: Destructor called" << std::endl;
 }
 
-void	Cat::setIdea(int index, std::string input)
+Brain*	Cat::getBrain() const
 {
-	ideas->ideas[index] = input;
-}
-
-std::string&	Cat::getIdea(int index) const
-{
-	return (ideas->ideas[index]);
+	return ideas;
 }
 
 void	Cat::makeSound() const
