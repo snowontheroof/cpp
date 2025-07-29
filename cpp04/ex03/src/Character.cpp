@@ -33,17 +33,26 @@ const std::string&	Character::getName() const
 	return name;
 }
 
-void	equip(AMateria* m)
+void	Character::equip(AMateria* m)
 {
-
+	for (int i = 0; i < 4; i++)
+	{
+		if (inventory[i] == nullptr)
+		{
+			inventory[i] = m;
+			break ;
+		}
+		if (i == 3)
+			std::cout << "Error: The inventory is already full!" << std::endl;
+	}
 }
 
-void	unequip(int indx)
+void	Character::unequip(int indx)
 {
-
+	inventory[indx] = nullptr;
 }
 
-void	use(int idx, ICharacter& target)
+void	Character::use(int idx, ICharacter& target)
 {
-
+	inventory[idx]->use(target);
 }
