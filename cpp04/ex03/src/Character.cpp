@@ -1,4 +1,5 @@
 #include "Character.hpp"
+#include "AMateria.hpp"
 
 Character::Character() : name("Default")
 {
@@ -13,6 +14,11 @@ Character::Character(std::string name) : name(name)
 Character::Character(const Character& obj) : name(obj.name)
 {
 	std::cout << "Character: Copy constructor called" << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		if (obj.inventory[i])
+			inventory[i] = obj.inventory[i]->clone();
+	}
 }
 
 Character&	Character::operator=(const Character& other)

@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:05:32 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/24 12:17:06 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/30 15:36:42 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 Dog::Dog() : Animal()
 {
 	std::cout << "Dog: Default constructor called" << std::endl;
-	type = "Dog";
+	_type = "Dog";
 }
 
 Dog::Dog(const Dog& obj) : Animal(obj)
@@ -27,8 +27,6 @@ Dog&	Dog::operator=(const Dog& other)
 {
 	std::cout << "Dog: Copy assignment operator called" << std::endl;
 	Animal::operator=(other);
-	// if (this != &other)
-	// 	type = other.type;
 	return *this;
 }
 

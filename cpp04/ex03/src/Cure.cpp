@@ -24,6 +24,12 @@ Cure::~Cure()
 	std::cout << "Cure: Destructor called" << std::endl;
 }
 
+AMateria*	Cure::clone() const
+{
+	AMateria*	tmp = new Cure();
+	return tmp;
+}
+
 void	Cure::use(ICharacter& target)
 {
 	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;

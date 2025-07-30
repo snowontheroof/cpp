@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:05:04 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/22 10:47:31 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/30 15:35:58 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 class	Animal
 {
 	protected:
-		std::string	type;
+		std::string	_type;
 
 	public:
 		Animal();
@@ -25,8 +25,8 @@ class	Animal
 		Animal&	operator=(const Animal& other);
 		virtual	~Animal();
 
-		virtual void	makeSound() const;
 		std::string		getType() const;
+		virtual void	makeSound() const;
 };
 
 #endif

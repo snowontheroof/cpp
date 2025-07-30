@@ -5,9 +5,6 @@
 class IMateriaSource
 {
 	public:
-		IMateriaSource();
-		IMateriaSource(const IMateriaSource& obj);
-		IMateriaSource&	operator=(const IMateriaSource& other);
 		virtual	~IMateriaSource();
 
 		virtual void		learnMateria(AMateria*) = 0;

@@ -1,13 +1,15 @@
 NAME = MateriaSource
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror
+CXXFLAGS = -Wall -Wextra -Werror -std=c++20
 
 INC_DIR = inc/
 SRC_DIR = src/
 OBJ_DIR = obj/
 
-INC_FILES = AMateria.hpp Ice.hpp Cure.hpp Character.cpp MateriaSource.hpp
-SRC_FILES = main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp
+INC_FILES = AMateria.hpp Ice.hpp Cure.hpp Character.hpp MateriaSource.hpp \
+ICharacter.hpp IMateriaSource.hpp
+SRC_FILES = main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp \
+ICharacter.cpp IMateriaSource.cpp
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
 
 INC = $(addprefix $(INC_DIR), $(INC_FILES))

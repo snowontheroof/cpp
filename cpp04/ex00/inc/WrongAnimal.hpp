@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:05:15 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/22 10:05:16 by sojala           ###   ########.fr       */
+/*   Updated: 2025/07/30 15:36:03 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 class	WrongAnimal
 {
 	protected:
-		std::string	type;
+		std::string	_type;
 
 	public:
 		WrongAnimal();
