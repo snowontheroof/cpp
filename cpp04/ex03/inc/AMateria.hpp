@@ -17,7 +17,7 @@ class AMateria
 		AMateria&	operator=(const AMateria& other);
 		virtual ~AMateria();
 
-		const std::string& getType() const;
+		const std::string&	getType() const;
 
 		virtual AMateria*	clone() const = 0;
 		virtual void		use(ICharacter& target);

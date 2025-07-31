@@ -16,6 +16,7 @@ class Character : public ICharacter
 		~Character();
 
 		const std::string&	getName() const;
+
 		void				equip(AMateria* m);
 		void				unequip(int indx);
 		void				use(int idx, ICharacter& target);

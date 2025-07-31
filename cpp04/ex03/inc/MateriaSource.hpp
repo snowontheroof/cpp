@@ -2,8 +2,6 @@
 # define MATERIASOURCE_HPP
 # include "IMateriaSource.hpp"
 
-class AMateria;
-
 class MateriaSource : public IMateriaSource
 {
 	protected:
