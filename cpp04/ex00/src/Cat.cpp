@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:05:28 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/30 15:36:31 by sojala           ###   ########.fr       */
+/*   Updated: 2025/08/01 12:02:47 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Cat::Cat() : Animal()
 {
-	std::cout << "Cat: Default constructor called" << std::endl;
+	std::cout << "Cat: Constructor called" << std::endl;
 	_type = "Cat";
 }
 

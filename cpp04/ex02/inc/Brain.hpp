@@ -1,6 +1,5 @@
 #ifndef BRAIN_HPP
 # define BRAIN_HPP
-# include "Brain.hpp"
 # include <iostream>
 
 class Brain

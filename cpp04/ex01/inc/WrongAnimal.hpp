@@ -1,5 +1,5 @@
-#ifndef WRONGAnimal_HPP
-# define WRONGAnimal_HPP
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 # include <iostream>
 
 class	WrongAnimal

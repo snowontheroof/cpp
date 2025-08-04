@@ -1,6 +1,6 @@
 #include "AMateria.hpp"
 
-AMateria::AMateria() : _type("Default materia")
+AMateria::AMateria()
 {
 	std::cout << "AMateria: Default constructor called" << std::endl;
 }
@@ -35,8 +35,7 @@ const std::string&	AMateria::getType() const
 
 void	AMateria::use(ICharacter& target)
 {
-	if (_type == "ice")
-		std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
-	else if (_type == "cure")
-		std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+	(void)target;
+	if (_type.empty())
+		std::cout << "Materia type not set" << std::endl;
 }

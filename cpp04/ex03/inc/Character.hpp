@@ -1,12 +1,20 @@
 #ifndef CHARACTER_HPP
 # define CHARACTER_HPP
 # include "ICharacter.hpp"
+# define INVENTORY_MAX 4
+
+typedef struct s_Nodes
+{
+	AMateria*		_content;
+	struct s_Nodes*	_next;
+}					t_Nodes;
 
 class Character : public ICharacter
 {
 	private:
-		std::string	name;
-		AMateria*	inventory[4];
+		std::string	_name;
+		AMateria*	_inventory[4];
+		t_Nodes*	_first;
 
 	public:
 		Character();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:05:35 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/30 15:38:18 by sojala           ###   ########.fr       */
+/*   Updated: 2025/08/01 12:12:05 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "../inc/WrongAnimal.hpp"
 #include "../inc/WrongCat.hpp"
 
-const Animal *makeptr2()
+const Animal *makeptr_without_new()
 {
 	const Animal* test;
 	const Cat kissa;
@@ -24,7 +24,7 @@ const Animal *makeptr2()
 	return (test);
 }
 
-const Animal *makeptr()
+const Animal *makeptr_new_dog()
 {
 	const Animal* j = new Dog();
 	return (j);
@@ -34,8 +34,8 @@ int	main(void)
 {
 	{
 		std::cout << "---------Test 1---------" << std::endl;
-		const Animal* j = makeptr();
-		const Animal* test;// = makeptr2();
+		const Animal* j = makeptr_new_dog();
+		const Animal* test;// = makeptr_without_new();
 		const Cat kissa;
 		const Dog koira;
 		test = &kissa;
@@ -55,6 +55,7 @@ int	main(void)
 
 	{
 		std::cout << std::endl << "---------Test 2---------" << std::endl;
+		std::cout << "* Copy assignment operator and copy constructor *" << std::endl;
 		Animal a;
 		Animal b;
 		b = a;
@@ -68,15 +69,31 @@ int	main(void)
 		b.makeSound();
 		c.makeSound();
 		std::cout << std::endl;
+
+		Dog	puppy;
+		Dog musti(puppy);
+		Dog laikku;
+		laikku = puppy;
+
+		std::cout << std::endl;
+		std::cout << puppy.getType() << std::endl;
+		std::cout << musti.getType() << std::endl;
+		std::cout << laikku.getType() << std::endl;
+		puppy.makeSound();
+		musti.makeSound();
+		laikku.makeSound();
+		std::cout << std::endl;
 	}
 
 	{
 		std::cout << std::endl << "---------Test 3---------" << std::endl;
+		std::cout << "* Test main provided in subject *" << std::endl;
 		const Animal* meta = new Animal();
 		const Animal* j = new Dog();
 		const Animal* i = new Cat();
 
 		std::cout << std::endl;
+		std::cout << meta->getType() << std::endl;
 		std::cout << j->getType() << std::endl;
 		std::cout << i->getType() << std::endl;
 		i->makeSound();

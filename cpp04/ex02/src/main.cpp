@@ -1,15 +1,13 @@
-#include "AAnimal.hpp"
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
+#include "../inc/AAnimal.hpp"
+#include "../inc/Dog.hpp"
+#include "../inc/Cat.hpp"
 
 int	main(void)
 {
 	{
 		std::cout << "---------Test 1---------" << std::endl;
-		AAnimal* array[30];
-		for (int i = 0; i < 30; i++)
+		AAnimal* array[10];
+		for (int i = 0; i < 10; i++)
 		{
 			if (i % 2)
 				array[i] = new Cat();
@@ -22,23 +20,31 @@ int	main(void)
 			array[i]->makeSound();
 		}
 		std::cout << std::endl;
-		for (int i = 0; i < 30; i++)
+		for (int i = 0; i < 10; i++)
 			delete array[i];
 	}
 
+	/* This test demonstrates the inability to instantiate an abstract class:
+	{
+		AAnimal*	test;	//making an AAnimal object (instead of a pointer) will not compile!
+		test = new Dog();	//without this assignment the program will crash trying to run the next line
+		test->getType();
+	}*/
+
 	{
 		std::cout << std::endl << "---------Test 2---------" << std::endl;
+		std::cout << "* Copy constructor and copy assignment operator *" << std::endl;
 		Dog koira;
 		Dog	pentu(koira);
-		Dog	musti;
-		musti = koira;
 
 		std::cout << std::endl << koira.getBrain()->getIdea(0) << std::endl;
 		std::cout << std::endl << pentu.getBrain()->getIdea(0) << std::endl;
-		std::cout << std::endl << musti.getBrain()->getIdea(0) << std::endl;
-		koira.getBrain()->setIdea(84, "Testing idea");
+		koira.getBrain()->setIdea(84, "Who let the dogs out?");
 		std::cout << std::endl << koira.getBrain()->getIdea(84) << std::endl;
-		std::cout << std::endl << pentu.getBrain()->getIdea(84) << std::endl;
+		std::cout << std::endl << pentu.getBrain()->getIdea(84) << std::endl << std::endl;
+
+		Dog	musti;
+		musti = koira;
 		std::cout << std::endl << musti.getBrain()->getIdea(84) << std::endl;
 		std::cout << std::endl;
 	}

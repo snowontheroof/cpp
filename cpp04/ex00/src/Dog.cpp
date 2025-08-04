@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:05:32 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/30 15:36:42 by sojala           ###   ########.fr       */
+/*   Updated: 2025/08/01 12:02:40 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Dog::Dog() : Animal()
 {
-	std::cout << "Dog: Default constructor called" << std::endl;
+	std::cout << "Dog: Constructor called" << std::endl;
 	_type = "Dog";
 }
 

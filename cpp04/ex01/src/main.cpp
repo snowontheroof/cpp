@@ -26,17 +26,18 @@ int	main(void)
 
 	{
 		std::cout << std::endl << "---------Test 2---------" << std::endl;
+		std::cout << "* Copy constructor and copy assignment operator *" << std::endl;
 		Dog koira;
 		Dog	pentu(koira);
-		Dog	musti;
-		musti = koira;
 
 		std::cout << std::endl << koira.getBrain()->getIdea(0) << std::endl;
 		std::cout << std::endl << pentu.getBrain()->getIdea(0) << std::endl;
-		std::cout << std::endl << musti.getBrain()->getIdea(0) << std::endl;
-		koira.getBrain()->setIdea(84, "Testing idea");
+		koira.getBrain()->setIdea(84, "Who let the dogs out?");
 		std::cout << std::endl << koira.getBrain()->getIdea(84) << std::endl;
-		std::cout << std::endl << pentu.getBrain()->getIdea(84) << std::endl;
+		std::cout << std::endl << pentu.getBrain()->getIdea(84) << std::endl << std::endl;
+
+		Dog	musti;
+		musti = koira;
 		std::cout << std::endl << musti.getBrain()->getIdea(84) << std::endl;
 		std::cout << std::endl;
 	}
