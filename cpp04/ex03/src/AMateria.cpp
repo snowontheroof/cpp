@@ -1,9 +1,16 @@
-#include "AMateria.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   AMateria.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/05 14:43:16 by sonjaojala        #+#    #+#             */
+/*   Updated: 2025/08/05 14:43:17 by sonjaojala       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-AMateria::AMateria()
-{
-	std::cout << "AMateria: Default constructor called" << std::endl;
-}
+#include "AMateria.hpp"
 
 AMateria::AMateria(const std::string& type) : _type(type)
 {

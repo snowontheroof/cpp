@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/05 14:43:40 by sonjaojala        #+#    #+#             */
+/*   Updated: 2025/08/05 14:43:41 by sonjaojala       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "AMateria.hpp"
 #include "Cure.hpp"
 #include "Ice.hpp"
@@ -18,6 +30,16 @@ int main()
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+	me->equip(tmp);
+	me->unequip(1);
+	me->unequip(2);
+
+	ICharacter* uusi(me);
+	uusi->unequip(0);
 
 	ICharacter* bob = new Character("bob");
 

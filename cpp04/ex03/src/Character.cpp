@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Character.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/05 14:43:21 by sonjaojala        #+#    #+#             */
+/*   Updated: 2025/08/05 14:43:22 by sonjaojala       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Character.hpp"
 #include "AMateria.hpp"
 
@@ -32,13 +44,15 @@ Character::Character(const Character& obj) : _name(obj._name)
 		_first = nullptr;
 		return ;
 	}
-	t_Nodes*	curr = obj._first;
+	t_Node*	curr = obj._first;
+	t_Node*	my_curr = _first;
 	while (curr)
 	{
-		_first = new t_Nodes;
-		_first->_content = curr->_content->clone();
-		_first->_next = curr->_next;
+		my_curr = new t_Node;
+		my_curr->_content = curr->_content->clone();
+		my_curr->_next = curr->_next;
 		curr = curr->_next;
+		my_curr = my_curr->_next;
 	}
 }
 
@@ -63,13 +77,15 @@ Character&	Character::operator=(const Character& other)
 			_first = nullptr;
 			return *this;
 		}
-		t_Nodes*	curr = other._first;
+		t_Node*	curr = other._first;
+		t_Node*	my_curr = _first;
 		while (curr)
 		{
-			_first = new t_Nodes;
-			_first->_content = curr->_content->clone();
-			_first->_next = curr->_next;
+			my_curr = new t_Node;
+			my_curr->_content = curr->_content->clone();
+			my_curr->_next = curr->_next;
 			curr = curr->_next;
+			my_curr = my_curr->_next;
 		}
 		_name = other._name;
 	}
@@ -84,7 +100,7 @@ Character::~Character()
 		if (_inventory[i])
 			delete _inventory[i];
 	}
-	t_Nodes*	curr;
+	t_Node*	curr;
 	while (_first)
 	{
 		curr = _first->_next;
@@ -115,26 +131,40 @@ void	Character::equip(AMateria* m)
 			return ;
 		}
 	}
-	std::cout << "Error: The _inventory is already full!" << std::endl;
+	std::cout << "Error: The inventory is already full!" << std::endl;
 }
 
-void	Character::unequip(int indx)
+void	Character::unequip(int idx)
 {
-	if (!(indx >= 0 && indx < 3))
+	if (idx < 0 || idx > 3 || !_inventory[idx])
 	{
 		std::cout << "Error: index out of bounds" << std::endl;
 		return ;
 	}
-	t_Nodes* curr = _first;
-	while (curr->_next)
-		curr = curr->_next;
-	curr->_next = new t_Nodes;
-	curr->_next->_content = _inventory[indx];
-	curr->_next->_next = nullptr;	
-	_inventory[indx] = 0;
+	if (_first)
+	{
+		t_Node* curr = _first;
+		while (curr->_next)
+			curr = curr->_next;
+		curr->_next = new t_Node;
+		curr->_next->_content = _inventory[idx];
+		curr->_next->_next = nullptr;
+	}
+	else
+	{
+		_first = new t_Node;
+		_first->_content = _inventory[idx];
+		_first->_next = nullptr;
+	}
+	_inventory[idx] = 0;
 }
 
 void	Character::use(int idx, ICharacter& target)
 {
+	if (!_inventory[idx])
+	{
+		std::cout << "Error: No Materia to use at this index!" << std::endl;
+		return ;
+	}
 	_inventory[idx]->use(target);
 }
