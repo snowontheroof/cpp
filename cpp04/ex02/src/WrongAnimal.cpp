@@ -6,13 +6,13 @@
 /*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:42:36 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 14:42:37 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/05 15:05:19 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal() : _type("Default")
+WrongAnimal::WrongAnimal() : _type("Default WrongAnimal")
 {
 	std::cout << "WrongAnimal: Default constructor called" << std::endl;
 }
@@ -35,7 +35,7 @@ WrongAnimal::~WrongAnimal()
 	std::cout << "WrongAnimal: Destructor called" << std::endl;
 }
 
-std::string	WrongAnimal::getType() const
+const std::string&	WrongAnimal::getType() const
 {
 	return _type;
 }

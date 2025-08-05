@@ -6,13 +6,13 @@
 /*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:42:16 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 14:42:17 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/05 15:04:31 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AAnimal.hpp"
 
-AAnimal::AAnimal() : _type("Default")
+AAnimal::AAnimal() : _type("Default AAnimal")
 {
 	std::cout << "AAnimal: Default constructor called" << std::endl;
 }
@@ -35,7 +35,7 @@ AAnimal::~AAnimal()
 	std::cout << "AAnimal: Destructor called" << std::endl;
 }
 
-std::string	AAnimal::getType() const
+const std::string&	AAnimal::getType() const
 {
 	return _type;
 }

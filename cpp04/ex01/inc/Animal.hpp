@@ -6,7 +6,7 @@
 /*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:40:54 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 14:40:55 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/05 14:59:38 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ class	Animal
 		Animal&	operator=(const Animal& other);
 		virtual	~Animal();
 
-		std::string		getType() const;
-		virtual void	makeSound() const;
+		const std::string&	getType() const;
+		virtual void		makeSound() const;
 };
 
 #endif

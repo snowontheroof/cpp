@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:05:23 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/30 15:37:58 by sojala           ###   ########.fr       */
+/*   Updated: 2025/08/05 14:54:59 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ Animal::~Animal()
 	std::cout << "Animal: Destructor called" << std::endl;
 }
 
-std::string	Animal::getType() const
+const std::string&	Animal::getType() const
 {
 	return _type;
 }

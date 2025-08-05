@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:05:39 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/30 15:37:31 by sojala           ###   ########.fr       */
+/*   Updated: 2025/08/05 14:55:34 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ WrongAnimal::~WrongAnimal()
 	std::cout << "WrongAnimal: Destructor called" << std::endl;
 }
 
-std::string	WrongAnimal::getType() const
+const std::string&	WrongAnimal::getType() const
 {
 	return _type;
 }

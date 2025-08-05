@@ -6,7 +6,7 @@
 /*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:05:15 by sojala            #+#    #+#             */
-/*   Updated: 2025/08/01 11:53:55 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/05 14:55:24 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ class	WrongAnimal
 		WrongAnimal&	operator=(const WrongAnimal& other);
 		virtual	~WrongAnimal();
 
-		std::string		getType() const;
-		void			makeSound() const;
+		const std::string&	getType() const;
+		void				makeSound() const;
 };
 
 #endif
