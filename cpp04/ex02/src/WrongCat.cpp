@@ -6,7 +6,7 @@
 /*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:42:39 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 14:42:40 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/05 17:52:33 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 WrongCat::WrongCat() : WrongAnimal()
 {
-	std::cout << "WrongCat: Default constructor called" << std::endl;
+	std::cout << "WrongCat: Constructor called" << std::endl;
 	_type = "WrongCat";
 }
 

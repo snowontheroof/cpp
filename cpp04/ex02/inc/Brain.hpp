@@ -6,7 +6,7 @@
 /*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:41:56 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 14:41:57 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/05 17:53:33 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ class Brain
 		Brain&	operator=(const Brain& other);
 		~Brain();
 
-		void				setIdea(int index, const std::string& newIdea);
-		const std::string&	getIdea(int index) const;
+		void		setIdea(int idx, const std::string& input);
+		std::string	getIdea(int idx) const;
 };
 
 #endif

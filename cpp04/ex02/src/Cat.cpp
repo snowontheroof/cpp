@@ -6,7 +6,7 @@
 /*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:42:23 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 14:42:24 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/05 17:43:34 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Cat::Cat() : AAnimal()
 {
-	std::cout << "Cat: Default constructor called" << std::endl;
+	std::cout << "Cat: Constructor called" << std::endl;
 	_type = "Cat";
 	_myBrain = new Brain();
 }
@@ -31,6 +31,7 @@ Cat&	Cat::operator=(const Cat& other)
 	if (this != &other)
 	{
 		AAnimal::operator=(other);
+		delete _myBrain;
 		_myBrain = new Brain(*other._myBrain);
 	}
 	return *this;

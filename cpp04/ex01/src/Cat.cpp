@@ -6,7 +6,7 @@
 /*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:41:28 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 14:41:29 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/05 17:42:35 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Cat::Cat() : Animal()
 {
-	std::cout << "Cat: Default constructor called" << std::endl;
+	std::cout << "Cat: Constructor called" << std::endl;
 	_type = "Cat";
 	_myBrain = new Brain();
 }

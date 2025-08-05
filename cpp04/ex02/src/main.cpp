@@ -6,7 +6,7 @@
 /*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:42:32 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 14:42:33 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/05 17:50:12 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(void)
 			else
 				array[i] = new Dog();
 		}
-		for (int i = 0; i < 30; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			std::cout << std::endl << array[i]->getType() << std::endl;
 			array[i]->makeSound();
@@ -68,7 +68,9 @@ int	main(void)
 		std::cout << std::endl << puppy.getBrain()->getIdea(3) << std::endl;
 		puppy.getBrain()->setIdea(3, "Should we get some bones??");
 		std::cout << std::endl << puppy.getBrain()->getIdea(3) << std::endl;
-		std::cout << std::endl << puppy.getBrain()->getIdea(99) << std::endl << std::endl;
+		std::cout << std::endl << puppy.getBrain()->getIdea(103) << std::endl;
+		puppy.getBrain()->setIdea(-2, "Is this a good idea?");
+		std::cout << std::endl;
 	}
 
 	return 0;

@@ -6,7 +6,7 @@
 /*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:41:32 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 14:41:33 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/05 17:42:39 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Dog::Dog() : Animal()
 {
-	std::cout << "Dog: Default constructor called" << std::endl;
+	std::cout << "Dog: Constructor called" << std::endl;
 	_type = "Dog";
 	_myBrain = new Brain();
 }

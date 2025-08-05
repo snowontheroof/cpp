@@ -6,7 +6,7 @@
 /*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:41:20 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 14:41:21 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/05 17:47:06 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Brain::Brain()
 {
-	std::cout << "Brain: Default constructor called" << std::endl;
+	std::cout << "Brain: Constructor called" << std::endl;
 	for (int i = 0; i < 100; i++)
 		_ideas[i] = "[This is a default idea]";
 }
@@ -42,12 +42,20 @@ Brain::~Brain()
 	std::cout << "Brain: Destructor called" << std::endl;
 }
 
-void	Brain::setIdea(int index, const std::string& input)
+void	Brain::setIdea(int idx, const std::string& input)
 {
-	_ideas[index] = input;
+	if (idx < 0 || idx > 99)
+		std::cout << "Error: index out of bounds!" << std::endl;
+	else
+		_ideas[idx] = input;
 }
 
-const std::string&	Brain::getIdea(int index) const
+std::string	Brain::getIdea(int idx) const
 {
-	return _ideas[index];
+	if (idx < 0 || idx > 99)
+	{
+		std::cout << "Error: index out of bounds!" << std::endl;
+		return "";
+	}
+	return _ideas[idx];
 }

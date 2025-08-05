@@ -6,7 +6,7 @@
 /*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:41:39 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 15:03:26 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/05 17:31:37 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 WrongAnimal::WrongAnimal() : _type("Default WrongAnimal")
 {
-	std::cout << "WrongAnimal: Default constructor called" << std::endl;
+	std::cout << "WrongAnimal: Constructor called" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal& obj) : _type(obj._type)

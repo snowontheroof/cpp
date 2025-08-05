@@ -6,7 +6,7 @@
 /*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:43:21 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 14:43:22 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/05 18:01:48 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 Character::Character() : _name("Default")
 {
-	std::cout << "Character: Default constructor called" << std::endl;
+	std::cout << "Character " << _name << ": Constructor called" << std::endl;
 	for (int i = 0; i < INVENTORY_MAX; i++)
 		_inventory[i] = nullptr;
 	_first = nullptr;
@@ -58,19 +58,17 @@ Character::Character(const Character& obj) : _name(obj._name)
 
 Character&	Character::operator=(const Character& other)
 {
-	std::cout << "Character: Copy assignment operator called" << std::endl;
+	std::cout << "Character " << _name << ": Copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		for (int i = 0; i < INVENTORY_MAX; i++)
 		{
 			if (_inventory[i])
-			{
 				delete _inventory[i];
-				if (other._inventory[i])
-					_inventory[i] = other._inventory[i]->clone();
-				else
-					_inventory[i] = nullptr;
-			}
+			if (other._inventory[i])
+				_inventory[i] = other._inventory[i]->clone();
+			else
+				_inventory[i] = nullptr;
 		}
 		if (!other._first)
 		{
@@ -94,7 +92,7 @@ Character&	Character::operator=(const Character& other)
 
 Character::~Character()
 {
-	std::cout << "Character: Destructor called" << std::endl;
+	std::cout << "Character " << _name << ": Destructor called" << std::endl;
 	for (int i = 0; i < INVENTORY_MAX; i++)
 	{
 		if (_inventory[i])
@@ -138,7 +136,7 @@ void	Character::unequip(int idx)
 {
 	if (idx < 0 || idx > 3 || !_inventory[idx])
 	{
-		std::cout << "Error: index out of bounds" << std::endl;
+		std::cout << "Error: index out of bounds!" << std::endl;
 		return ;
 	}
 	if (_first)

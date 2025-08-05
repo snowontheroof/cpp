@@ -6,7 +6,7 @@
 /*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:43:43 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 14:43:44 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/05 17:52:07 by sonjaojala       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 MateriaSource::MateriaSource()
 {
-	std::cout << "MateriaSource: Default constructor called" << std::endl;
+	std::cout << "MateriaSource: Constructor called" << std::endl;
 	for (int i = 0; i < STORAGE_MAX; i++)
 		_storage[i] = nullptr;
 }
@@ -39,13 +39,11 @@ MateriaSource&	MateriaSource::operator=(const MateriaSource& other)
 		for (int i = 0; i < STORAGE_MAX; i++)
 		{
 			if (_storage[i])
-			{
 				delete _storage[i];
-				if (other._storage[i])
-					_storage[i] = other._storage[i]->clone();
-				else
-					_storage[i] = nullptr;
-			}
+			if (other._storage[i])
+				_storage[i] = other._storage[i]->clone();
+			else
+				_storage[i] = nullptr;
 		}
 	}
 	return *this ;
