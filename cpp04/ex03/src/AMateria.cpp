@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:43:16 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 17:58:59 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/06 11:13:54 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ const std::string&	AMateria::getType() const
 
 void	AMateria::use(ICharacter& target)
 {
-	std::cout << "An abstract Materia used on " << target.getName() << std::endl;
+	std::cout << "An abstract materia used on " << target.getName() << std::endl;
 }

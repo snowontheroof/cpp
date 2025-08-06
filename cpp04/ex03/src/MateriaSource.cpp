@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:43:43 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 17:52:07 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/06 13:52:31 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,14 @@ void	MateriaSource::learnMateria(AMateria* m)
 {
 	if (!m)
 	{
-		std::cout << "Error: No Materia to learn!" << std::endl;
+		std::cout << "Error: No materia to learn!" << std::endl;
 		return ;
 	}
 	for (int i = 0; i < STORAGE_MAX; i++)
 	{
 		if (!_storage[i])
 		{
-			_storage[i] = m->clone();
+			_storage[i] = m;
 			return ;
 		}
 	}
@@ -88,6 +88,6 @@ AMateria*	MateriaSource::createMateria(const std::string& type)
 			return tmp;
 		}
 	}
-	std::cout << "Error: Unknown type, no matching Materia template" << std::endl;
+	std::cout << "Error: Unknown type, no matching materia template" << std::endl;
 	return tmp;
 }

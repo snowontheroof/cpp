@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:43:21 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 18:01:48 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/06 14:39:28 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	Character::unequip(int idx)
 {
 	if (idx < 0 || idx > 3 || !_inventory[idx])
 	{
-		std::cout << "Error: index out of bounds!" << std::endl;
+		std::cout << "Error: Index out of bounds!" << std::endl;
 		return ;
 	}
 	if (_first)
@@ -161,7 +161,7 @@ void	Character::use(int idx, ICharacter& target)
 {
 	if (!_inventory[idx])
 	{
-		std::cout << "Error: No Materia to use at this index!" << std::endl;
+		std::cout << "Error: No materia to use at this index!" << std::endl;
 		return ;
 	}
 	_inventory[idx]->use(target);
