@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:42:11 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 14:42:12 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/11 16:54:50 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ class	WrongCat : public WrongAnimal
 		WrongCat(const WrongCat& obj);
 		WrongCat&	operator=(const WrongCat& other);
 		~WrongCat();
+
+		void	makeSound();
 };
 
 #endif

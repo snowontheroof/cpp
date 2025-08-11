@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:05:35 by sojala            #+#    #+#             */
-/*   Updated: 2025/08/01 12:12:05 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/11 16:54:14 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,15 @@ int	main(void)
 		std::cout << std::endl;
 		const WrongAnimal *weird = new WrongAnimal();
 		const WrongAnimal *odd = new WrongCat;
+		WrongCat mysteryCat;
 
 		std::cout << std::endl;
 		std::cout << weird->getType() << std::endl;
 		std::cout << odd->getType() << std::endl;
+		std::cout << mysteryCat.getType() << std::endl;
 		weird->makeSound();
 		odd->makeSound();
+		mysteryCat.makeSound();
 
 		std::cout << std::endl;
 		delete	meta;

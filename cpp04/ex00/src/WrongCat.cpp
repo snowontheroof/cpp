@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 10:05:42 by sojala            #+#    #+#             */
-/*   Updated: 2025/08/05 17:51:58 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/11 16:52:42 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,9 @@ WrongCat&	WrongCat::operator=(const WrongCat& other)
 WrongCat::~WrongCat()
 {
 	std::cout << "WrongCat: Destructor called" << std::endl;
+}
+
+void	WrongCat::makeSound()
+{
+	std::cout << "[ThIs Is NoT tHe RiGhT kInD oF mEoWwW]" << std::endl;
 }
