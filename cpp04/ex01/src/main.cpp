@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:41:36 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 14:41:37 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/11 12:53:03 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ int	main(void)
 {
 	{
 		std::cout << "---------Test 1---------" << std::endl;
-		Animal* array[30];
-		for (int i = 0; i < 30; i++)
+		Animal* array[20];
+		for (int i = 0; i < 20; i++)
 		{
-			if (i % 2)
+			if (i < 10)
 				array[i] = new Cat();
 			else
 				array[i] = new Dog();
 		}
-		for (int i = 0; i < 30; i++)
+		for (int i = 0; i < 20; i++)
 		{
 			std::cout << std::endl << array[i]->getType() << std::endl;
 			array[i]->makeSound();
 		}
 		std::cout << std::endl;
-		for (int i = 0; i < 30; i++)
+		for (int i = 0; i < 20; i++)
 			delete array[i];
 	}
 
@@ -62,6 +62,8 @@ int	main(void)
 		puppy.getBrain()->setIdea(3, "Should we get some bones??");
 		std::cout << std::endl << puppy.getBrain()->getIdea(3) << std::endl;
 		std::cout << std::endl << puppy.getBrain()->getIdea(99) << std::endl << std::endl;
+		puppy.getBrain()->setIdea(-15, "Is this a good idea?");
+		std::cout << std::endl << puppy.getBrain()->getIdea(400) << std::endl;
 	}
 
 	return 0;

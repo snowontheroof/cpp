@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:42:49 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 14:42:50 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/11 12:43:48 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHARACTER_HPP
 # define CHARACTER_HPP
-# include "ICharacter.hpp"
 # define INVENTORY_MAX 4
+# include "ICharacter.hpp"
 
 typedef struct s_Node
 {

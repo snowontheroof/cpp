@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:42:20 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 17:50:35 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/11 12:47:02 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ Brain::~Brain()
 void	Brain::setIdea(int idx, const std::string& input)
 {
 	if (idx < 0 || idx > 99)
-		std::cout << "Error: index out of bounds!" << std::endl;
+		std::cout << "Error: index " << idx << " is out of bounds!" << std::endl;
 	else
 		_ideas[idx] = input;
 }
@@ -54,7 +54,7 @@ std::string	Brain::getIdea(int idx) const
 {
 	if (idx < 0 || idx > 99)
 	{
-		std::cout << "Error: index out of bounds!" << std::endl;
+		std::cout << "Error: index " << idx << " is out of bounds!" << std::endl;
 		return "";
 	}
 	return _ideas[idx];

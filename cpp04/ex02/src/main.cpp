@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:42:32 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 17:50:12 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/11 13:13:21 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(void)
 		AAnimal* array[10];
 		for (int i = 0; i < 10; i++)
 		{
-			if (i % 2)
+			if (i < 5)
 				array[i] = new Cat();
 			else
 				array[i] = new Dog();
@@ -36,11 +36,9 @@ int	main(void)
 			delete array[i];
 	}
 
-	/* This test demonstrates the inability to instantiate an abstract class:
-	{
-		AAnimal*	test;	//making an AAnimal object (instead of a pointer) will not compile!
-		test = new Dog();	//without this assignment the program will crash trying to run the next line
-		test->getType();
+	/*{
+		std::cout << std::endl << "---------Trying to instantiate an abstract class---------" << std::endl;
+		AAnimal	test;	//making an AAnimal object (instead of a pointer) will not compile!
 	}*/
 
 	{

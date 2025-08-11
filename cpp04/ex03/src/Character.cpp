@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:43:21 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/06 14:39:28 by sojala           ###   ########.fr       */
+/*   Updated: 2025/08/11 12:28:51 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,20 +123,21 @@ void	Character::equip(AMateria* m)
 	}
 	for (int i = 0; i < INVENTORY_MAX; i++)
 	{
-		if (_inventory[i] == 0)
+		if (!_inventory[i])
 		{
 			_inventory[i] = m;
 			return ;
 		}
 	}
-	std::cout << "Error: The inventory is already full!" << std::endl;
+	std::cout << "Error: Cannot equip - the inventory is already full!" << std::endl;
 }
 
 void	Character::unequip(int idx)
 {
 	if (idx < 0 || idx > 3 || !_inventory[idx])
 	{
-		std::cout << "Error: Index out of bounds!" << std::endl;
+		std::cout << "Error: Cannot unequip - index " << idx
+			<< " is out of bounds!" << std::endl;
 		return ;
 	}
 	if (_first)
@@ -154,14 +155,15 @@ void	Character::unequip(int idx)
 		_first->_content = _inventory[idx];
 		_first->_next = nullptr;
 	}
-	_inventory[idx] = 0;
+	_inventory[idx] = nullptr;
 }
 
 void	Character::use(int idx, ICharacter& target)
 {
 	if (!_inventory[idx])
 	{
-		std::cout << "Error: No materia to use at this index!" << std::endl;
+		std::cout << "Error: No materia to use at index " << idx
+			<< "!" << std::endl;
 		return ;
 	}
 	_inventory[idx]->use(target);

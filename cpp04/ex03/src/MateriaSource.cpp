@@ -6,7 +6,7 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:43:43 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/06 13:52:31 by sojala           ###   ########.fr       */
+/*   Updated: 2025/08/11 12:33:04 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ void	MateriaSource::learnMateria(AMateria* m)
 			return ;
 		}
 	}
-	std::cout << "Error: The storage is already full!" << std::endl;
+	std::cout << "Error: Cannot learn materia - the storage is already full!" << std::endl;
 }
 
 AMateria*	MateriaSource::createMateria(const std::string& type)
 {
 	AMateria*	tmp = nullptr;
-	for (int i = 0; _storage[i]; i++)
+	for (int i = 0; i < STORAGE_MAX && _storage[i]; i++)
 	{
 		if (type == _storage[i]->getType())
 		{
