@@ -3,19 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:42:45 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 14:42:46 by sonjaojala       ###   ########.fr       */
+/*   Updated: 2025/08/11 15:28:40 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AMATERIA_HPP
 # define AMATERIA_HPP
-# include <iostream>
 # include "ICharacter.hpp"
-
-class ICharacter;
+# include <iostream>
 
 class AMateria
 {

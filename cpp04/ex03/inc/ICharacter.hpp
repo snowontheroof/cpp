@@ -6,13 +6,12 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:42:59 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/11 12:43:30 by sojala           ###   ########.fr       */
+/*   Updated: 2025/08/11 15:29:17 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ICHARACTER_HPP
 # define ICHARACTER_HPP
-# include "AMateria.hpp"
 # include <iostream>
 
 class AMateria;

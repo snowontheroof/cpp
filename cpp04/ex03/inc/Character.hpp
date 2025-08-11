@@ -6,14 +6,14 @@
 /*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:42:49 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/11 12:43:48 by sojala           ###   ########.fr       */
+/*   Updated: 2025/08/11 15:28:57 by sojala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHARACTER_HPP
 # define CHARACTER_HPP
 # define INVENTORY_MAX 4
-# include "ICharacter.hpp"
+# include "AMateria.hpp"
 
 typedef struct s_Node
 {
