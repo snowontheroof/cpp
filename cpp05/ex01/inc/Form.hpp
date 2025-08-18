@@ -1,6 +1,8 @@
 #ifndef FORM_HPP
 # define FORM_HPP
 # include <iostream>
+# include <exception>
+# include "Bureaucrat.hpp"
 
 class Form
 {
@@ -20,8 +22,19 @@ class Form
         const std::string&  getName() const;
         int                 getSignGrade() const;
         int                 getExecGrade() const;
-        void                GradeTooHighException() const;
-        void                GradeTooLowException() const; 
+        void                beSigned(const Bureaucrat& who);
+
+        class GradeTooHighException : public std::exception
+        {
+            public:
+                const char* what() const noexcept override;
+        };
+
+        class GradeTooLowException : public std::exception
+        {
+            public:
+                const char* what() const noexcept override;
+        };
 };
 
 std::ostream&	operator<<(std::ostream& os, const Form& obj);

@@ -14,3 +14,21 @@ Form::~Form()
 {
     std::cout << "Form " << _name << ": Destructor called" << std::endl;
 }
+
+const char* Form::GradeTooHighException::what() const noexcept
+{
+    return "Grade too high! The limit is 1";
+}
+
+const char* Form::GradeTooLowException::what() const noexcept
+{
+    return "Grade too low! The limit is 150";
+}
+
+void    Form::beSigned(const Bureaucrat& who)
+{
+    if (who.getGrade() <= getSignGrade())
+    {
+        _isSigned = true;
+    }
+}

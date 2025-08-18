@@ -2,7 +2,7 @@
 
 int main(void)
 {
-    Bureaucrat Markku("Markku", 1);
+    Bureaucrat Markku("Markku", 160);
     
     std::cout << Markku.getName() << std::endl;
     std::cout << Markku.getGrade() << std::endl;

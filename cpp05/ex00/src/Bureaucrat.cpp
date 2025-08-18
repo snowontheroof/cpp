@@ -10,19 +10,19 @@ Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
     try
     {
         if (grade < 1)
-            throw "toohigh";
+            throw GradeTooHighException();
         if (grade > 150)
-            throw 151;
+            throw GradeTooLowException();
         else
             _grade = grade;
     }
-    catch(const std::string e)
+    catch(const GradeTooHighException& e)
     {
-        GradeTooHighException();
+        std::cout << e.what() << std::endl;
     }
-    catch(int e)
+    catch(const GradeTooLowException& e)
     {
-        GradeTooLowException();
+        std::cout << e.what() << std::endl;
     }
 }
 Bureaucrat::Bureaucrat(const Bureaucrat& obj) : _name(obj._name), _grade(obj._grade)
@@ -45,42 +45,42 @@ int Bureaucrat::getGrade() const
     return _grade;
 }
 
-void    Bureaucrat::upGrade()
-{
-    try
-    {
-        _grade++;
-        if (_grade > 150)
-            throw 151;
-    }
-    catch(int e)
-    {
-       GradeTooLowException();
-    }
-}
-
-void   Bureaucrat::downGrade()
+void   Bureaucrat::upGrade()
 {
     try
     {
         _grade--;
         if (_grade < 1)
-            throw 0;
+            throw GradeTooHighException();
     }
-    catch(int e)
+    catch(const GradeTooHighException& e)
     {
-        GradeTooHighException();
+        std::cout << e.what() << std::endl;
     }
 }
 
-void    Bureaucrat::GradeTooHighException() const
+void    Bureaucrat::downGrade()
 {
-    std::cout << "Grade too high! The limit is 1" << std::endl;
+    try
+    {
+        _grade++;
+        if (_grade > 150)
+            throw GradeTooLowException();
+    }
+    catch(const GradeTooLowException& e)
+    {
+       std::cout << e.what() << std::endl;
+    }
 }
 
-void    Bureaucrat::GradeTooLowException() const
+const char*    Bureaucrat::GradeTooHighException::what() const noexcept
 {
-    std::cout << "Grade too low! The limit is 150" << std::endl;
+    return "Grade too high! The limit is 1";
+}
+
+const char*    Bureaucrat::GradeTooLowException::what() const noexcept
+{
+    return "Grade too low! The limit is 150";
 }
 
 std::ostream&	operator<<(std::ostream& os, const Bureaucrat& obj)
