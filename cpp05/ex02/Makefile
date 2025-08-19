@@ -6,8 +6,10 @@ INC_DIR = inc/
 SRC_DIR = src/
 OBJ_DIR = obj/
 
-INC_FILES = Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp
-SRC_FILES = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+INC_FILES = Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp \
+RobotomyRequestForm.hpp PresidentialPardonForm.hpp
+SRC_FILES = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
+RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
 
 INC = $(addprefix $(INC_DIR), $(INC_FILES))

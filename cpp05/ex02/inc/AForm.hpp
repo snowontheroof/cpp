@@ -6,35 +6,36 @@
 
 class AForm
 {
-    protected:
-        const std::string   _name;
-        bool                _isSigned;
-        const int           _signGrade;
-        const int           _execGrade;
+	private:
+		const std::string	_name;
+		bool				_isSigned;
+		const int			_signGrade;
+		const int			_execGrade;
 
-    public:
-        AForm() = delete;
-        AForm(const std::string name, int signGrade, int execGrade);
-        AForm(const AForm& obj);
-        AForm&   operator=(const AForm& other) = delete;
-        virtual ~AForm();
+	public:
+		AForm() = delete;
+		AForm(const std::string name, int signGrade, int execGrade);
+		AForm(const AForm& obj);
+		AForm&	operator=(const AForm& other) = delete;
+		virtual ~AForm();
 
-        virtual const std::string&  getName() const = 0;
-        virtual int                 getSignGrade() const = 0;
-        virtual int                 getExecGrade() const = 0;
-        virtual void                beSigned(const Bureaucrat& who) = 0;
+		virtual const std::string&	getName() const = 0;
+		virtual int					getSignGrade() const = 0;
+		virtual int					getExecGrade() const = 0;
+		virtual void				beSigned(const Bureaucrat& who) = 0;
+		void						execute(const Bureaucrat& executor) const;
 
-        class GradeTooHighException : public std::exception
-        {
-            public:
-                const char* what() const noexcept override;
-        };
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				const char*	what() const noexcept override;
+		};
 
-        class GradeTooLowException : public std::exception
-        {
-            public:
-                const char* what() const noexcept override;
-        };
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				const char*	what() const noexcept override;
+		};
 };
 
 std::ostream&	operator<<(std::ostream& os, const AForm& obj);

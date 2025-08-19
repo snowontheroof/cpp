@@ -4,11 +4,15 @@
 
 class PresidentialPardonForm : public AForm
 {
-    public:
-        PresidentialPardonForm();
-        PresidentialPardonForm(const PresidentialPardonForm& obj);
-        const PresidentialPardonForm*   operator=(const PresidentialPardonForm& other);
-        ~PresidentialPardonForm();
+	private:
+		const Bureaucrat&	_target;
+
+	public:
+		PresidentialPardonForm() = delete;
+		PresidentialPardonForm(const Bureaucrat& target);
+		PresidentialPardonForm(const PresidentialPardonForm& obj);
+		PresidentialPardonForm&	operator=(const PresidentialPardonForm& other) = delete;
+		~PresidentialPardonForm();
 };
 
 #endif

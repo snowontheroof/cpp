@@ -4,7 +4,15 @@
 
 class ShrubberyCreationForm : public AForm
 {
+	private:
+		const Bureaucrat&	_target;
 
+	public:
+		ShrubberyCreationForm() = delete;
+		ShrubberyCreationForm(const Bureaucrat& target);
+		ShrubberyCreationForm(const ShrubberyCreationForm& obj);
+		ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& other) = delete;
+		~ShrubberyCreationForm();
 };
 
 #endif
