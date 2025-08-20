@@ -1,12 +1,12 @@
-#ifndef AFORM_HPP
-# define AFORM_HPP
+#ifndef FORM_HPP
+# define FORM_HPP
 # include <iostream>
 # include <exception>
-# include "../inc/Bureaucrat.hpp"
+# include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
-class AForm
+class Form
 {
 	private:
 		const std::string	_name;
@@ -15,18 +15,18 @@ class AForm
 		const int			_execGrade;
 
 	public:
-		AForm() = delete;
-		AForm(const std::string name, int signGrade, int execGrade);
-		AForm(const AForm& obj);
-		AForm&	operator=(const AForm& other) = delete;
-		virtual ~AForm();
+		Form() = delete;
+		Form(const std::string name, int signGrade, int execGrade);
+		Form(const Form& obj);
+		Form&	operator=(const Form& other) = delete;
+		virtual ~Form();
 
-		const std::string&	getName() const;
+		const std::string&  getName() const;
 		bool				getSignStatus() const;
 		int					getSignGrade() const;
 		int					getExecGrade() const;
 		void				beSigned(const Bureaucrat& who);
-		virtual void		execute(const Bureaucrat& executor) const = 0;
+		virtual void		execute(const Bureaucrat& executor) const;
 
 		class NotSignedException : public std::exception
 		{
@@ -47,6 +47,6 @@ class AForm
 		};
 };
 
-std::ostream&	operator<<(std::ostream& os, const AForm& obj);
+std::ostream&	operator<<(std::ostream& os, const Form& obj);
 
 #endif

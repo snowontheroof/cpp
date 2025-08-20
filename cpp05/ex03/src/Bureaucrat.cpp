@@ -1,9 +1,5 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat()
-{
-	std::cout << "Bureaucrat: Default constructor called" << std::endl;
-}
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
 {
 	std::cout << "Bureaucrat " << _name << ": Constructor called" << std::endl;

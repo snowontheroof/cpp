@@ -1,9 +1,9 @@
 #ifndef SHRUBBERYCREATIONFORM_HPP
 # define SHRUBBERYCREATIONFORM_HPP
-# include "../inc/AForm.hpp"
+# include "Form.hpp"
 # include <fstream>
 
-class ShrubberyCreationForm : public AForm
+class ShrubberyCreationForm : public Form
 {
 	private:
 		const std::string	_target;
