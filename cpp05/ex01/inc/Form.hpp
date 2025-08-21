@@ -4,6 +4,8 @@
 # include <exception>
 # include "../inc/Bureaucrat.hpp"
 
+class Bureaucrat;
+
 class Form
 {
 	private:
@@ -19,10 +21,17 @@ class Form
 		Form&	operator=(const Form& other) = delete;
 		~Form();
 
-		const std::string&  getName() const;
+		const std::string&	getName() const;
+		bool				getSignStatus() const;
 		int					getSignGrade() const;
 		int					getExecGrade() const;
 		void				beSigned(const Bureaucrat& who);
+
+		class AlreadySignedException : public std::exception
+		{
+			public:
+				const char*	what() const noexcept override;
+		};
 
 		class GradeTooHighException : public std::exception
 		{

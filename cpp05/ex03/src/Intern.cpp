@@ -1,4 +1,4 @@
-#include "Intern.hpp"
+#include "../inc/Intern.hpp"
 
 Intern::Intern()
 {
@@ -33,7 +33,7 @@ Form*	Intern::makeForm(const std::string name, const std::string target)
 			newForm = new PresidentialPardonForm(target);
 			break ;
 		default:
-			std::cout << "Error: no such form type exists!" << std::endl;
+			std::cout << "Even an intern can't create form of a nonexisting type!" << std::endl;
 			break ;
 	}
 	if (i < 3)

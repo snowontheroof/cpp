@@ -1,25 +1,14 @@
 #include "../inc/Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat()
-{
-	std::cout << "Bureaucrat: Default constructor called" << std::endl;
-}
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
 {
 	std::cout << "Bureaucrat " << _name << ": Constructor called" << std::endl;
-	try
-	{
-		if (grade < 1)
-			throw GradeTooHighException();
-		if (grade > 150)
-			throw GradeTooLowException();
-		else
-			_grade = grade;
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+	if (grade < 1)
+		throw GradeTooHighException();
+	if (grade > 150)
+		throw GradeTooLowException();
+	else
+		_grade = grade;
 }
 Bureaucrat::Bureaucrat(const Bureaucrat& obj) : _name(obj._name), _grade(obj._grade)
 {
@@ -31,52 +20,38 @@ Bureaucrat::~Bureaucrat()
 	std::cout << "Bureaucrat " << _name << ": Destructor called" << std::endl;
 }
 
-const std::string&  Bureaucrat::getName() const
+const std::string&	Bureaucrat::getName() const
 {
 	return _name;
 }
 
-int Bureaucrat::getGrade() const
+int	Bureaucrat::getGrade() const
 {
 	return _grade;
 }
 
 void	Bureaucrat::upGrade()
 {
-	try
-	{
-		if ((_grade - 1) < 1)
-			throw GradeTooHighException();
-		_grade--;
-	}
-	catch(const GradeTooHighException& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+	if ((_grade - 1) < 1)
+		throw GradeTooHighException();
+	_grade--;
 }
 
 void	Bureaucrat::downGrade()
 {
-	try
-	{
-		if ((_grade + 1) > 150)
-			throw GradeTooLowException();
-		_grade++;
-	}
-	catch(const GradeTooLowException& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+	if ((_grade + 1) > 150)
+		throw GradeTooLowException();
+	_grade++;
 }
 
 const char*	Bureaucrat::GradeTooHighException::what() const noexcept
 {
-	return  "Grade too high! The limit is 1";
+	return  "Bureaucrat grade too high! The limit is 1.";
 }
 
 const char*	Bureaucrat::GradeTooLowException::what() const noexcept
 {
-	return "Grade too low! The limit is 150";
+	return "Bureaucrat grade too low! The limit is 150.";
 }
 
 std::ostream&	operator<<(std::ostream& os, const Bureaucrat& obj)

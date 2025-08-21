@@ -34,6 +34,12 @@ class AForm
 				const char*	what() const noexcept override;
 		};
 
+		class AlreadySignedException : public std::exception
+		{
+			public:
+				const char*	what() const noexcept override;
+		};
+
 		class GradeTooHighException : public std::exception
 		{
 			public:

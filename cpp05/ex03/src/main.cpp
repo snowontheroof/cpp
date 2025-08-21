@@ -7,20 +7,33 @@
 
 int	main(void)
 {
-	Bureaucrat	Markku("Markku", 100);
-	ShrubberyCreationForm	lappu("Markku");
-	RobotomyRequestForm		robotsi("Markku");
-	PresidentialPardonForm	armahdus("Markku");
+	try
+	{
+		std::cout << "----Test 1----" << std::endl;
+		Bureaucrat	Ryan("Ryan", 2);
+		std::cout << Ryan << std::endl;
 
-	lappu.beSigned(Markku);
-	lappu.execute(Markku);
-	robotsi.beSigned(Markku);
-	robotsi.execute(Markku);
-	armahdus.execute(Markku);
+		std::cout << std::endl;
+		Intern	Pete;
 
-	Intern	teaBoy;
-	Form *lippu = teaBoy.makeForm("Shrubbery Creation", "Markku");
-	delete lippu;
+		std::cout << std::endl;
+		Form*	document = Pete.makeForm("Presidential Pardon", "Ryan");
+		std::cout << *document << std::endl;
+
+		Ryan.signForm(*document);
+		document->execute(Ryan);
+		std::cout << std::endl;
+
+		Form*	another = Pete.makeForm("Just make any form, can you?!", "Ryan");
+		std::cout << std::endl;
+
+		delete document;
+		delete another;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
 	return 0;
 }

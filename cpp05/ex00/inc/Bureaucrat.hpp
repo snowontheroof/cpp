@@ -13,7 +13,7 @@ class Bureaucrat
 		Bureaucrat() = delete;
 		Bureaucrat(const std::string name, int grade);
 		Bureaucrat(const Bureaucrat& obj);
-		const Bureaucrat&	operator=(const Bureaucrat& other) = delete;
+		Bureaucrat&	operator=(const Bureaucrat& other) = delete;
 		~Bureaucrat();
 
 		const std::string&	getName() const;
@@ -24,13 +24,13 @@ class Bureaucrat
 		class GradeTooHighException : public std::exception
 		{
 			public:
-				const char* what() const noexcept override;
+				const char*	what() const noexcept override;
 		};
 
 		class GradeTooLowException : public std::exception
 		{
 			public:
-				const char* what() const noexcept override;
+				const char*	what() const noexcept override;
 		};
 };
 

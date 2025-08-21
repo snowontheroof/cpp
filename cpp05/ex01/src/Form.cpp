@@ -1,23 +1,15 @@
 #include "../inc/Form.hpp"
 
-Form::Form(std::string name, int signGrade, int execGrade) : _name(name), _signGrade(signGrade), _execGrade(execGrade), _isSigned(false)
+Form::Form(std::string name, int signGrade, int execGrade) : _name(name), _isSigned(false), _signGrade(signGrade), _execGrade(execGrade)
 {
 	std::cout << "Form " << _name << ": Constructor called" << std::endl;
-	try
-	{
-		if (signGrade > 150 || execGrade > 150)
-			throw GradeTooLowException();
-		if (signGrade < 1 || execGrade < 1)
-			throw GradeTooHighException();
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << "Form: " << e.what() << std::endl;
-	}
-
+	if (signGrade > 150 || execGrade > 150)
+		throw GradeTooLowException();
+	if (signGrade < 1 || execGrade < 1)
+		throw GradeTooHighException();
 }
 
-Form::Form(const Form& obj) : _name(obj._name), _signGrade(obj._signGrade), _execGrade(obj._execGrade), _isSigned(obj._isSigned)
+Form::Form(const Form& obj) : _name(obj._name), _isSigned(obj._isSigned), _signGrade(obj._signGrade), _execGrade(obj._execGrade)
 {
 	std::cout << "Form " << _name << ": Copy constructor called" << std::endl;
 }
@@ -32,43 +24,50 @@ const std::string&	Form::getName() const
 	return _name;
 }
 
-int Form::getSignGrade() const
+bool	Form::getSignStatus() const
+{
+	return _isSigned;
+}
+
+int	Form::getSignGrade() const
 {
 	return _signGrade;
 }
 
-int Form::getExecGrade() const
+int	Form::getExecGrade() const
 {
 	return _execGrade;
 }
 
-const char* Form::GradeTooHighException::what() const noexcept
+const char*	Form::AlreadySignedException::what() const noexcept
+{
+	return "Form is already signed!";
+}
+
+const char*	Form::GradeTooHighException::what() const noexcept
 {
 	return "Grade too high!";
 }
 
-const char* Form::GradeTooLowException::what() const noexcept
+const char*	Form::GradeTooLowException::what() const noexcept
 {
 	return "Grade too low!";
 }
 
 void	Form::beSigned(const Bureaucrat& who)
 {
-	try
-	{
-		if (who.getGrade() > getSignGrade())
-			throw GradeTooLowException();
-		_isSigned = true;
-	}
-	catch(const GradeTooLowException& e)
-	{
-		std::cout << "Form: " << e.what() << std::endl;
-	}
+	if (_isSigned)
+		throw AlreadySignedException();
+	if (who.getGrade() > getSignGrade())
+		throw GradeTooLowException();
+	_isSigned = true;
 }
 
 std::ostream&	operator<<(std::ostream& os, const Form& obj)
 {
-	os << "Form " << obj.getName() << ", grade required to sign: "
+	os << obj.getName() << ", signed: ";
+	if (obj.gets)
+		<< ", grade required to sign: "
 		<< obj.getSignGrade() << ", grade required to execute: "
 		<< obj.getExecGrade() << std::endl;
 	return os;
