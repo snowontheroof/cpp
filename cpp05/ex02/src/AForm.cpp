@@ -2,7 +2,6 @@
 
 AForm::AForm(const std::string name, int signGrade, int execGrade) : _name(name), _signGrade(signGrade), _execGrade(execGrade)
 {
-	std::cout << "AForm " << _name << ": Constructor called" << std::endl;
 	if (_signGrade > 150 || _execGrade > 150)
 		throw GradeTooLowException();
 	if (_signGrade < 1 || execGrade < 1)
@@ -11,12 +10,10 @@ AForm::AForm(const std::string name, int signGrade, int execGrade) : _name(name)
 
 AForm::AForm(const AForm& obj) : _name(obj._name), _signGrade(obj._signGrade), _execGrade(obj._execGrade)
 {
-	std::cout << "AForm " << _name << ": Copy constructor called" << std::endl;
 }
 
 AForm::~AForm()
 {
-	std::cout << "AForm " << _name << ": Destructor called" << std::endl;
 }
 
 const std::string&	AForm::getName() const
@@ -39,14 +36,13 @@ int	AForm::getExecGrade() const
 	return _execGrade;
 }
 
-void	AForm::beSigned(const Bureaucrat& who)
+void	AForm::beSigned(const Bureaucrat& signer)
 {
-	if (who.getGrade() > getSignGrade())
-		throw GradeTooLowException();
-	if (getSignStatus())
+	if (_isSigned)
 		throw AlreadySignedException();
+	if (getSignGrade() < signer.getGrade())
+		throw GradeTooLowException();
 	_isSigned = true;
-	std::cout << who.getName() << " successfully signed " << _name << std::endl;
 }
 
 const char*	AForm::NotSignedException::what() const noexcept

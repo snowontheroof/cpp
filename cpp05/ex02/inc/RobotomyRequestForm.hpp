@@ -1,6 +1,6 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 # define ROBOTOMYREQUESTFORM_HPP
-# include "../inc/AForm.hpp"
+# include "AForm.hpp"
 # include <cstdlib>
 # include <ctime>
 

@@ -2,17 +2,14 @@
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string target) : AForm("Robotomy Request Form", 72, 45), _target(target)
 {
-	std::cout << "Robotomy Request Form: Constructor called" << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& obj) : AForm(obj), _target(obj._target)
 {
-	std::cout << "Robotomy Request Form: Copy constructor called" << std::endl;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
-	std::cout << "Robotomy Request Form: Destructor called" << std::endl;
 }
 
 void	RobotomyRequestForm::execute(const Bureaucrat& executor) const

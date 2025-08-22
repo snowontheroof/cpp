@@ -1,10 +1,6 @@
 #ifndef FORM_HPP
 # define FORM_HPP
-# include <iostream>
-# include <exception>
-# include "../inc/Bureaucrat.hpp"
-
-class Bureaucrat;
+# include "Bureaucrat.hpp"
 
 class Form
 {
@@ -25,7 +21,7 @@ class Form
 		bool				getSignStatus() const;
 		int					getSignGrade() const;
 		int					getExecGrade() const;
-		void				beSigned(const Bureaucrat& who);
+		void				beSigned(const Bureaucrat& signer);
 
 		class AlreadySignedException : public std::exception
 		{

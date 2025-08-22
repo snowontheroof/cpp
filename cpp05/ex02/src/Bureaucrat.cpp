@@ -1,8 +1,8 @@
 #include "../inc/Bureaucrat.hpp"
+#include "../inc/AForm.hpp"
 
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
 {
-	std::cout << "Bureaucrat " << _name << ": Constructor called" << std::endl;
 	if (grade < 1)
 		throw GradeTooHighException();
 	if (grade > 150)
@@ -12,12 +12,10 @@ Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
 }
 Bureaucrat::Bureaucrat(const Bureaucrat& obj) : _name(obj._name), _grade(obj._grade)
 {
-	std::cout << "Bureaucrat " << _name << ": Copy constructor called" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Bureaucrat " << _name << ": Destructor called" << std::endl;
 }
 
 const std::string&	Bureaucrat::getName() const
@@ -44,12 +42,32 @@ void	Bureaucrat::downGrade()
 	_grade++;
 }
 
-void	Bureaucrat::signForm(AForm& which)
+void	Bureaucrat::signForm(AForm& form)
 {
-	if (_grade > which.getSignGrade())
-		throw GradeTooLowException();
-	else
-		which.beSigned(*this);
+	try
+	{
+		form.beSigned(*this);
+		std::cout << _name << " signed " << form.getName() << std::endl;
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << _name << " couldn't sign " << form.getName()
+			<< " - why? " << e.what() << std::endl;
+	}
+}
+
+void	Bureaucrat::executeForm(const AForm& form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << _name << " executed " << form.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << _name << " couldn't execute " << form.getName()
+		<< " - why? " << e.what() << std::endl;
+	}
 }
 
 const char*	Bureaucrat::GradeTooHighException::what() const noexcept

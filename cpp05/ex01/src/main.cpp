@@ -1,17 +1,16 @@
-#include "../inc/Bureaucrat.hpp"
 #include "../inc/Form.hpp"
 
 int	main(void)
 {
 	try
 	{
-		std::cout << "----Test 1" << std::endl;
+		std::cout << "----Test 1----" << std::endl;
 		Bureaucrat	Jim("Jim", 130);
 
 		std::cout << std::endl << Jim.getName() << std::endl;
 		std::cout << Jim.getGrade() << std::endl;
 		Jim.upGrade();
-		std::cout << Jim << std::endl << std::endl;
+		std::cout << Jim << std::endl;
 
 		Bureaucrat	Kevin("Kevin", 12);
 
@@ -48,7 +47,7 @@ int	main(void)
 
 	try
 	{
-		std::cout << std::endl << "----Test 3----" << std::endl;
+		std::cout << std::endl << "----Test 3----" << std::endl << std::endl;
 		Form	Pile("Pile", 119, 0);
 	}
 	catch(const std::exception& e)

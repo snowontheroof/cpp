@@ -2,7 +2,6 @@
 
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
 {
-	std::cout << "Bureaucrat " << _name << ": Constructor called" << std::endl;
 	if (grade < 1)
 		throw GradeTooHighException();
 	if (grade > 150)
@@ -12,12 +11,10 @@ Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
 }
 Bureaucrat::Bureaucrat(const Bureaucrat& obj) : _name(obj._name), _grade(obj._grade)
 {
-	std::cout << "Bureaucrat " << _name << ": Copy constructor called" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Bureaucrat " << _name << ": Destructor called" << std::endl;
 }
 
 const std::string&	Bureaucrat::getName() const
@@ -46,7 +43,7 @@ void	Bureaucrat::downGrade()
 
 const char*	Bureaucrat::GradeTooHighException::what() const noexcept
 {
-	return  "Bureaucrat grade too high! The limit is 1.";
+	return "Bureaucrat grade too high! The limit is 1.";
 }
 
 const char*	Bureaucrat::GradeTooLowException::what() const noexcept

@@ -1,6 +1,6 @@
 #ifndef SHRUBBERYCREATIONFORM_HPP
 # define SHRUBBERYCREATIONFORM_HPP
-# include "../inc/AForm.hpp"
+# include "AForm.hpp"
 # include <fstream>
 
 class ShrubberyCreationForm : public AForm
@@ -14,6 +14,11 @@ class ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm(const ShrubberyCreationForm& obj);
 		ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& other) = delete;
 		~ShrubberyCreationForm();
+
+		class FileCreationFailException : public std::exception
+		{
+			const char*	what() const noexcept override;
+		};
 
 		void	execute(const Bureaucrat& executor) const override;
 };

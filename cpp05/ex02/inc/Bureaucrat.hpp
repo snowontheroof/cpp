@@ -1,8 +1,6 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 # include <iostream>
-# include <exception>
-# include "../inc/AForm.hpp"
 
 class AForm;
 
@@ -23,7 +21,8 @@ class Bureaucrat
 		int					getGrade() const;
 		void				upGrade();
 		void				downGrade();
-		void				signForm(AForm& which);
+		void				signForm(AForm& form);
+		void				executeForm(const AForm& form);
 
 		class GradeTooHighException : public std::exception
 		{

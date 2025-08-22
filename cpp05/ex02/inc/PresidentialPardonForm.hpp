@@ -1,6 +1,6 @@
 #ifndef PRESIDENTIALPARDONFORM_HPP
 # define PRESIDENTIALPARDONFORM_HPP
-# include "../inc/AForm.hpp"
+# include "AForm.hpp"
 
 class PresidentialPardonForm : public AForm
 {

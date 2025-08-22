@@ -2,12 +2,10 @@
 
 Intern::Intern()
 {
-	std::cout << "Intern: Constructor called" << std::endl;
 }
 
 Intern::~Intern()
 {
-	std::cout << "Intern: Destructor called" << std::endl;
 }
 
 Form*	Intern::makeForm(const std::string name, const std::string target)
@@ -33,7 +31,7 @@ Form*	Intern::makeForm(const std::string name, const std::string target)
 			newForm = new PresidentialPardonForm(target);
 			break ;
 		default:
-			std::cout << "Even an intern can't create form of a nonexisting type!" << std::endl;
+			std::cout << "Even the best intern can't create a form of a nonexisting type!" << std::endl;
 			break ;
 	}
 	if (i < 3)

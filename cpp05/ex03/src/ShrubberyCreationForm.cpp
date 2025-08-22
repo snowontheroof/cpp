@@ -2,17 +2,19 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : Form("Shrubbery Creation Form", 145, 137), _target(target)
 {
-	std::cout << "Shrubbery Creation Form: Constructor called" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& obj) : Form(obj), _target(obj._target)
 {
-	std::cout << "Shrubbery Creation Form: Copy constructor called" << std::endl;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-	std::cout << "Shrubbery Creation Form: Destructor called" << std::endl;
+}
+
+const char*	ShrubberyCreationForm::FileCreationFailException::what() const noexcept
+{
+	return "System error: Could not open the created file for writing";
 }
 
 void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const
@@ -21,26 +23,35 @@ void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 		throw NotSignedException();
 	if (executor.getGrade() > getExecGrade())
 		throw GradeTooLowException();
-	std::string	newFileName = _target + "_shrubbery";
-	std::ofstream	newFile(newFileName);
-	newFile << "              * *                            * *" << std::endl
-			<< "           *    *  *                      *    *  *" << std::endl
-			<< "      *  *    *     *  *            *  *    *     *  *" << std::endl
-			<< "     *     *    *  *    *          *     *    *  *    *" << std::endl
-			<< " * *   *    *    *    *   *   * *   *    *    *    *   *" << std::endl
-			<< " *     *  *    * * .#  *   *   *     *  *    * * .#  *   *" << std::endl
-			<< " *   *     * #.  .# *   *     *     *     * #.  .# *   *" << std::endl
-			<< "  *      #.  #: #  * *    *      *      #.  #: #  * *    *" << std::endl
-			<< " *   * *  #. ##        *        *   * *  #. ##        *" << std::endl
-			<< "   *        ###        *         *        ###        *" << std::endl
-			<< "              ##                            ##" << std::endl
-			<< "              ##.                            ##." << std::endl
-			<< "              .##:                           .##:" << std::endl
-			<< "              :###                           :###" << std::endl
-			<< "              ;###                           ;###" << std::endl
-			<< "            ,####.                         ,####." << std::endl
-			<< "           ######.                       .######." << std::endl;
-	newFile.close();
-	std::cout << executor.getName() << " created shrubbery at " << newFileName << std::endl;
 
+	try
+	{
+		std::string	newFileName = _target + "_shrubbery";
+		std::ofstream	newFile(newFileName);
+		if (!newFile.is_open())
+			throw FileCreationFailException();
+		newFile << "              * *                            * *" << std::endl
+				<< "           *    *  *                      *    *  *" << std::endl
+				<< "      *  *    *     *  *            *  *    *     *  *" << std::endl
+				<< "     *     *    *  *    *          *     *    *  *    *" << std::endl
+				<< " * *   *    *    *    *   *   * *   *    *    *    *   *" << std::endl
+				<< " *     *  *    * * .#  *   *   *     *  *    * * .#  *   *" << std::endl
+				<< " *   *     * #.  .# *   *     *     *     * #.  .# *   *" << std::endl
+				<< "  *      #.  #: #  * *    *      *      #.  #: #  * *    *" << std::endl
+				<< " *   * *  #. ##        *        *   * *  #. ##        *" << std::endl
+				<< "   *        ###        *         *        ###        *" << std::endl
+				<< "              ##                            ##" << std::endl
+				<< "              ##.                            ##." << std::endl
+				<< "              .##:                           .##:" << std::endl
+				<< "              :###                           :###" << std::endl
+				<< "              ;###                           ;###" << std::endl
+				<< "            ,####.                         ,####." << std::endl
+				<< "           ######.                       .######." << std::endl;
+		newFile.close();
+		std::cout << executor.getName() << " created shrubbery at " << newFileName << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 }

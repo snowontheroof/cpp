@@ -2,7 +2,6 @@
 
 Form::Form(std::string name, int signGrade, int execGrade) : _name(name), _isSigned(false), _signGrade(signGrade), _execGrade(execGrade)
 {
-	std::cout << "Form " << _name << ": Constructor called" << std::endl;
 	if (signGrade > 150 || execGrade > 150)
 		throw GradeTooLowException();
 	if (signGrade < 1 || execGrade < 1)
@@ -11,12 +10,10 @@ Form::Form(std::string name, int signGrade, int execGrade) : _name(name), _isSig
 
 Form::Form(const Form& obj) : _name(obj._name), _isSigned(obj._isSigned), _signGrade(obj._signGrade), _execGrade(obj._execGrade)
 {
-	std::cout << "Form " << _name << ": Copy constructor called" << std::endl;
 }
 
 Form::~Form()
 {
-	std::cout << "Form " << _name << ": Destructor called" << std::endl;
 }
 
 const std::string&	Form::getName() const
@@ -54,11 +51,11 @@ const char*	Form::GradeTooLowException::what() const noexcept
 	return "Grade too low!";
 }
 
-void	Form::beSigned(const Bureaucrat& who)
+void	Form::beSigned(const Bureaucrat& signer)
 {
 	if (_isSigned)
 		throw AlreadySignedException();
-	if (who.getGrade() > getSignGrade())
+	if (getSignGrade() < signer.getGrade())
 		throw GradeTooLowException();
 	_isSigned = true;
 }
@@ -66,8 +63,11 @@ void	Form::beSigned(const Bureaucrat& who)
 std::ostream&	operator<<(std::ostream& os, const Form& obj)
 {
 	os << obj.getName() << ", signed: ";
-	if (obj.gets)
-		<< ", grade required to sign: "
+	if (obj.getSignStatus())
+		os << "yes";
+	else
+		os << "no";
+	std::cout << ", grade required to sign: "
 		<< obj.getSignGrade() << ", grade required to execute: "
 		<< obj.getExecGrade() << std::endl;
 	return os;

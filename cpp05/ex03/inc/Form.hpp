@@ -1,10 +1,6 @@
 #ifndef FORM_HPP
 # define FORM_HPP
-# include <iostream>
-# include <exception>
 # include "Bureaucrat.hpp"
-
-class Bureaucrat;
 
 class Form
 {
@@ -25,7 +21,7 @@ class Form
 		bool				getSignStatus() const;
 		int					getSignGrade() const;
 		int					getExecGrade() const;
-		void				beSigned(const Bureaucrat& who);
+		void				beSigned(const Bureaucrat& signer);
 		virtual void		execute(const Bureaucrat& executor) const;
 
 		class NotSignedException : public std::exception

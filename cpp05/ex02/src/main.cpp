@@ -1,5 +1,3 @@
-#include "../inc/AForm.hpp"
-#include "../inc/Bureaucrat.hpp"
 #include "../inc/ShrubberyCreationForm.hpp"
 #include "../inc/RobotomyRequestForm.hpp"
 #include "../inc/PresidentialPardonForm.hpp"
@@ -11,12 +9,13 @@ int	main(void)
 		std::cout << "----Test 1----" << std::endl;
 		Bureaucrat	Angela("Angela", 3);
 
-		std::cout << Angela << std::endl;
+		std::cout << std::endl << Angela << std::endl;
 
 		ShrubberyCreationForm	form1("Angela");
 		std::cout << form1 << std::endl;
 
 		Angela.signForm(form1);
+		std::cout << form1 << std::endl;
 		form1.execute(Angela);
 		std::cout << std::endl;
 
@@ -25,7 +24,6 @@ int	main(void)
 
 		Angela.signForm(form2);
 		form2.execute(Angela);
-		std::cout << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -37,7 +35,7 @@ int	main(void)
 		std::cout << std::endl << "----Test 2----" << std::endl;
 		Bureaucrat	Val("Val", 42);
 
-		std::cout << Val << std::endl;
+		std::cout << std::endl << Val << std::endl;
 
 		RobotomyRequestForm	form3("Val");
 		std::cout << form3 << std::endl;
