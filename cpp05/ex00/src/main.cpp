@@ -1,10 +1,10 @@
 #include "../inc/Bureaucrat.hpp"
 
-int	main(void)
+void	test1(void)
 {
 	try
 	{
-		std::cout << "----Test 1----" << std::endl;
+		std::cout << "----Test 1----\n";
 		Bureaucrat	Jim("Jim", 149);
 
 		std::cout << std::endl << Jim.getName() << std::endl;
@@ -21,10 +21,13 @@ int	main(void)
 	{
 		std::cout << e.what() << std::endl;
 	}
+}
 
+void	test2(void)
+{
 	try
 	{
-		std::cout << std::endl << "----Test 2----" << std::endl;
+		std::cout << "\n----Test 2----\n";
 		Bureaucrat	Pam("Pam", 3);
 
 		std::cout << std::endl << Pam.getName() << std::endl;
@@ -40,10 +43,13 @@ int	main(void)
 	{
 		std::cout << e.what() << std::endl;
 	}
+}
 
+void	test3(void)
+{
 	try
 	{
-		std::cout << std::endl << "----Test 3----" << std::endl;
+		std::cout << "\n----Test 3----\n";
 		Bureaucrat	Stanley("Stanley", 114);
 		Bureaucrat	Michael(Stanley);
 
@@ -54,6 +60,41 @@ int	main(void)
 	{
 		std::cout << e.what() << std::endl;
 	}
+}
+
+void	test4(void)
+{
+	try
+	{
+		std::cout << "----Test 4----\n\n";
+		Bureaucrat	Gabe("Gabe", -4);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+}
+
+void	test5(void)
+{
+	try
+	{
+		std::cout << "\n----Test 5----\n\n";
+		Bureaucrat	Gabe("Gabe", 154);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+}
+
+int	main(void)
+{
+	test1();
+	test2();
+	test3();
+	test4();
+	test5();
 
 	return 0;
 }

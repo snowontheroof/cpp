@@ -2,11 +2,11 @@
 #include "../inc/RobotomyRequestForm.hpp"
 #include "../inc/PresidentialPardonForm.hpp"
 
-int	main(void)
+void	test1(void)
 {
 	try
 	{
-		std::cout << "----Test 1----" << std::endl;
+		std::cout << "----Test 1----\n";
 		Bureaucrat	Angela("Angela", 3);
 
 		std::cout << std::endl << Angela << std::endl;
@@ -29,10 +29,13 @@ int	main(void)
 	{
 		std::cout << e.what() << std::endl;
 	}
+}
 
+void	test2(void)
+{
 	try
 	{
-		std::cout << std::endl << "----Test 2----" << std::endl;
+		std::cout << "\n----Test 2----\n";
 		Bureaucrat	Val("Val", 42);
 
 		std::cout << std::endl << Val << std::endl;
@@ -54,10 +57,13 @@ int	main(void)
 	{
 		std::cout << e.what() << std::endl;
 	}
+}
 
+void	test3(void)
+{
 	try
 	{
-		std::cout << std::endl << "----Test 3----" << std::endl;
+		std::cout << "\n----Test 3----\n";
 		Bureaucrat	Andy("Andy", 114);
 
 		std::cout << std::endl << Andy << std::endl;
@@ -71,6 +77,13 @@ int	main(void)
 	{
 		std::cout << e.what() << std::endl;
 	}
+}
+
+int	main(void)
+{
+	test1();
+	test2();
+	test3();
 
 	return 0;
 }
