@@ -17,7 +17,7 @@ class Form
 		Form&	operator=(const Form& other) = delete;
 		virtual ~Form();
 
-		const std::string&  getName() const;
+		const std::string&	getName() const;
 		bool				getSignStatus() const;
 		int					getSignGrade() const;
 		int					getExecGrade() const;

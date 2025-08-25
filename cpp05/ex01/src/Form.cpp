@@ -3,9 +3,15 @@
 Form::Form(std::string name, int signGrade, int execGrade) : _name(name), _isSigned(false), _signGrade(signGrade), _execGrade(execGrade)
 {
 	if (signGrade > 150 || execGrade > 150)
+	{
+		std::cout << _name << " couldn't be created - why? ";
 		throw GradeTooLowException();
+	}
 	if (signGrade < 1 || execGrade < 1)
+	{
+		std::cout << _name << " couldn't be created - why? ";
 		throw GradeTooHighException();
+	}
 }
 
 Form::Form(const Form& obj) : _name(obj._name), _isSigned(obj._isSigned), _signGrade(obj._signGrade), _execGrade(obj._execGrade)
@@ -67,7 +73,7 @@ std::ostream&	operator<<(std::ostream& os, const Form& obj)
 		os << "yes";
 	else
 		os << "no";
-	std::cout << ", grade required to sign: "
+	os << ", grade required to sign: "
 		<< obj.getSignGrade() << ", grade required to execute: "
 		<< obj.getExecGrade() << std::endl;
 	return os;

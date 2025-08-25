@@ -49,7 +49,7 @@ void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 		newFile.close();
 		std::cout << executor.getName() << " created shrubbery at " << newFileName << std::endl;
 	}
-	catch (const std::exception& e)
+	catch(const std::exception& e)
 	{
 		std::cout << e.what() << std::endl;
 	}

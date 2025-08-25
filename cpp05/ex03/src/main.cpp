@@ -10,14 +10,14 @@ int	main(void)
 		Intern	Pete;
 
 		std::cout << std::endl;
-		Form*	document = Pete.makeForm("Presidential Pardon", "Ryan");
+		Form*	document = Pete.makeForm("Robotomy Request", "Toby");
 		std::cout << *document << std::endl;
 
 		Ryan.signForm(*document);
-		document->execute(Ryan);
+		Ryan.executeForm(*document);
 		std::cout << std::endl;
 
-		Form*	another = Pete.makeForm("Just make any form, can you?!", "Ryan");
+		Form*	another = Pete.makeForm("Just make any form, can you?!", "Kelly");
 
 		delete document;
 		delete another;

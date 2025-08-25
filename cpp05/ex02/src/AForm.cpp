@@ -2,10 +2,16 @@
 
 AForm::AForm(const std::string name, int signGrade, int execGrade) : _name(name), _signGrade(signGrade), _execGrade(execGrade)
 {
-	if (_signGrade > 150 || _execGrade > 150)
+	if (signGrade > 150 || execGrade > 150)
+	{
+		std::cout << _name << " couldn't be created - why? ";
 		throw GradeTooLowException();
-	if (_signGrade < 1 || execGrade < 1)
+	}
+	if (signGrade < 1 || execGrade < 1)
+	{
+		std::cout << _name << " couldn't be created - why? ";
 		throw GradeTooHighException();
+	}
 }
 
 AForm::AForm(const AForm& obj) : _name(obj._name), _signGrade(obj._signGrade), _execGrade(obj._execGrade)
