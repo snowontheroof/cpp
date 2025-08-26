@@ -1,6 +1,6 @@
 #include "../inc/ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : AForm("Shrubbery Creation Form", 145, 137), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : AForm("Shrubbery creation form", 145, 137), _target(target)
 {
 }
 
@@ -47,7 +47,6 @@ void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 				<< "            ,####.                         ,####." << std::endl
 				<< "           ######.                       .######." << std::endl;
 		newFile.close();
-		std::cout << executor.getName() << " created shrubbery at " << newFileName << std::endl;
 	}
 	catch(const std::exception& e)
 	{

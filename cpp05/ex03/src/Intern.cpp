@@ -8,10 +8,15 @@ Intern::~Intern()
 {
 }
 
+const char*	Intern::NonExistingFormException::what() const noexcept
+{
+	return "Even the best intern can't create a form of a nonexisting type!";
+}
+
 Form*	Intern::makeForm(const std::string name, const std::string target)
 {
 	Form*				newForm = nullptr;
-	const std::string	forms[3] = { "Shrubbery Creation", "Robotomy Request", "Presidential Pardon" };
+	const std::string	forms[3] = { "Shrubbery creation", "Robotomy request", "Presidential pardon" };
 	int					i;
 
 	for (i = 0; i < 3; i++)
@@ -31,8 +36,7 @@ Form*	Intern::makeForm(const std::string name, const std::string target)
 			newForm = new PresidentialPardonForm(target);
 			break ;
 		default:
-			std::cout << "Even the best intern can't create a form of a nonexisting type!" << std::endl;
-			break ;
+			throw NonExistingFormException();
 	}
 	if (i < 3)
 		std::cout << "Intern creates a " << newForm->getName() << std::endl;

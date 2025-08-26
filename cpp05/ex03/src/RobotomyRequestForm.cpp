@@ -1,6 +1,6 @@
 #include "../inc/RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string target) : Form("Robotomy Request Form", 72, 45), _target(target)
+RobotomyRequestForm::RobotomyRequestForm(const std::string target) : Form("Robotomy request form", 72, 45), _target(target)
 {
 }
 
