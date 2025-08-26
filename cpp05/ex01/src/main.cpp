@@ -42,6 +42,8 @@ void	test2(void)
 		std::cout << Paperwork << std::endl;
 
 		Dwight.signForm(Paperwork);
+
+		std::cout << "\n" << Paperwork;
 	}
 	catch(const std::exception& e)
 	{
@@ -67,7 +69,7 @@ void	test4(void)
 	try
 	{
 		std::cout << "\n----Test 4----\n\n";
-		Form	Pile("Pile", 110, 180);
+		Form	Note("Note", 110, 180);
 	}
 	catch(const std::exception& e)
 	{
@@ -80,7 +82,7 @@ void	test5(void)
 	try
 	{
 		std::cout << "\n----Test 5----\n\n";
-		Form	Pile("Pile", 1100, 3);
+		Form	File("File", 1100, 3);
 	}
 	catch(const std::exception& e)
 	{
@@ -93,7 +95,7 @@ void	test6(void)
 	try
 	{
 		std::cout << "\n----Test 6----\n\n";
-		Form	Pile("Pile", -42, 100);
+		Form	Bureaucracy("Bureaucracy", -42, 100);
 	}
 	catch(const std::exception& e)
 	{
@@ -119,7 +121,7 @@ void	test8(void)
 	try
 	{
 		std::cout << "\n----Test 8----\n\n";
-		Form	WhatNow("WhatNow", 160, 151);
+		Form	NotAgain("NotAgain", 160, 151);
 	}
 	catch(const std::exception& e)
 	{
@@ -132,7 +134,7 @@ void	test9(void)
 	try
 	{
 		std::cout << "\n----Test 9----\n\n";
-		Form	WhatNow("WhatNow", 160, -151);
+		Form	WillItEnd("WillItEnd", 160, -151);
 	}
 	catch(const std::exception& e)
 	{
