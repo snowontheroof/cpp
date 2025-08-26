@@ -9,7 +9,7 @@ void	test1(void)
 		std::cout << "----Test 1----\n";
 		Bureaucrat	Angela("Angela", 3);
 
-		std::cout << std::endl << Angela << std::endl;
+		std::cout << "\n" << Angela << "\n";
 
 		ShrubberyCreationForm	form1("home");
 		std::cout << form1 << std::endl;
@@ -38,7 +38,7 @@ void	test2(void)
 		std::cout << "\n----Test 2----\n";
 		Bureaucrat	Val("Val", 42);
 
-		std::cout << std::endl << Val << std::endl;
+		std::cout << "\n" << Val << "\n";
 
 		RobotomyRequestForm	form3("Oscar");
 		std::cout << form3 << std::endl;
@@ -49,7 +49,7 @@ void	test2(void)
 
 		Bureaucrat	Phyllis("Phyllis", 58);
 
-		std::cout << Phyllis << std::endl << std::endl;
+		std::cout << Phyllis << "\n\n";
 
 		Phyllis.executeForm(form3);
 	}
@@ -66,7 +66,7 @@ void	test3(void)
 		std::cout << "\n----Test 3----\n";
 		Bureaucrat	Andy("Andy", 114);
 
-		std::cout << std::endl << Andy << std::endl;
+		std::cout << "\n" << Andy << "\n";
 
 		RobotomyRequestForm	form4("Erin");
 		std::cout << form4 << std::endl;

@@ -7,15 +7,15 @@ void	test1(void)
 		std::cout << "----Test 1----\n";
 		Bureaucrat	Jim("Jim", 149);
 
-		std::cout << std::endl << Jim.getName() << std::endl;
+		std::cout << "\n" << Jim.getName() << "\n";
 		std::cout << Jim.getGrade() << std::endl;
 		Jim.downGrade();
 		std::cout << Jim << std::endl;
 		Jim.downGrade();
-		std::cout << Jim << std::endl << std::endl;
+		std::cout << Jim << "\n\n";
 
 		Bureaucrat	Creed(Jim);
-		std::cout << Creed << std::endl << std::endl;
+		std::cout << Creed << "\n\n";
 	}
 	catch(const std::exception& e)
 	{
@@ -30,7 +30,7 @@ void	test2(void)
 		std::cout << "\n----Test 2----\n";
 		Bureaucrat	Pam("Pam", 3);
 
-		std::cout << std::endl << Pam.getName() << std::endl;
+		std::cout << "\n" << Pam.getName() << "\n";
 		std::cout << Pam.getGrade() << std::endl;
 		Pam.upGrade();
 		std::cout << Pam << std::endl;
@@ -53,8 +53,8 @@ void	test3(void)
 		Bureaucrat	Stanley("Stanley", 114);
 		Bureaucrat	Michael(Stanley);
 
-		std::cout << std::endl << Stanley << std::endl;
-		std::cout << Michael << std::endl << std::endl;
+		std::cout << "\n" << Stanley << "\n";
+		std::cout << Michael << "\n\n";
 	}
 	catch(const std::exception& e)
 	{

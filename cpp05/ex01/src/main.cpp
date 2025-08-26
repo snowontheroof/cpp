@@ -7,14 +7,14 @@ void	test1(void)
 		std::cout << "----Test 1----\n";
 		Bureaucrat	Jim("Jim", 130);
 
-		std::cout << std::endl << Jim.getName() << std::endl;
+		std::cout << "\n" << Jim.getName() << "\n";
 		std::cout << Jim.getGrade() << std::endl;
 		Jim.upGrade();
 		std::cout << Jim << std::endl;
 
 		Bureaucrat	Kevin("Kevin", 12);
 
-		std::cout << std::endl << Kevin << std::endl << std::endl;
+		std::cout << "\n" << Kevin << "\n\n";
 
 		Form	Document("Document", 142, 134);
 		std::cout << Document << std::endl;
@@ -36,7 +36,7 @@ void	test2(void)
 		std::cout << "\n----Test 2----\n";
 		Bureaucrat	Dwight("Dwight", 99);
 
-		std::cout << std::endl << Dwight << std::endl << std::endl;
+		std::cout << "\n" << Dwight << "\n\n";
 
 		Form	Paperwork("Paperwork", 33, 54);
 		std::cout << Paperwork << std::endl;
