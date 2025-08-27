@@ -2,6 +2,9 @@
 
 void	test1(void)
 {
+	Form*	document = nullptr;
+	Form*	another = nullptr;
+
 	try
 	{
 		std::cout << "----Test 1----\n\n";
@@ -11,26 +14,31 @@ void	test1(void)
 		Intern	Pete;
 
 		std::cout << std::endl;
-		Form*	document = Pete.makeForm("Robotomy request", "Toby");
+		document = Pete.makeForm("Robotomy request", "Toby");
 		std::cout << *document << std::endl;
 
 		Ryan.signForm(*document);
 		Ryan.executeForm(*document);
 		std::cout << std::endl;
 
-		Form*	another = Pete.makeForm("Just make any form, can you?!", "Kelly");
+		another = Pete.makeForm("Just make any form, can you?!", "Kelly");
 
 		delete document;
 		delete another;
 	}
 	catch(const std::exception& e)
 	{
+		delete document;
+		delete another;
 		std::cout << e.what() << std::endl;
 	}
 }
 
 void	test2(void)
 {
+	Form*	document = nullptr;
+	Form*	another = nullptr;
+	
 	try
 	{
 		std::cout << "\n----Test 2----\n";
@@ -40,14 +48,14 @@ void	test2(void)
 		Intern	Clark;
 
 		std::cout << std::endl;
-		Form*	document = Clark.makeForm("Shrubbery creation", "Darryl");
+		document = Clark.makeForm("Shrubbery creation", "Darryl");
 		std::cout << *document << std::endl;
 
 		Kelly.signForm(*document);
 		Kelly.executeForm(*document);
 		std::cout << std::endl;
 
-		Form*	another = Clark.makeForm("Presidential pardon", "Nellie");
+		another = Clark.makeForm("Presidential pardon", "Nellie");
 		std::cout << *another << std::endl;
 
 		Kelly.signForm(*another);
@@ -65,6 +73,8 @@ void	test2(void)
 	}
 	catch(const std::exception& e)
 	{
+		delete document;
+		delete another;
 		std::cout << e.what() << std::endl;
 	}
 }
