@@ -69,14 +69,21 @@ void	handle_float(std::string input, enum t_type type)
 	}
 	else
 	{
+		float	value;
 		try
 		{
 			if (type == INT)
 				std::cout << static_cast<float>(std::stoi(input)) << ".0f\n";
 			else if (type == FLOAT)
-				std::cout << static_cast<float>(std::stof(input)) << "f\n";
+				std::cout << input << std::endl;
 			else if (type == DOUBLE)
-				std::cout << static_cast<float>(std::stod(input)) << std::endl;	
+			{
+				value = static_cast<float>(std::stod(input));
+				if (value - static_cast<int>(value) > 0)
+					std::cout << value << "f\n";
+				else
+					std::cout << value << ".0f\n";
+			}
 		}
 		catch(const std::out_of_range& e)
 		{
@@ -100,14 +107,21 @@ void	handle_double(std::string input, enum t_type type)
 	}
 	else
 	{
+		double	value;
 		try
 		{
 			if (type == INT)
 				std::cout << static_cast<double>(std::stoi(input)) << ".0\n";
 			else if (type == FLOAT)
-				std::cout << static_cast<double>(std::stof(input)) << std::endl;
+			{
+				value = static_cast<double>(std::stof(input));
+				if (value - static_cast<int>(value) > 0)
+					std::cout << value << std::endl;
+				else
+					std::cout << value << ".0\n";
+			}
 			else if (type == DOUBLE)
-				std::cout << std::stof(input) << std::endl;	
+				std::cout << input << std::endl;	
 		}
 		catch(const std::out_of_range& e)
 		{
@@ -144,13 +158,14 @@ enum t_type	detect_type(std::string input)
 {
 	if (input.length() == 1)
 		return CHAR;
-	else if (input == "nan" || input == "+inf" || input == "-inf" ||input == "nanf" || input == "+inff" || input == "-inff")
+	else if (input == "nan" || input == "+inf" || input == "-inf"
+			|| input == "nanf" || input == "+inff" || input == "-inff")
 		return PSEUDO;
 	else if (input.length() > 1)
 	{
 		for (int i = 1; input[i]; i++)
 		{
-			if (!((input[i] <= '9' && input[i] >= '0') || input[i] == '.' || (input[i] == 'f' && !input[i + 1])))
+			if (!((input[i] <= '9' && input[i] >= '0') || (input[i] == '.' && input[i + 1]) || (input[i] == 'f' && input[i + 1])))
 				return INVALID;
 			else if (input[i] == '.' && i != 0)
 				return detect_decimal(input);
