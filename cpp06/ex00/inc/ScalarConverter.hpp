@@ -1,7 +1,8 @@
 #pragma once
 # include <iostream>
+# include <limits>
 
-enum t_type
+enum e_type
 {
 	CHAR,
 	INT,
@@ -16,3 +17,5 @@ class	ScalarConverter
 	public:
 		static void	convert(std::string input);
 };
+
+void	tests();

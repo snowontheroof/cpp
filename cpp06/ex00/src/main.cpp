@@ -5,6 +5,8 @@ int	main(int argc, char **argv)
 	ScalarConverter	test;
 	if (argc == 2)
 		test.convert(argv[1]);
+	else
+		tests();
 
 	return 0;
 }
