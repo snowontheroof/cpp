@@ -3,5 +3,4 @@
 
 class B : public Base
 {
-
 };

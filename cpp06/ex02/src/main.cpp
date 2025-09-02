@@ -9,24 +9,21 @@
 Base*	generate(void)
 {
 	Base*	ptr = nullptr;
-	
+
 	std::srand(time(0));
 	int	randomValue = (std::rand() % 100) % 3;
 	switch (randomValue)
 	{
-	case 0:
-		ptr = new A();
-		std::cout << "A made\n";
-		break;
-	case 1:
-		ptr = new B();
-		std::cout << "B made\n";
-		break;
-	case 2:
-		ptr = new C();
-		std::cout << "C made\n";
-	default:
-		break;
+		case 0:
+			ptr = new A();
+			break;
+		case 1:
+			ptr = new B();
+			break;
+		case 2:
+			ptr = new C();
+		default:
+			break;
 	}
 	return ptr;
 }
@@ -51,8 +48,8 @@ void	identify(Base& p)
 	}
 	catch(const std::bad_cast& e)
 	{
-		;
 	}
+
 	try
 	{
 		B& ref = dynamic_cast<B&>(p);
@@ -61,8 +58,8 @@ void	identify(Base& p)
 	}
 	catch(const std::bad_cast& e)
 	{
-		;
 	}
+
 	try
 	{
 		C& ref = dynamic_cast<C&>(p);
@@ -71,15 +68,18 @@ void	identify(Base& p)
 	}
 	catch(const std::bad_cast& e)
 	{
-		;
 	}
 }
 
 int	main(void)
 {
 	Base*	ptr = generate();
+	std::cout << "Type identified by identify(Base* ptr): ";
 	identify(ptr);
+	std::cout << "Type identified by identify(Base& p): ";
 	identify(*ptr);
+
+	delete ptr;
 
 	return 0;
 }

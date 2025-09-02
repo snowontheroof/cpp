@@ -7,7 +7,7 @@ int	find_decimals(std::string input)
 	if (input.find('.') == std::string::npos)
 		return 1;
 	int	dec = 0;
-	int	i = input.find('.') + 1;
+	size_t	i = input.find('.') + 1;
 	while (input[i] && std::isdigit(input[i]))
 	{
 		dec++;
@@ -55,14 +55,14 @@ void	handle_int(std::string input, enum e_type type)
 	if (type == INVALID || type == PSEUDO)
 		std::cout << "impossible\n";
 	else if (type == CHAR)
-		std::cout << static_cast<int>(input[0]) << std::endl;
+		std::cout << static_cast<int>(input[0]) << "\n";
 	else
 	{
 		int	value;
 		try
 		{
 			value = std::stoi(input);
-			std::cout << value << std::endl;
+			std::cout << value << "\n";
 		}
 		catch(const std::invalid_argument& e)
 		{
@@ -85,7 +85,7 @@ void	handle_float(std::string input, enum e_type type, int decimals)
 	else if (type == PSEUDO)
 	{
 		if (input == "nanf" || input == "+inff" || input == "-inff")
-			std::cout << input << std::endl;
+			std::cout << input << "\n";
 		else
 			std::cout << input << "f\n";
 	}
@@ -117,16 +117,16 @@ void	handle_double(std::string input, enum e_type type, int decimals)
 	else if (type == PSEUDO)
 	{
 		if (input == "nan" || input == "+inf" || input == "-inf")
-			std::cout << std::stod(input) << std::endl;
+			std::cout << input << "\n";
 		else
-			std::cout << input.substr(0, input.length() - 1) << std::endl;
+			std::cout << input.substr(0, input.length() - 1) << "\n";
 	}
 	else
 	{
 		try
 		{
 			double	value = std::stod(input);
-			std::cout << std::fixed << std::setprecision(decimals) << value << std::endl;
+			std::cout << std::fixed << std::setprecision(decimals) << value << "\n";
 		}
 		catch(const std::invalid_argument& e)
 		{
@@ -147,7 +147,7 @@ bool	is_int(std::string input, int dots)
 	{
 		std::stoi(input);
 	}
-	catch(const std::exception& e)
+	catch(const std::out_of_range& e)
 	{
 		return false;
 	}
@@ -156,12 +156,13 @@ bool	is_int(std::string input, int dots)
 
 bool	is_float(std::string input)
 {
+	if (input.find('f') == std::string::npos)
+		return false;
 	try
 	{
-		if (input.find('f') != std::string::npos)
-			std::stof(input);
+		std::stof(input);
 	}
-	catch(const std::exception& e)
+	catch(const std::out_of_range& e)
 	{
 		return false;
 	}
@@ -174,7 +175,7 @@ bool	is_double(std::string input)
 	{
 		std::stod(input);
 	}
-	catch(const std::exception& e)
+	catch(const std::out_of_range& e)
 	{
 		return false;
 	}
@@ -183,23 +184,25 @@ bool	is_double(std::string input)
 
 enum e_type	detect_nb(std::string input)
 {
-	int	dots = 0;
-	int	i = 0;
+	int		dots = 0;
+	size_t	i = 0;
+
 	if (input[i] == '+' || input[i] == '-')
 		i++;
 	if (!input[i] || input[i] == '.')
 		return INVALID;
-	for (int j = i; input[j]; j++)
+	while (input[i])
 	{
-		if (!(std::isdigit(input[j])
-				|| (input[j] == '.' && input[j + 1] && input[j + 1] != 'f')
-				|| (input[j] == 'f' && !input[j + 1])))
+		if (!(std::isdigit(input[i])
+				|| (input[i] == '.' && input[i + 1] && input[i + 1] != 'f')
+				|| (input[i] == 'f' && !input[i + 1])))
 			return INVALID;
-		if (input[j] == '.')
+		if (input[i] == '.')
 			dots++;
+		if (dots > 1)
+			return INVALID;
+		i++;
 	}
-	if (dots > 1)
-		return INVALID;
 	if (is_int(input, dots))
 		return INT;
 	if (is_float(input))
@@ -223,7 +226,8 @@ enum e_type	detect_type(std::string input)
 void	ScalarConverter::convert(std::string input)
 {
 	enum e_type	type = detect_type(input);
-	int			decimals = find_decimals(input);
+	int 		decimals = find_decimals(input);
+
 	handle_char(input, type);
 	handle_int(input, type);
 	handle_float(input, type, decimals);

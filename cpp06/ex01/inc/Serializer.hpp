@@ -5,7 +5,13 @@
 
 class Serializer
 {
+	private:
+		Serializer() = delete;
+		Serializer(const Serializer& obj) = delete;
+		Serializer&	operator=(const Serializer& other) = delete;
+		~Serializer() = delete;
+
 	public:
-		uintptr_t	serialize(Data* ptr);
-		Data*		deserialize(uintptr_t raw);
+		static uintptr_t	serialize(Data* ptr);
+		static Data*		deserialize(uintptr_t raw);
 };

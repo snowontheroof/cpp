@@ -14,8 +14,14 @@ enum e_type
 
 class	ScalarConverter
 {
+	private:
+		ScalarConverter() = delete;
+		ScalarConverter(const ScalarConverter& obj) = delete;
+		ScalarConverter&	operator=(const ScalarConverter& other) = delete;
+		~ScalarConverter() = delete;
+
 	public:
 		static void	convert(std::string input);
 };
 
-void	tests();
+void	tests(void);

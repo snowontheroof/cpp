@@ -2,12 +2,14 @@
 
 int	main(void)
 {
-	Serializer	test;
-	Data*		jihuu = new Data();
-	uintptr_t	res = test.serialize(jihuu);
-	std::cout << res << std::endl;
-	std::cout << test.deserialize(res) << std::endl;
+	Data	test;
 
-	delete jihuu;
+	uintptr_t	raw = Serializer::serialize(&test);
+	std::cout << &test << std::endl;
+	std::cout << "0x" << std::hex << raw << std::endl;
+
+	Data*	ptr = Serializer::deserialize(raw);
+	std::cout << ptr << std::endl;
+
 	return 0;
 }

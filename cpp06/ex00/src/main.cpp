@@ -2,11 +2,15 @@
 
 int	main(int argc, char **argv)
 {
-	ScalarConverter	test;
 	if (argc == 2)
-		test.convert(argv[1]);
+		ScalarConverter::convert(argv[1]);
 	else
-		tests();
-
+	{
+		std::cout << "Do you want to run some tests? y/n\n";
+		std::string	input;
+		std::getline(std::cin, input, '\n');
+		if (input == "y")
+			tests();
+	}
 	return 0;
 }
