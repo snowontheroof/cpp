@@ -1,4 +1,4 @@
-NAME = serialize
+NAME = whatever
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++20
 
@@ -6,8 +6,8 @@ INC_DIR = inc/
 SRC_DIR = src/
 OBJ_DIR = obj/
 
-INC_FILES = Serializer.hpp Data.hpp
-SRC_FILES = main.cpp Serializer.cpp
+INC_FILES = whatever.hpp
+SRC_FILES = main.cpp
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
 
 INC = $(addprefix $(INC_DIR), $(INC_FILES))
