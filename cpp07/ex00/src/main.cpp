@@ -72,6 +72,14 @@ void	test5()
 	std::cout << "max is " << ::max(a, b) << std::endl;
 }
 
+void	test6()
+{
+	Test	a;
+	Test	b;
+
+	::swap(a, b);
+}
+
 int	main(void)
 {
 	test1();
@@ -79,6 +87,7 @@ int	main(void)
 	test3();
 	test4();
 	test5();
+	test6();
 
 	return 0;
 }

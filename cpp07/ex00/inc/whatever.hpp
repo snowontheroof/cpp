@@ -2,6 +2,12 @@
 # include <exception>
 # include <iostream>
 
+class Test
+{
+	public:
+		int	value;
+};
+
 template <typename T> void swap(T& x, T& y)
 {
 	try
