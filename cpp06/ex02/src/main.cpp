@@ -36,15 +36,17 @@ void	identify(Base* ptr)
 		std::cout << "B\n";
 	else if (dynamic_cast<C*>(ptr))
 		std::cout << "C\n";
+	else
+		std::cout << "Unknown\n";
 }
 
 void	identify(Base& p)
 {
 	try
 	{
-		A& ref = dynamic_cast<A&>(p);
+		(void)dynamic_cast<A&>(p);
 		std::cout << "A\n";
-		(void)ref;
+		return ;
 	}
 	catch(const std::bad_cast& e)
 	{
@@ -52,9 +54,9 @@ void	identify(Base& p)
 
 	try
 	{
-		B& ref = dynamic_cast<B&>(p);
+		(void)dynamic_cast<B&>(p);
 		std::cout << "B\n";
-		(void)ref;
+		return ;
 	}
 	catch(const std::bad_cast& e)
 	{
@@ -62,13 +64,15 @@ void	identify(Base& p)
 
 	try
 	{
-		C& ref = dynamic_cast<C&>(p);
+		(void)dynamic_cast<C&>(p);
 		std::cout << "C\n";
-		(void)ref;
+		return ;
 	}
 	catch(const std::bad_cast& e)
 	{
 	}
+
+	std::cout << "Unknown\n";
 }
 
 int	main(void)

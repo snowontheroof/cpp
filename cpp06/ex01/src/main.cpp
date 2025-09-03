@@ -2,10 +2,10 @@
 
 int	main(void)
 {
-	Data	test;
+	Data	object;
 
-	uintptr_t	raw = Serializer::serialize(&test);
-	std::cout << &test << std::endl;
+	uintptr_t	raw = Serializer::serialize(&object);
+	std::cout << &object << std::endl;
 	std::cout << "0x" << std::hex << raw << std::endl;
 
 	Data*	ptr = Serializer::deserialize(raw);

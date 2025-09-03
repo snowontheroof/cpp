@@ -8,14 +8,17 @@ Data::Data(std::string name, int value) : _name(name), _value(value)
 {
 }
 
-Data::Data(const Data& obj) : _value(obj._value)
+Data::Data(const Data& obj) : _name(obj._name), _value(obj._value)
 {
 }
 
 Data&	Data::operator=(const Data& other)
 {
 	if (this != &other)
+	{
+		_name = other._name;
 		_value = other._value;
+	}
 	return *this;
 }
 

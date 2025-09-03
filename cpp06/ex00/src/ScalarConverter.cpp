@@ -22,27 +22,28 @@ void	handle_char(std::string input, enum e_type type)
 	if (type == INVALID || type == PSEUDO)
 		std::cout << "impossible\n";
 	else if (type == CHAR)
-		std::cout << "'" << static_cast<char>(input[0]) << "'\n";
+	{
+		char	c = static_cast<char>(input[0]);
+		if (std::isprint(c))
+			std::cout << "'" << c << "'\n";
+		else
+			std::cout << "Non displayable\n";
+	}
 	else
 	{
 		double	value;
 		try
 		{
-			if (type == INT)
-				value = std::stoi(input);
-			else if (type == FLOAT)
-				value = static_cast<int>(std::stof(input));
-			else
-				value = static_cast<int>(std::stod(input));
+			value = std::stod(input);
+			if (value > std::numeric_limits<char>::max() || value < std::numeric_limits<char>::min())
+				throw std::out_of_range("");
 		}
 		catch (std::out_of_range& e)
 		{
 			std::cout << "impossible\n";
 			return;
 		}
-		if (value > std::numeric_limits<char>::max() || value < std::numeric_limits<char>::min())
-			std::cout << "impossible\n";
-		else if (value <= 126 && value >= 32)
+		if (std::isprint(value))
 			std::cout << "'" << static_cast<char>(value) << "'\n";
 		else
 			std::cout << "Non displayable\n";
@@ -58,11 +59,13 @@ void	handle_int(std::string input, enum e_type type)
 		std::cout << static_cast<int>(input[0]) << "\n";
 	else
 	{
-		int	value;
 		try
 		{
-			value = std::stoi(input);
-			std::cout << value << "\n";
+			double	value = std::stod(input);
+			if (value > std::numeric_limits<int>::max() || value < std::numeric_limits<int>::min())
+				throw std::out_of_range("");
+			int		res = static_cast<int>(value);
+			std::cout << res << "\n";
 		}
 		catch(const std::invalid_argument& e)
 		{
@@ -93,8 +96,11 @@ void	handle_float(std::string input, enum e_type type, int decimals)
 	{
 		try
 		{
-			float	value = std::stof(input);
-			std::cout << std::fixed << std::setprecision(decimals) << value << "f\n";
+			double	value = std::stod(input);
+			if (value > std::numeric_limits<float>::max() || value < std::numeric_limits<float>::lowest())
+				throw std::out_of_range("");
+			float	res = static_cast<float>(value);
+			std::cout << std::fixed << std::setprecision(decimals) << res << "f\n";
 		}
 		catch(const std::invalid_argument& e)
 		{
@@ -189,7 +195,7 @@ enum e_type	detect_nb(std::string input)
 
 	if (input[i] == '+' || input[i] == '-')
 		i++;
-	if (!input[i] || input[i] == '.')
+	if (!std::isdigit(input[i]))
 		return INVALID;
 	while (input[i])
 	{
