@@ -1,6 +1,7 @@
 #pragma once
 # include <exception>
 # include <iostream>
+# include <concepts>
 
 class Test
 {
@@ -8,23 +9,26 @@ class Test
 		int	value;
 };
 
-template <typename T> void swap(T& x, T& y)
+std::ostream&	operator<<(std::ostream& os, const Test& obj)
 {
-	try
-	{
-		(void)(x < y);
-		(void)(x > y);
-		(void)(x <= y);
-		(void)(x >= y);
-		(void)(x == y);
-		(void)(x != y);
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << e.what() << "\n";
-		return ;
-	}
+	os << obj.value << " is value";
+	return os;
+}
 
+template <typename T>
+concept Convertible = requires(T x, T y)
+{
+	{ x < y } -> std::convertible_to<bool>;
+	{ x > y } -> std::convertible_to<bool>;
+	{ x <= y } -> std::convertible_to<bool>;
+	{ x >= y }  -> std::convertible_to<bool>;
+	{ x == y }  -> std::convertible_to<bool>;
+	{ x != y }  -> std::convertible_to<bool>;
+};
+
+template <Convertible T>
+void swap(T& x, T& y)
+{
 	T	tmp;
 
 	tmp = x;
@@ -32,12 +36,14 @@ template <typename T> void swap(T& x, T& y)
 	y = tmp;
 }
 
-template <typename T> T min(T x, T y)
+template <Convertible T>
+T min(T x, T y)
 {
 	return (x < y) ? x : y;
 }
 
-template <typename T> T max(T x, T y)
+template <Convertible T>
+T max(T x, T y)
 {
 	return (x > y) ? x : y;
 }

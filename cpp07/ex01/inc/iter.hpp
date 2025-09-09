@@ -1,10 +1,11 @@
 #pragma once
 # include <cstdint>
 
-template <typename T> void iter(T* array, int length, void (*f)(T element))
+template <typename T, typename F>
+void iter(T* array, int length, F funct)
 {
 	for (int i = 0; i < length; i++)
 	{
-		f(array[i]);
+		funct(array[i]);
 	}
 }

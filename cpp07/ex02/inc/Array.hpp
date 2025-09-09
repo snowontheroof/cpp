@@ -1,11 +1,13 @@
 #pragma once
 # include <iostream>
+# include <exception>
 
-template <typename T> class Array
+template <typename T>
+class Array
 {
 	public:
 		T*				_array;
-		unsigned int	_elems;
+		unsigned int	_size;
 
 		Array();
 		Array(unsigned int n);
@@ -13,30 +15,28 @@ template <typename T> class Array
 		Array&	operator=(const Array& other) = delete;
 		~Array();
 
-		unsigned int	size();
+		unsigned int	size() const;
+		T&				operator[](unsigned int i);
 };
 
 template <typename T>
 Array<T>::Array()
 {
 	_array = nullptr;
-	_elems = 0;
+	_size = 0;
 }
 
 template <typename T>
 Array<T>::Array(unsigned int n)
 {
-	_elems = n;
 	_array = new T[n]{};
-
-	for (unsigned int i = 0; i < n; i++)
-		std::cout << _array[i] << std::endl;
+	_size = n;
 }
 
 template <typename T>
-Array<T>::Array(const Array& obj) : _elems(obj._elems)
+Array<T>::Array(const Array& obj) : _size(obj._size)
 {
-	unsigned int	n = obj.size();
+	unsigned int	n = _size;
 	_array = new T[n]{};
 	for (unsigned int i = 0; i < n; i++)
 		_array[i] = obj._array[i];
@@ -49,9 +49,15 @@ Array<T>::~Array()
 }
 
 template <typename T>
-unsigned int	Array<T>::size()
+unsigned int	Array<T>::size() const
 {
-	return _elems;
+	return _size;
 }
 
-//WE NEED OVERLOAD OPERATOR FOR []
+template <typename T>
+T&	Array<T>::operator[](unsigned int i)
+{
+	if (i >= _size)
+		throw std::out_of_range("Index out of bounds!");
+	return _array[i];
+}

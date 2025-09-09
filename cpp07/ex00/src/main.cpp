@@ -72,13 +72,21 @@ void	test5()
 	std::cout << "max is " << ::max(a, b) << std::endl;
 }
 
-void	test6()
-{
-	Test	a;
-	Test	b;
+// void	test6()
+// {
+// 	std::cout << "\n" << std::string(10, '-') << "Test 6: class"
+// 		<< std::string(10, '-') << std::endl;
+// 	Test	a;
+// 	a.value = 10;
+// 	Test	b;
+// 	b.value = 20;
 
-	::swap(a, b);
-}
+// 	std::cout << "before: a is " << a << " and b is " << b << std::endl;
+// 	::swap(a, b);
+// 	std::cout << "after swap: a is " << a << " and b is " << b << std::endl;
+// 	std::cout << "min is " << ::min(a, b) << std::endl;
+// 	std::cout << "max is " << ::max(a, b) << std::endl;
+// }
 
 int	main(void)
 {
@@ -87,7 +95,7 @@ int	main(void)
 	test3();
 	test4();
 	test5();
-	test6();
+	// test6();
 
 	return 0;
 }
