@@ -1,4 +1,4 @@
-#include "iter.hpp"
+#include "../inc/iter.hpp"
 #include <iostream>
 
 void	print(int nb)

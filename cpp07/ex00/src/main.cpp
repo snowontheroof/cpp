@@ -1,4 +1,4 @@
-#include "whatever.hpp"
+#include "../inc/whatever.hpp"
 #include <iostream>
 
 void	test1()
