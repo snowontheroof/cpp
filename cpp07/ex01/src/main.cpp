@@ -6,16 +6,23 @@ void	print(int nb)
 	std::cout << nb << std::endl;
 }
 
-void	upcase(char c)
+void	upCase(char c)
 {
 	c -= 32;
 	std::cout << c << std::endl;
 }
 
-void	print_ptr(int* ptr)
+void	printPtr(int* ptr)
 {
 	std::cout << "Pointer address: " << ptr << std::endl;
 	std::cout << "Value of variable pointed by pointer: " << *ptr << std::endl;
+}
+
+void	addValue(Example& obj)
+{
+	std::cout << "Object " << obj.name << ": Original value: " << obj.value << std::endl;
+	obj.value++;
+	std::cout << "Incremented value: " << obj.value << std::endl;
 }
 
 void	test1(void)
@@ -33,7 +40,7 @@ void	test2(void)
 		<< std::string(10, '-') << std::endl;
 
 	char	other[] = { 'j', 'i', 'h', 'u', 'u' };
-	iter(other, 5, upcase);
+	iter(other, 5, upCase);
 
 }
 
@@ -46,7 +53,22 @@ void	test3(void)
 	int	b = 5;
 	int c = 6;
 	int*	nbs[] = { &a, &b, &c };
-	iter(nbs, 3, print_ptr);
+	iter(nbs, 3, printPtr);
+}
+
+void	test4(void)
+{
+	std::cout << "\n" << std::string(10, '-') << "Test 4: class object array"
+		<< std::string(10, '-') << std::endl;
+
+	Example	array[3] = {};
+	array[0].name = "first";
+	array[0].value = 42;
+	array[1].name = "second";
+	array[1].value = 24;
+	array[2].name = "third";
+	array[2].value = -42;
+	iter(array, 3, addValue);
 }
 
 int	main(void)
@@ -54,6 +76,7 @@ int	main(void)
 	test1();
 	test2();
 	test3();
+	test4();
 
 	return 0;
 }

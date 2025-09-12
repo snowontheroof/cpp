@@ -3,17 +3,16 @@
 
 void	test1()
 {
-	std::cout << std::string(10, '-') << "Test 1: void *"
+	std::cout << std::string(10, '-') << "Test 1: char"
 		<< std::string(10, '-') << std::endl;
+	char	a = 'a';
+	char	b = 'B';
 
-	void*	x;
-	void*	y;
-
-	std::cout << "before: x is " << x << " and y is " << y << std::endl;
-	::swap(x, y);
-	std::cout << "after swap: x is " << x << " and y is " << y << std::endl;
-	std::cout << "min is " << ::min(x, y) << std::endl;
-	std::cout << "max is " << ::max(x, y) << std::endl;
+	std::cout << "before: a is " << a << " and b is " << b << std::endl;
+	::swap(a, b);
+	std::cout << "after swap: a is " << a << " and b is " << b << std::endl;
+	std::cout << "min is " << ::min(a, b) << std::endl;
+	std::cout << "max is " << ::max(a, b) << std::endl;
 }
 
 void	test2()
@@ -32,16 +31,16 @@ void	test2()
 
 void	test3()
 {
-	std::cout << "\n" << std::string(10, '-') << "Test 3: char"
+	std::cout << "\n" << std::string(10, '-') << "Test 3: float"
 		<< std::string(10, '-') << std::endl;
-	char	a = 'a';
-	char	b = 'A';
+	float	a = 42.424f;
+	float	b = -42424.2f;
 
-	std::cout << "before: a is " << a << " and b is " << b << std::endl;
+	std::cout << "before: a is " << a << "f and b is " << b << "f\n";
 	::swap(a, b);
-	std::cout << "after swap: a is " << a << " and b is " << b << std::endl;
-	std::cout << "min is " << ::min(a, b) << std::endl;
-	std::cout << "max is " << ::max(a, b) << std::endl;
+	std::cout << "after swap: a is " << a << "f and b is " << b << "f\n";
+	std::cout << "min is " << ::min(a, b) << "f\n";
+	std::cout << "max is " << ::max(a, b) << "f\n";	
 }
 
 void	test4()
@@ -60,7 +59,22 @@ void	test4()
 
 void	test5()
 {
-	std::cout << "\n" << std::string(10, '-') << "Test 5: std::string"
+	std::cout << "\n" << std::string(10, '-') << "Test 5: void *"
+		<< std::string(10, '-') << std::endl;
+
+	void*	x;
+	void*	y;
+
+	std::cout << "before: x is " << x << " and y is " << y << std::endl;
+	::swap(x, y);
+	std::cout << "after swap: x is " << x << " and y is " << y << std::endl;
+	std::cout << "min is " << ::min(x, y) << std::endl;
+	std::cout << "max is " << ::max(x, y) << std::endl;
+}
+
+void	test6()
+{
+	std::cout << "\n" << std::string(10, '-') << "Test 6: std::string"
 		<< std::string(10, '-') << std::endl;
 	std::string	a = "hello";
 	std::string	b = "hell";
@@ -72,13 +86,41 @@ void	test5()
 	std::cout << "max is " << ::max(a, b) << std::endl;
 }
 
-// void	test6()
+void	test7()
+{
+	std::cout << "\n" << std::string(10, '-') << "Test 7: bool"
+		<< std::string(10, '-') << std::endl;
+	bool	a = true;
+	bool	b = false;
+
+	std::cout << "before: a is " << a << " and b is " << b << std::endl;
+	::swap(a, b);
+	std::cout << "after swap: a is " << a << " and b is " << b << std::endl;
+	std::cout << "min is " << ::min(a, b) << std::endl;
+	std::cout << "max is " << ::max(a, b) << std::endl;
+}
+
+void	test8()
+{
+	std::cout << "\n" << std::string(10, '-') << "Test 8: int with equal value"
+		<< std::string(10, '-') << std::endl;
+	int	a = 42;
+	int	b = 42;
+
+	std::cout << "before: a is " << a << " and b is " << b << std::endl;
+	::swap(a, b);
+	std::cout << "after swap: a is " << a << " and b is " << b << std::endl;
+	std::cout << "min is " << ::min(a, b) << std::endl;
+	std::cout << "max is " << ::max(a, b) << std::endl;
+}
+
+// void	test9()
 // {
-// 	std::cout << "\n" << std::string(10, '-') << "Test 6: class"
+// 	std::cout << "\n" << std::string(10, '-') << "Test 9: class"
 // 		<< std::string(10, '-') << std::endl;
-// 	Test	a;
+// 	Example	a;
 // 	a.value = 10;
-// 	Test	b;
+// 	Example	b;
 // 	b.value = 20;
 
 // 	std::cout << "before: a is " << a << " and b is " << b << std::endl;
@@ -95,7 +137,10 @@ int	main(void)
 	test3();
 	test4();
 	test5();
-	// test6();
+	test6();
+	test7();
+	test8();
+	//test9();
 
 	return 0;
 }

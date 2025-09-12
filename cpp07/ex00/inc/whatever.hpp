@@ -3,47 +3,51 @@
 # include <iostream>
 # include <concepts>
 
-class Test
+class Example
 {
 	public:
 		int	value;
 };
 
-std::ostream&	operator<<(std::ostream& os, const Test& obj)
+std::ostream&	operator<<(std::ostream& os, const Example& obj)
 {
-	os << obj.value << " is value";
+	os << obj.value;
 	return os;
 }
 
 template <typename T>
-concept Convertible = requires(T x, T y)
+concept Convertible = requires(T a, T b)
 {
-	{ x < y } -> std::convertible_to<bool>;
-	{ x > y } -> std::convertible_to<bool>;
-	{ x <= y } -> std::convertible_to<bool>;
-	{ x >= y }  -> std::convertible_to<bool>;
-	{ x == y }  -> std::convertible_to<bool>;
-	{ x != y }  -> std::convertible_to<bool>;
+	{ a < b } -> std::convertible_to<bool>;
+	{ a > b } -> std::convertible_to<bool>;
+	{ a <= b } -> std::convertible_to<bool>;
+	{ a >= b }  -> std::convertible_to<bool>;
+	{ a == b }  -> std::convertible_to<bool>;
+	{ a != b }  -> std::convertible_to<bool>;
 };
 
 template <Convertible T>
-void swap(T& x, T& y)
+void swap(T& a, T& b)
 {
 	T	tmp;
 
-	tmp = x;
-	x = y;
-	y = tmp;
+	tmp = a;
+	a = b;
+	b = tmp;
 }
 
 template <Convertible T>
-T min(T x, T y)
+T min(T a, T b)
 {
-	return (x < y) ? x : y;
+	if (a < b)
+		return a;
+	return b;
 }
 
 template <Convertible T>
-T max(T x, T y)
+T max(T a, T b)
 {
-	return (x > y) ? x : y;
+	if (a > b)
+		return a;
+	return b;
 }
