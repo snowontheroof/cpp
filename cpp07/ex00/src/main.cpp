@@ -1,7 +1,7 @@
 #include "../inc/whatever.hpp"
 #include <iostream>
 
-void	test1()
+void	test1(void)
 {
 	std::cout << std::string(10, '-') << "Test 1: char"
 		<< std::string(10, '-') << std::endl;
@@ -15,7 +15,7 @@ void	test1()
 	std::cout << "max is " << ::max(a, b) << std::endl;
 }
 
-void	test2()
+void	test2(void)
 {
 	std::cout << "\n" << std::string(10, '-') << "Test 2: int"
 		<< std::string(10, '-') << std::endl;
@@ -29,7 +29,7 @@ void	test2()
 	std::cout << "max is " << ::max(x, y) << std::endl;
 }
 
-void	test3()
+void	test3(void)
 {
 	std::cout << "\n" << std::string(10, '-') << "Test 3: float"
 		<< std::string(10, '-') << std::endl;
@@ -40,10 +40,10 @@ void	test3()
 	::swap(a, b);
 	std::cout << "after swap: a is " << a << "f and b is " << b << "f\n";
 	std::cout << "min is " << ::min(a, b) << "f\n";
-	std::cout << "max is " << ::max(a, b) << "f\n";	
+	std::cout << "max is " << ::max(a, b) << "f\n";
 }
 
-void	test4()
+void	test4(void)
 {
 	std::cout << "\n" << std::string(10, '-') << "Test 4: double"
 		<< std::string(10, '-') << std::endl;
@@ -57,13 +57,17 @@ void	test4()
 	std::cout << "max is " << ::max(a, b) << std::endl;
 }
 
-void	test5()
+void	test5(void)
 {
 	std::cout << "\n" << std::string(10, '-') << "Test 5: void *"
 		<< std::string(10, '-') << std::endl;
 
 	void*	x;
 	void*	y;
+	int		a;
+	int		b;
+	x = &a;
+	y = &b;
 
 	std::cout << "before: x is " << x << " and y is " << y << std::endl;
 	::swap(x, y);
@@ -72,7 +76,7 @@ void	test5()
 	std::cout << "max is " << ::max(x, y) << std::endl;
 }
 
-void	test6()
+void	test6(void)
 {
 	std::cout << "\n" << std::string(10, '-') << "Test 6: std::string"
 		<< std::string(10, '-') << std::endl;
@@ -86,7 +90,7 @@ void	test6()
 	std::cout << "max is " << ::max(a, b) << std::endl;
 }
 
-void	test7()
+void	test7(void)
 {
 	std::cout << "\n" << std::string(10, '-') << "Test 7: bool"
 		<< std::string(10, '-') << std::endl;
@@ -100,7 +104,7 @@ void	test7()
 	std::cout << "max is " << ::max(a, b) << std::endl;
 }
 
-void	test8()
+void	test8(void)
 {
 	std::cout << "\n" << std::string(10, '-') << "Test 8: int with equal value"
 		<< std::string(10, '-') << std::endl;
@@ -113,8 +117,19 @@ void	test8()
 	std::cout << "min is " << ::min(a, b) << std::endl;
 	std::cout << "max is " << ::max(a, b) << std::endl;
 }
+// class Example
+// {
+// 	public:
+// 		int	value;
+// };
 
-// void	test9()
+// std::ostream&	operator<<(std::ostream& os, const Example& obj)
+// {
+// 	os << obj.value;
+// 	return os;
+// }
+
+// void	test9(void)
 // {
 // 	std::cout << "\n" << std::string(10, '-') << "Test 9: class"
 // 		<< std::string(10, '-') << std::endl;
@@ -140,7 +155,7 @@ int	main(void)
 	test6();
 	test7();
 	test8();
-	//test9();
+	// test9();
 
 	return 0;
 }

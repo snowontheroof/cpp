@@ -1,19 +1,5 @@
 #pragma once
-# include <exception>
-# include <iostream>
 # include <concepts>
-
-class Example
-{
-	public:
-		int	value;
-};
-
-std::ostream&	operator<<(std::ostream& os, const Example& obj)
-{
-	os << obj.value;
-	return os;
-}
 
 template <typename T>
 concept Convertible = requires(T a, T b)
@@ -21,9 +7,9 @@ concept Convertible = requires(T a, T b)
 	{ a < b } -> std::convertible_to<bool>;
 	{ a > b } -> std::convertible_to<bool>;
 	{ a <= b } -> std::convertible_to<bool>;
-	{ a >= b }  -> std::convertible_to<bool>;
-	{ a == b }  -> std::convertible_to<bool>;
-	{ a != b }  -> std::convertible_to<bool>;
+	{ a >= b } -> std::convertible_to<bool>;
+	{ a == b } -> std::convertible_to<bool>;
+	{ a != b } -> std::convertible_to<bool>;
 };
 
 template <Convertible T>

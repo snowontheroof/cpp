@@ -12,7 +12,7 @@ class Array
 		Array();
 		Array(unsigned int n);
 		Array(const Array& obj);
-		Array&	operator=(const Array& other) = delete;
+		Array<T>&	operator=(const Array& other);
 		~Array();
 
 		unsigned int	size() const;
@@ -40,6 +40,21 @@ Array<T>::Array(const Array& obj) : _size(obj._size)
 	_array = new T[n]{};
 	for (unsigned int i = 0; i < n; i++)
 		_array[i] = obj._array[i];
+}
+
+template <typename T>
+Array<T>&	Array<T>::operator=(const Array& other)
+{
+	if (this != &other)
+	{
+		_size = other._size;
+		if (_array)
+			delete[] _array;
+		_array = new T[_size]{};
+		for (unsigned int i = 0; i < _size; i++)
+			_array[i] = other._array[i];
+	}
+	return *this;
 }
 
 template <typename T>

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 12:12:48 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/18 16:09:16 by sojala           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "DiamondTrap.hpp"
 
 DiamondTrap::DiamondTrap() : ClapTrap("Unknown_clap_name"), FragTrap(), ScavTrap(), _name("Unknown")

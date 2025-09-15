@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 16:56:39 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/30 12:19:38 by sojala           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook()
@@ -67,7 +55,8 @@ void	PhoneBook::searchContact(PhoneBook MyPhoneBook) const
 	}
 	MyPhoneBook.displayContacts(MyPhoneBook);
 	std::cout << "Please give me the index of the contact you're looking for: ";
-	if (!std::getline(std::cin, index))
+	std::getline(std::cin, index);
+	if (std::cin.eof())
 	{
 		std::cout << std::endl << "Exiting phonebook" << std::endl;
 		exit(0);
@@ -76,7 +65,8 @@ void	PhoneBook::searchContact(PhoneBook MyPhoneBook) const
 	{
 		std::cerr << "That is not a valid index number!" << std::endl;
 		std::cout << "Please give me the index of the contact you're looking for: ";
-		if (!std::getline(std::cin, index))
+		std::getline(std::cin, index);
+		if (std::cin.eof())
 		{
 			std::cout << std::endl << "Exiting phonebook" << std::endl;
 			exit(0);

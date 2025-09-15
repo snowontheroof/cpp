@@ -8,7 +8,8 @@ void	print(int nb)
 
 void	upCase(char c)
 {
-	c -= 32;
+	if (c <= 'z' && c >= 'a')
+		c -= 32;
 	std::cout << c << std::endl;
 }
 
@@ -17,6 +18,13 @@ void	printPtr(int* ptr)
 	std::cout << "Pointer address: " << ptr << std::endl;
 	std::cout << "Value of variable pointed by pointer: " << *ptr << std::endl;
 }
+
+class Example
+{
+	public:
+		std::string	name;
+		int			value;
+};
 
 void	addValue(Example& obj)
 {
@@ -39,9 +47,8 @@ void	test2(void)
 	std::cout << "\n" << std::string(10, '-') << "Test 2: char array"
 		<< std::string(10, '-') << std::endl;
 
-	char	other[] = { 'j', 'i', 'h', 'u', 'u' };
-	iter(other, 5, upCase);
-
+	char	other[] = { 'g', 'o', 'o', 'd', ' ', 'd', 'a', 'y', '!' };
+	iter(other, 9, upCase);
 }
 
 void	test3(void)

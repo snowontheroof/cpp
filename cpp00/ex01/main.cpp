@@ -1,22 +1,11 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 16:56:35 by sojala            #+#    #+#             */
-/*   Updated: 2025/07/30 12:19:00 by sojala           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
 int	addContactInfo(std::string msg, std::string& field)
 {
 	std::cout << msg;
-	if (!std::getline(std::cin, field))
+	std::getline(std::cin, field);
+	if (std::cin.eof())
 	{
 		std::cout << std::endl << "Exiting phonebook" << std::endl;
 		exit(0);
@@ -25,7 +14,8 @@ int	addContactInfo(std::string msg, std::string& field)
 	{
 		std::cerr << "You must type something to each field!" << std::endl;
 		std::cout << msg;
-		if (!std::getline(std::cin, field))
+		std::getline(std::cin, field);
+		if (std::cin.eof())
 		{
 			std::cout << std::endl << "Exiting phonebook" << std::endl;
 			exit(0);
@@ -84,7 +74,8 @@ int	main(int argc, char **)
 			std::cout << "What should we do?" << std::endl << "ADD: save a new contact"
 				<< std::endl << "SEARCH: display a specific contact" << std::endl
 				<< "EXIT: exit phonebook" << std::endl;
-			if (!std::getline(std::cin, buf))
+			std::getline(std::cin, buf);
+			if (std::cin.eof())
 			{
 				std::cout << "Exiting phonebook" << std::endl;
 				break ;

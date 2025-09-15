@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/05 14:41:39 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 17:31:37 by sonjaojala       ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../inc/WrongAnimal.hpp"
 
 WrongAnimal::WrongAnimal() : _type("Default WrongAnimal")

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sonjaojala <sonjaojala@student.42.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/05 14:43:13 by sonjaojala        #+#    #+#             */
-/*   Updated: 2025/08/05 14:43:14 by sonjaojala       ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef MATERIASOURCE_HPP
 # define MATERIASOURCE_HPP
 # define STORAGE_MAX 4
