@@ -77,8 +77,7 @@ void	test4(void)
 	::iter(array, 9, print<std::string>);
 
 	std::string	sentence[3] = { "let's", "test", "this!" };
-	::iter(sentence, 4, print<std::string>);
-	std::cout << '\n';
+	::iter(sentence, 0, print<std::string>);
 
 	char	test[5] = { 'h', 'e', 'l', 'l', 'o' };
 	::iter(test, 1, print<char>);

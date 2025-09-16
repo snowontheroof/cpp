@@ -112,11 +112,25 @@ void	test4(void)
 	}
 }
 
-#define MAX_VAL 750
 void	test5(void)
 {
 	std::cout << std::endl << std::string(10, '-')
-		<< "Test 5: test provided on project page" << std::string(10, '-') << std::endl;
+		<< "Test 5: const array" << std::string(10, '-') << std::endl;
+
+	Array<char>	letters(3);
+	letters[0] = 'y';
+	letters[1] = 'e';
+	letters[2] = 's';
+	const Array<char>	phrase(letters);
+	char	a = phrase[2];
+	std::cout << a << std::endl;
+}
+
+#define MAX_VAL 750
+void	test6(void)
+{
+	std::cout << std::endl << std::string(10, '-')
+		<< "Test 6: test provided on project page" << std::string(10, '-') << std::endl;
 
 	Array<int> numbers(MAX_VAL);
 	int* mirror = new int[MAX_VAL];
@@ -172,6 +186,7 @@ int	main(void)
 	test3();
 	test4();
 	test5();
+	test6();
 
 	return 0;
 }
