@@ -35,7 +35,7 @@ void	addValue(Example& obj)
 
 void	test1(void)
 {
-	std::cout << "\n" << std::string(10, '-') << "Test 1: int array"
+	std::cout << std::string(10, '-') << "Test 1: int array"
 		<< std::string(10, '-') << std::endl;
 
 	int	array[] = { 1, 2, 3, 4, 5 };
