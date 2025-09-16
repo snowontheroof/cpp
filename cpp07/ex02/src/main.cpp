@@ -1,5 +1,4 @@
 #include "../inc/Array.hpp"
-#include <iostream>
 
 void	test1(void)
 {
@@ -23,8 +22,8 @@ void	test1(void)
 
 void	test2(void)
 {
-	std::cout <<  std::endl << std::string(10, '-') << "Test 2: string array" << std::string(10, '-')
-		<< std::endl;
+	std::cout <<  std::endl << std::string(10, '-')
+		<< "Test 2: string array" << std::string(10, '-') << std::endl;
 	Array<std::string>	test(8);
 
 	try
@@ -43,8 +42,8 @@ void	test2(void)
 
 void	test3(void)
 {
-	std::cout << std::endl << std::string(10, '-') << "Test 3: copy constructor" << std::string(10, '-')
-		<< std::endl;
+	std::cout << std::endl << std::string(10, '-') << "Test 3: copy constructor"
+		<< std::string(10, '-') << std::endl;
 
 	try
 	{
@@ -55,7 +54,7 @@ void	test3(void)
 
 		std::cout << "x: size is " << x.size() << std::endl;
 		std::cout << "y: size is " << y.size() << std::endl;
-		for (unsigned int i = 0; i < 2; i++)
+		for (unsigned int i = 0; i < 3; i++)
 		{
 			std::cout << "x: value at [" << i << "]: " << x._array[i] << std::endl;
 			std::cout << "y: value at [" << i << "]: " << y._array[i] << std::endl;
@@ -66,6 +65,7 @@ void	test3(void)
 		y[2] = 'd';
 		std::cout << "x: value at [2]: " << x._array[2] << std::endl;
 		std::cout << "y: value at [2]: " << y._array[2] << std::endl;
+		y[5] = 'y';
 	}
 	catch(const std::exception& e)
 	{
@@ -75,18 +75,18 @@ void	test3(void)
 
 void	test4(void)
 {
-	std::cout << std::endl << std::string(10, '-') << "Test 4: copy assignment operator" << std::string(10, '-')
-		<< std::endl;
+	std::cout << std::endl << std::string(10, '-')
+		<< "Test 4: copy assignment operator" << std::string(10, '-') << std::endl;
 
 	try
 	{
-		Array<char>	x(3);
-		Array<char>	y(2);
+		Array<double>	x(3);
+		Array<double>	y(2);
 		std::cout << "x: size is " << x.size() << std::endl;
 		std::cout << "y: size is " << y.size() << std::endl;
-		x[0] = 'a';
-		x[1] = 'b';
-		x[2] = 'c';
+		x[0] = 4.2;
+		x[1] = 2.4;
+		x[2] = 42.4;
 		y = x;
 
 		std::cout << "x: size is " << x.size() << std::endl;
@@ -96,12 +96,15 @@ void	test4(void)
 			std::cout << "x: value at [" << i << "]: " << x._array[i] << std::endl;
 			std::cout << "y: value at [" << i << "]: " << y._array[i] << std::endl;
 		}
-		x[2] = 'f';
+		x[2] = -4.2;
 		std::cout << "x: value at [2]: " << x._array[2] << std::endl;
 		std::cout << "y: value at [2]: " << y._array[2] << std::endl;
-		y[2] = 'd';
+		y[2] = -42.4;
 		std::cout << "x: value at [2]: " << x._array[2] << std::endl;
 		std::cout << "y: value at [2]: " << y._array[2] << std::endl;
+
+		double	z = x[0];
+		std::cout << z << '\n';
 	}
 	catch(const std::exception& e)
 	{
@@ -112,8 +115,8 @@ void	test4(void)
 #define MAX_VAL 750
 void	test5(void)
 {
-	std::cout << std::endl << std::string(10, '-') << "Test 5: test provided on project page" << std::string(10, '-')
-		<< std::endl;
+	std::cout << std::endl << std::string(10, '-')
+		<< "Test 5: test provided on project page" << std::string(10, '-') << std::endl;
 
 	Array<int> numbers(MAX_VAL);
 	int* mirror = new int[MAX_VAL];

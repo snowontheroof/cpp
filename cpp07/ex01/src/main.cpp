@@ -1,16 +1,16 @@
 #include "../inc/iter.hpp"
-#include <iostream>
 
-void	print(int nb)
+template <typename T>
+void	print(T toPrint)
 {
-	std::cout << nb << std::endl;
+	std::cout << toPrint;
 }
 
 void	upCase(char c)
 {
 	if (c <= 'z' && c >= 'a')
 		c -= 32;
-	std::cout << c << std::endl;
+	std::cout << c;
 }
 
 void	printPtr(int* ptr)
@@ -39,7 +39,8 @@ void	test1(void)
 		<< std::string(10, '-') << std::endl;
 
 	int	array[] = { 1, 2, 3, 4, 5 };
-	iter(array, 5, print);
+	::iter(array, 5, print<int>);
+	std::cout << '\n';
 }
 
 void	test2(void)
@@ -48,7 +49,10 @@ void	test2(void)
 		<< std::string(10, '-') << std::endl;
 
 	char	other[] = { 'g', 'o', 'o', 'd', ' ', 'd', 'a', 'y', '!' };
-	iter(other, 9, upCase);
+	::iter(other, 9, print<char>);
+	std::cout << '\n';
+	::iter(other, 9, upCase);
+	std::cout << '\n';
 }
 
 void	test3(void)
@@ -60,22 +64,40 @@ void	test3(void)
 	int	b = 5;
 	int c = 6;
 	int*	nbs[] = { &a, &b, &c };
-	iter(nbs, 3, printPtr);
+	::iter(nbs, 3, printPtr);
 }
 
 void	test4(void)
 {
-	std::cout << "\n" << std::string(10, '-') << "Test 4: class object array"
+	std::cout << "\n" << std::string(10, '-')
+		<< "Test 4: nullptr and unmatching array length"
+		<< std::string(10, '-') << std::endl;
+
+	std::string*	array = nullptr;
+	::iter(array, 9, print<std::string>);
+
+	std::string	sentence[3] = { "let's", "test", "this!" };
+	::iter(sentence, 4, print<std::string>);
+	std::cout << '\n';
+
+	char	test[5] = { 'h', 'e', 'l', 'l', 'o' };
+	::iter(test, 1, print<char>);
+	std::cout << '\n';
+}
+
+void	test5(void)
+{
+	std::cout << "\n" << std::string(10, '-') << "Test 5: class object array"
 		<< std::string(10, '-') << std::endl;
 
 	Example	array[3] = {};
-	array[0].name = "first";
+	array[0].name = "First";
 	array[0].value = 42;
-	array[1].name = "second";
+	array[1].name = "Second";
 	array[1].value = 24;
-	array[2].name = "third";
+	array[2].name = "Third";
 	array[2].value = -42;
-	iter(array, 3, addValue);
+	::iter(array, 3, addValue);
 }
 
 int	main(void)
@@ -84,6 +106,7 @@ int	main(void)
 	test2();
 	test3();
 	test4();
+	test5();
 
 	return 0;
 }
