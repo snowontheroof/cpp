@@ -117,13 +117,20 @@ void	test5(void)
 	std::cout << std::endl << std::string(10, '-')
 		<< "Test 5: const array" << std::string(10, '-') << std::endl;
 
-	Array<char>	letters(3);
-	letters[0] = 'y';
-	letters[1] = 'e';
-	letters[2] = 's';
-	const Array<char>	phrase(letters);
-	char	a = phrase[2];
-	std::cout << a << std::endl;
+	try
+	{
+		Array<char>	letters(3);
+		letters[0] = 'y';
+		letters[1] = 'e';
+		letters[2] = 's';
+		const Array<char>	phrase(letters);
+		char	a = phrase[2];
+		std::cout << a << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
 }
 
 #define MAX_VAL 750
