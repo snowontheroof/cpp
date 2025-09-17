@@ -5,10 +5,11 @@
 template <typename T>
 class Array
 {
-	public:
+	private:
 		T*				_array;
 		unsigned int	_size;
 
+	public:
 		Array();
 		Array(unsigned int n);
 		Array(const Array& obj);

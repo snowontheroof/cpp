@@ -13,7 +13,7 @@ concept Convertible = requires(T a, T b)
 };
 
 template <Convertible T>
-void swap(T& a, T& b)
+void	swap(T& a, T& b)
 {
 	T	tmp;
 
@@ -23,7 +23,7 @@ void swap(T& a, T& b)
 }
 
 template <Convertible T>
-T min(T a, T b)
+T&	min(T& a, T& b)
 {
 	if (a < b)
 		return a;
@@ -31,7 +31,7 @@ T min(T a, T b)
 }
 
 template <Convertible T>
-T max(T a, T b)
+T&	max(T& a, T& b)
 {
 	if (a > b)
 		return a;

@@ -56,15 +56,15 @@ void	test3(void)
 		std::cout << "y: size is " << y.size() << std::endl;
 		for (unsigned int i = 0; i < 3; i++)
 		{
-			std::cout << "x: value at [" << i << "]: " << x._array[i] << std::endl;
-			std::cout << "y: value at [" << i << "]: " << y._array[i] << std::endl;
+			std::cout << "x: value at [" << i << "]: " << x[i] << std::endl;
+			std::cout << "y: value at [" << i << "]: " << y[i] << std::endl;
 		}
 		x[2] = 'c';
-		std::cout << "x: value at [2]: " << x._array[2] << std::endl;
-		std::cout << "y: value at [2]: " << y._array[2] << std::endl;
+		std::cout << "x: value at [2]: " << x[2] << std::endl;
+		std::cout << "y: value at [2]: " << y[2] << std::endl;
 		y[2] = 'd';
-		std::cout << "x: value at [2]: " << x._array[2] << std::endl;
-		std::cout << "y: value at [2]: " << y._array[2] << std::endl;
+		std::cout << "x: value at [2]: " << x[2] << std::endl;
+		std::cout << "y: value at [2]: " << y[2] << std::endl;
 		y[5] = 'y';
 	}
 	catch(const std::exception& e)
@@ -81,7 +81,7 @@ void	test4(void)
 	try
 	{
 		Array<double>	x(3);
-		Array<double>	y(2);
+		Array<double>	y;
 		std::cout << "x: size is " << x.size() << std::endl;
 		std::cout << "y: size is " << y.size() << std::endl;
 		x[0] = 4.2;
@@ -93,15 +93,15 @@ void	test4(void)
 		std::cout << "y: size is " << y.size() << std::endl;
 		for (unsigned int i = 0; i < 3; i++)
 		{
-			std::cout << "x: value at [" << i << "]: " << x._array[i] << std::endl;
-			std::cout << "y: value at [" << i << "]: " << y._array[i] << std::endl;
+			std::cout << "x: value at [" << i << "]: " << x[i] << std::endl;
+			std::cout << "y: value at [" << i << "]: " << y[i] << std::endl;
 		}
 		x[2] = -4.2;
-		std::cout << "x: value at [2]: " << x._array[2] << std::endl;
-		std::cout << "y: value at [2]: " << y._array[2] << std::endl;
+		std::cout << "x: value at [2]: " << x[2] << std::endl;
+		std::cout << "y: value at [2]: " << y[2] << std::endl;
 		y[2] = -42.4;
-		std::cout << "x: value at [2]: " << x._array[2] << std::endl;
-		std::cout << "y: value at [2]: " << y._array[2] << std::endl;
+		std::cout << "x: value at [2]: " << x[2] << std::endl;
+		std::cout << "y: value at [2]: " << y[2] << std::endl;
 
 		double	z = x[0];
 		std::cout << z << '\n';

@@ -6,7 +6,7 @@ void	test1(void)
 	std::cout << std::string(10, '-') << "Test 1: char"
 		<< std::string(10, '-') << std::endl;
 	char	a = 'a';
-	char	b = 'B';
+	char	b = 'b';
 
 	std::cout << "before: a is " << a << " and b is " << b << std::endl;
 	::swap(a, b);

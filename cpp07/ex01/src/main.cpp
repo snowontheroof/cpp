@@ -6,33 +6,6 @@ void	print(T toPrint)
 	std::cout << toPrint;
 }
 
-void	upCase(char c)
-{
-	if (c <= 'z' && c >= 'a')
-		c -= 32;
-	std::cout << c;
-}
-
-void	printPtr(int* ptr)
-{
-	std::cout << "Pointer address: " << ptr << std::endl;
-	std::cout << "Value of variable pointed by pointer: " << *ptr << std::endl;
-}
-
-class Example
-{
-	public:
-		std::string	name;
-		int			value;
-};
-
-void	addValue(Example& obj)
-{
-	std::cout << "Object " << obj.name << ": Original value: " << obj.value << std::endl;
-	obj.value++;
-	std::cout << "Incremented value: " << obj.value << std::endl;
-}
-
 void	test1(void)
 {
 	std::cout << std::string(10, '-') << "Test 1: int array"
@@ -41,6 +14,13 @@ void	test1(void)
 	int	array[] = { 1, 2, 3, 4, 5 };
 	::iter(array, 5, print<int>);
 	std::cout << '\n';
+}
+
+void	upCase(char c)
+{
+	if (c <= 'z' && c >= 'a')
+		c -= 32;
+	std::cout << c;
 }
 
 void	test2(void)
@@ -53,6 +33,12 @@ void	test2(void)
 	std::cout << '\n';
 	::iter(other, 9, upCase);
 	std::cout << '\n';
+}
+
+void	printPtr(int* ptr)
+{
+	std::cout << "Pointer address: " << ptr << std::endl;
+	std::cout << "Value: " << *ptr << std::endl;
 }
 
 void	test3(void)
@@ -82,6 +68,20 @@ void	test4(void)
 	char	test[5] = { 'h', 'e', 'l', 'l', 'o' };
 	::iter(test, 1, print<char>);
 	std::cout << '\n';
+}
+
+class Example
+{
+	public:
+		std::string	name;
+		int			value;
+};
+
+void	addValue(Example& obj)
+{
+	std::cout << "Object " << obj.name << ": Original value: " << obj.value << std::endl;
+	obj.value++;
+	std::cout << "Incremented value: " << obj.value << std::endl;
 }
 
 void	test5(void)
