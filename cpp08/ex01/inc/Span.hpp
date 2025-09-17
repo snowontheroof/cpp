@@ -8,7 +8,7 @@ class Span
 	private:
 		std::vector<int>	storage;
 		unsigned int		size;
-	
+
 	public:
 		Span() = delete;
 		Span(unsigned int n);
