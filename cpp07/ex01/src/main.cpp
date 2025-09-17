@@ -46,9 +46,9 @@ void	test3(void)
 	std::cout << "\n" << std::string(10, '-') << "Test 3: int pointer array"
 		<< std::string(10, '-') << std::endl;
 
-	int	a = 4;
-	int	b = 5;
-	int c = 6;
+	int		a = 4;
+	int		b = 5;
+	int 	c = 6;
 	int*	nbs[] = { &a, &b, &c };
 	::iter(nbs, 3, printPtr);
 }

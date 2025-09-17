@@ -30,8 +30,8 @@ void	test2(void)
 	{
 		std::cout << "Array size is " << test.size() << std::endl;
 		test[1] = "hello there";
+		std::cout << "Value at [0]: " << test[0] << std::endl;
 		std::cout << "Value at [1]: " << test[1] << std::endl;
-		std::cout << "Value at [2]: " << test[2] << std::endl;
 		test[-3] = "are we here?";
 	}
 	catch (const std::exception& e)
