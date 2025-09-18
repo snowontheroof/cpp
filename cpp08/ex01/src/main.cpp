@@ -2,20 +2,17 @@
 
 void	test1(void)
 {
+	std::cout << std::endl << std::string(10, '-') << "Test 1: 10 000+ numbers"
+		<< std::string(10, '-') << std::endl;
+
 	try
 	{
-		Span test(5);
-		test.addNumber(1);
-		test.addNumber(8);
-		test.addNumber(-4);
-		test.addNumber(0);
-		test.addNumber(15);
-		std::cout << test.longestSpan() << std::endl;
-		std::cout << test.shortestSpan() << std::endl;
-
-		Span test2(3);
-		test2.addNumber(1);
-		std::cout << test2.longestSpan() << std::endl;
+		Span test(10005);
+		std::srand(time(0));
+		for (unsigned int i = 0; i < test.getSize(); i++)
+			test.addNumber(std::rand() % 100000);
+		std::cout << "Longest span: " << test.longestSpan() << std::endl;
+		std::cout << "Shortest span: " << test.shortestSpan() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -25,18 +22,49 @@ void	test1(void)
 
 void	test2(void)
 {
-	Span sp = Span(5);
-	sp.addNumber(6);
-	sp.addNumber(3);
-	sp.addNumber(17);
-	sp.addNumber(9);
-	sp.addNumber(11);
-	std::cout << sp.shortestSpan() << std::endl;
-	std::cout << sp.longestSpan() << std::endl;
+	std::cout << std::endl << std::string(10, '-') << "Test 2: only one number"
+		<< std::string(10, '-') << std::endl;
+
+	try
+	{
+		Span test(3);
+		test.addNumber(1);
+		std::cout << "Longest span: " << test.longestSpan() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
 }
 
 void	test3(void)
 {
+	std::cout << std::endl << std::string(10, '-') << "Test 3"
+		<< std::string(10, '-') << std::endl;
+
+	try
+	{
+		Span sp = Span(5);
+		sp.addNumber(6);
+		sp.addNumber(3);
+		sp.addNumber(17);
+		sp.addNumber(9);
+		sp.addNumber(11);
+		std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
+}
+
+void	test4(void)
+{
+	std::cout << std::endl << std::string(10, '-')
+		<< "Test 4: adding a sequence of elements"
+		<< std::string(10, '-') << std::endl;
+
 	try
 	{
 		Span	jihuu(13);
@@ -59,6 +87,7 @@ int	main(void)
 	test1();
 	test2();
 	test3();
+	test4();
 
 	return 0;
 }

@@ -6,29 +6,30 @@
 class Span
 {
 	private:
-		std::vector<int>	storage;
-		unsigned int		size;
+		std::vector<int>		storage;
+		unsigned int			size;
 
 	public:
 		Span() = delete;
 		Span(unsigned int n);
 		Span(const Span& obj);
-		Span&	operator=(const Span& other);
+		Span&					operator=(const Span& other);
 		~Span();
 
-		std::vector<int>	getStorage() const;
-		void				addNumber(int nb);
-		void				addNumbers(std::vector<int> sequence);
-		int					shortestSpan() const;
-		int					longestSpan() const;
+		const std::vector<int>&	getStorage() const;
+		unsigned int		getSize() const;
+		void					addNumber(int nb);
+		void					addNumbers(std::vector<int> sequence);
+		int						shortestSpan() const;
+		int						longestSpan() const;
 
 		class FullStorageException : public std::exception
 		{
-			const char*	what() const noexcept override;
+			const char*			what() const noexcept override;
 		};
 
 		class NoSpanException : public std::exception
 		{
-			const char*	what() const noexcept override;
+			const char*			what() const noexcept override;
 		};
 };

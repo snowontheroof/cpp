@@ -26,9 +26,14 @@ Span::~Span()
 {
 }
 
-std::vector<int>	Span::getStorage() const
+const std::vector<int>&	Span::getStorage() const
 {
 	return storage;
+}
+
+unsigned int	Span::getSize() const
+{
+	return size;
 }
 
 void	Span::addNumber(int nb)
