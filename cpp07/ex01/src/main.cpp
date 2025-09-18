@@ -1,9 +1,15 @@
 #include "../inc/iter.hpp"
 
 template <typename T>
-void	print(T toPrint)
+void	print(T& toPrint)
 {
 	std::cout << toPrint;
+}
+
+template <typename T>
+void	increment(T& toInc)
+{
+	toInc++;
 }
 
 void	test1(void)
@@ -14,13 +20,15 @@ void	test1(void)
 	int	array[] = { 1, 2, 3, 4, 5 };
 	::iter(array, 5, print<int>);
 	std::cout << '\n';
+	::iter(array, 5, increment<int>);
+	::iter(array, 5, print<int>);
+	std::cout << '\n';
 }
 
 void	upCase(char c)
 {
-	if (c <= 'z' && c >= 'a')
-		c -= 32;
-	std::cout << c;
+	char C = std::toupper(c);
+	std::cout << C;
 }
 
 void	test2(void)
@@ -32,6 +40,9 @@ void	test2(void)
 	::iter(other, 9, print<char>);
 	std::cout << '\n';
 	::iter(other, 9, upCase);
+	std::cout << '\n';
+	::iter(other, 9, increment<char>);
+	::iter(other, 9, print<char>);
 	std::cout << '\n';
 }
 
