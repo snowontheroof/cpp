@@ -44,14 +44,14 @@ void	test3(void)
 
 	try
 	{
-		Span sp = Span(5);
-		sp.addNumber(6);
-		sp.addNumber(3);
-		sp.addNumber(17);
-		sp.addNumber(9);
-		sp.addNumber(11);
-		std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
-		std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+		Span test = Span(5);
+		test.addNumber(6);
+		test.addNumber(3);
+		test.addNumber(17);
+		test.addNumber(9);
+		test.addNumber(11);
+		std::cout << "Shortest span: " << test.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << test.longestSpan() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -67,14 +67,35 @@ void	test4(void)
 
 	try
 	{
-		Span	jihuu(13);
-		jihuu.addNumber(-42);
-		jihuu.addNumber(42);
+		Span	test(13);
+		test.addNumber(-42);
+		test.addNumber(42);
 
 		std::vector<int>	toadd = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
-		jihuu.addNumbers(toadd);
-		for (auto i : jihuu.getStorage())
-			std::cout << i << std::endl;
+		test.addRange(toadd.begin(), toadd.end());
+		std::cout << "Shortest span: " << test.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << test.longestSpan() << std::endl;
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
+}
+
+void	test5(void)
+{
+	std::cout << std::endl << std::string(10, '-')
+		<< "Test 5: adding a sequence of elements to a full storage"
+		<< std::string(10, '-') << std::endl;
+
+	try
+	{
+		Span	test(2);
+		test.addNumber(-42);
+		test.addNumber(42);
+
+		std::vector<int>	toadd = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+		test.addRange(toadd.begin(), toadd.end());
 	}
 	catch (const std::exception& e)
 	{
@@ -88,6 +109,7 @@ int	main(void)
 	test2();
 	test3();
 	test4();
+	test5();
 
 	return 0;
 }

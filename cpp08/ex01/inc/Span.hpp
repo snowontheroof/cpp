@@ -17,9 +17,10 @@ class Span
 		~Span();
 
 		const std::vector<int>&	getStorage() const;
-		unsigned int		getSize() const;
+		unsigned int			getSize() const;
 		void					addNumber(int nb);
-		void					addNumbers(std::vector<int> sequence);
+		template <typename Iterator>
+		void					addRange(Iterator begin, Iterator end);
 		int						shortestSpan() const;
 		int						longestSpan() const;
 
@@ -33,3 +34,15 @@ class Span
 			const char*			what() const noexcept override;
 		};
 };
+
+template <typename Iterator>
+void	Span::addRange(Iterator begin, Iterator end)
+{
+	unsigned long	dist = std::distance(begin, end);
+	if (dist != 0)
+	{
+		if (size - storage.size() < dist)
+			throw FullStorageException();
+		storage.insert(storage.end(), begin, end);
+	}
+}

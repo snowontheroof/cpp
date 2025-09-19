@@ -43,15 +43,6 @@ void	Span::addNumber(int nb)
 	storage.push_back(nb);
 }
 
-void	Span::addNumbers(std::vector<int> sequence)
-{
-	if (sequence.empty())
-		return;
-	if ((size - storage.size()) < sequence.size())
-		throw FullStorageException();
-	storage.insert(storage.end(), sequence.begin(), sequence.end());
-}
-
 int	Span::longestSpan() const
 {
 	if (storage.size() <= 1)
