@@ -1,7 +1,10 @@
 #include "../inc/MutantStack.hpp"
 
-int	main(void)
+void	test1(void)
 {
+	std::cout << std::string(10, '-') << "Test 1: test provided in the subject"
+		<< std::string(10, '-') << std::endl;
+
 	MutantStack<int> mstack;
 	mstack.push(5);
 	mstack.push(17);
@@ -23,6 +26,11 @@ int	main(void)
 		++it;
 	}
 	std::stack<int> s(mstack);
+}
+
+int	main(void)
+{
+	test1();
 
 	return 0;
 }

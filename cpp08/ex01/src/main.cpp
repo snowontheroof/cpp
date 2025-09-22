@@ -39,7 +39,7 @@ void	test2(void)
 
 void	test3(void)
 {
-	std::cout << std::endl << std::string(10, '-') << "Test 3"
+	std::cout << std::endl << std::string(10, '-') << "Test 3: basic test"
 		<< std::string(10, '-') << std::endl;
 
 	try
@@ -103,6 +103,27 @@ void	test5(void)
 	}
 }
 
+void	test6(void)
+{
+	std::cout << std::endl << std::string(10, '-')
+		<< "Test 6: adding an empty sequence"
+		<< std::string(10, '-') << std::endl;
+
+	try
+	{
+		Span	test(4);
+		test.addNumber(99);
+		test.addNumber(999);
+
+		std::vector<int>	toadd = {};
+		test.addRange(toadd.begin(), toadd.end());
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
+}
+
 int	main(void)
 {
 	test1();
@@ -110,6 +131,7 @@ int	main(void)
 	test3();
 	test4();
 	test5();
+	test6();
 
 	return 0;
 }

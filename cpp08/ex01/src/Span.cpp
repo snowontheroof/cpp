@@ -6,29 +6,22 @@ Span::Span(unsigned int n) : size(n)
 	storage.reserve(n);
 }
 
-Span::Span(const Span& obj) : size(obj.size)
+Span::Span(const Span& obj) : storage(obj.storage), size(obj.size)
 {
-	storage.reserve(size);
-	storage = obj.storage;
 }
 
 Span&	Span::operator=(const Span& other)
 {
 	if (this != &other)
 	{
-		storage = other.storage;
 		size = other.size;
+		storage = other.storage;
 	}
 	return *this;
 }
 
 Span::~Span()
 {
-}
-
-const std::vector<int>&	Span::getStorage() const
-{
-	return storage;
 }
 
 unsigned int	Span::getSize() const
@@ -56,16 +49,20 @@ int	Span::shortestSpan() const
 {
 	if (storage.size() <= 1)
 		throw NoSpanException();
-	int	span = abs(storage[0] - storage[1]);
-	for (size_t i = 0; i < storage.size(); i++)
+	std::vector<int>	tmp = storage;
+	std::sort(tmp.begin(), tmp.end());
+	int	span = abs(tmp[0] - tmp[1]);
+	for (size_t i = 0; i + 1 < tmp.size(); i++)
 	{
-		for (size_t	j = 1; j < storage.size(); j++)
-		{
-			if (j != i && abs(storage[i] - storage[j]) < span)
-				span = abs(storage[i] - storage[j]);
-		}
+		if (abs(tmp[i] - tmp[i + 1]) < span)
+			span = abs(tmp[i] - tmp[i + 1]);
 	}
 	return span;
+}
+
+const char*	Span::InvalidRangeException::what() const noexcept
+{
+	return "Invalid range to add!";
 }
 
 const char*	Span::FullStorageException::what() const noexcept

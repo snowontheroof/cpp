@@ -52,6 +52,7 @@ void	test2(void)
 	{
 		std::cout << e.what() << '\n';
 	}
+
 }
 
 void	test3(void)
@@ -79,11 +80,46 @@ void	test3(void)
 	}
 }
 
+void	test4(void)
+{
+	std::cout << std::endl << std::string(10, '-') << "Test 4: empty containers"
+		<< std::string(10, '-') << std::endl;
+
+	try
+	{
+		std::vector<int>	test = {};
+		std::cout << *easyfind(test, 16) << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
+	try
+	{
+		std::deque<int>	test = {};
+		std::cout << *easyfind(test, 16) << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
+	try
+	{
+		std::array<int, 0>	test = {};
+		std::cout << *easyfind(test, 16) << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
+}
+
 int	main(void)
 {
 	test1();
 	test2();
 	test3();
+	test4();
 
 	return 0;
 }
