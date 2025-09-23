@@ -1,13 +1,14 @@
 #include "../inc/Span.hpp"
-#include <algorithm>
 
 Span::Span(unsigned int n) : size(n)
 {
 	storage.reserve(n);
 }
 
-Span::Span(const Span& obj) : storage(obj.storage), size(obj.size)
+Span::Span(const Span& obj) : size(obj.size)
 {
+	storage.reserve(size);
+	storage = obj.storage;
 }
 
 Span&	Span::operator=(const Span& other)
@@ -67,7 +68,7 @@ const char*	Span::InvalidRangeException::what() const noexcept
 
 const char*	Span::FullStorageException::what() const noexcept
 {
-	return "Not enough room to add number!";
+	return "Not enough room to add number(s)!";
 }
 
 const char*	Span::NoSpanException::what() const noexcept

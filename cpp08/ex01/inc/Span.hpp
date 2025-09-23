@@ -1,4 +1,5 @@
 #pragma once
+# include <algorithm>
 # include <vector>
 # include <iostream>
 # include <exception>
@@ -6,8 +7,8 @@
 class Span
 {
 	private:
-		std::vector<int>		storage;
 		unsigned int			size;
+		std::vector<int>		storage;
 
 	public:
 		Span() = delete;

@@ -9,7 +9,7 @@ class MutantStack : public std::stack<T>
 	public:
 		MutantStack() = default;
 		MutantStack(const MutantStack& obj) = default;
-		MutantStack&	operator=(const MutantStack& other) = delete;
+		MutantStack&	operator=(const MutantStack& other) = default;
 		~MutantStack() = default;
 
 		using iterator = typename std::stack<T>::container_type::iterator;

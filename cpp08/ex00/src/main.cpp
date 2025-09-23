@@ -2,7 +2,8 @@
 #include <vector>
 #include <deque>
 #include <array>
-#include <map>
+#include <list>
+#include <forward_list>
 
 void	test1(void)
 {
@@ -11,8 +12,8 @@ void	test1(void)
 
 	try
 	{
-		std::vector<int>	test = { 1, 2, 3 };
-		std::cout << *easyfind(test, 2) << std::endl;
+		std::vector<int>	test1 = { 1, 2, 3 };
+		std::cout << *easyfind(test1, 2) << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -20,8 +21,8 @@ void	test1(void)
 	}
 	try
 	{
-		std::vector<int>	test = { 42, 422, 442 };
-		std::cout << *easyfind(test, -42) << std::endl;
+		std::vector<int>	test1 = { 42, 422, 442 };
+		std::cout << *easyfind(test1, -42) << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -82,7 +83,57 @@ void	test3(void)
 
 void	test4(void)
 {
-	std::cout << std::endl << std::string(10, '-') << "Test 4: empty containers"
+	std::cout << std::endl << std::string(10, '-') << "Test 4: list"
+		<< std::string(10, '-') << std::endl;
+
+	try
+	{
+		std::list<int>	test4 = { -9912, 55200, 4, -1442 };
+		std::cout << *easyfind(test4, +55200) << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
+	try
+	{
+		std::list<int>	test4 = { -1, 12, -123, 1234, -12345, 123456, -1234567 };
+		std::cout << *easyfind(test4, 123) << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
+}
+
+void	test5(void)
+{
+	std::cout << std::endl << std::string(10, '-') << "Test 5: forward list"
+		<< std::string(10, '-') << std::endl;
+
+	try
+	{
+		std::forward_list<int>	test5 = { 44, 56, 126, 623, 7345 };
+		std::cout << *easyfind(test5, 44) << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
+	try
+	{
+		std::forward_list<int>	test5 = { 8 };
+		std::cout << *easyfind(test5, 9) << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
+}
+
+void	test6(void)
+{
+	std::cout << std::endl << std::string(10, '-') << "Test 6: empty containers"
 		<< std::string(10, '-') << std::endl;
 
 	try
@@ -112,6 +163,24 @@ void	test4(void)
 	{
 		std::cout << e.what() << '\n';
 	}
+	try
+	{
+		std::list<int>	test = {};
+		std::cout << *easyfind(test, 16);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
+	try
+	{
+		std::forward_list<int>	test = {};
+		std::cout << *easyfind(test, 16);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+	}
 }
 
 int	main(void)
@@ -120,6 +189,8 @@ int	main(void)
 	test2();
 	test3();
 	test4();
+	test5();
+	test6();
 
 	return 0;
 }
