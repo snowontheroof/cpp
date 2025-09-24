@@ -25,7 +25,7 @@ class Span
 		template <typename Iterator>
 		void					addRange(Iterator begin, Iterator end)
 		{
-			unsigned int	dist = std::distance(begin, end);
+			auto	dist = std::distance(begin, end);
 			if (dist <= 0)
 				throw InvalidRangeException();
 			if (size - storage.size() < dist)

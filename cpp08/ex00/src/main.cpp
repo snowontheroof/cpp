@@ -53,7 +53,6 @@ void	test2(void)
 	{
 		std::cout << e.what() << '\n';
 	}
-
 }
 
 void	test3(void)
@@ -68,7 +67,7 @@ void	test3(void)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cout << e.what() << '\n';
 	}
 	try
 	{
@@ -77,7 +76,7 @@ void	test3(void)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cout << e.what() << '\n';
 	}
 }
 
@@ -139,7 +138,7 @@ void	test6(void)
 	try
 	{
 		std::vector<int>	test = {};
-		std::cout << *easyfind(test, 16) << std::endl;
+		std::cout << *easyfind(test, 0) << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -148,7 +147,7 @@ void	test6(void)
 	try
 	{
 		std::deque<int>	test = {};
-		std::cout << *easyfind(test, 16) << std::endl;
+		std::cout << *easyfind(test, -5) << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -157,7 +156,7 @@ void	test6(void)
 	try
 	{
 		std::array<int, 0>	test = {};
-		std::cout << *easyfind(test, 16) << std::endl;
+		std::cout << *easyfind(test, 0) << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -166,7 +165,7 @@ void	test6(void)
 	try
 	{
 		std::list<int>	test = {};
-		std::cout << *easyfind(test, 16);
+		std::cout << *easyfind(test, 5);
 	}
 	catch(const std::exception& e)
 	{
@@ -175,7 +174,7 @@ void	test6(void)
 	try
 	{
 		std::forward_list<int>	test = {};
-		std::cout << *easyfind(test, 16);
+		std::cout << *easyfind(test, 0);
 	}
 	catch(const std::exception& e)
 	{

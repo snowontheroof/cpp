@@ -1,4 +1,4 @@
-NAME = span
+NAME = Span
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++20
 

@@ -105,8 +105,8 @@ void	test4(void)
 	sstack.pop();
 	sstack.push("to see how it works");
 	sstack.push("when we make a stack of strings");
-	MutantStack<std::string>::iterator it = sstack.begin();
-	MutantStack<std::string>::iterator ite = sstack.end();
+	MutantStack<std::string>::const_iterator it = sstack.begin();
+	MutantStack<std::string>::const_iterator ite = sstack.end();
 	++it;
 	--it;
 	while (it != ite)
@@ -136,10 +136,10 @@ void	test5(void)
 		dstackCopy.pop();
 		std::cout << "dstack size: " << dstack.size() << std::endl;
 		std::cout << "dstackCopy size: " << dstackCopy.size() << std::endl;
-		MutantStack<double>::iterator it = dstack.begin();
-		MutantStack<double>::iterator ite = dstack.end();
-		MutantStack<double>::iterator itC = dstackCopy.begin();
-		MutantStack<double>::iterator iteC = dstackCopy.end();
+		MutantStack<double>::const_iterator it = dstack.begin();
+		MutantStack<double>::const_iterator ite = dstack.end();
+		MutantStack<double>::const_iterator itC = dstackCopy.begin();
+		MutantStack<double>::const_iterator iteC = dstackCopy.end();
 		std::cout << "\ndstack values:\n";
 		while (it != ite)
 		{
@@ -162,27 +162,30 @@ void	test5(void)
 		fstack1.push(4.2f);
 		fstack1.push(-42.42f);
 		fstack2 = fstack1;
-		std::cout << "fstack1 size: " << fstack1.size() << std::endl;
+		std::cout << "\nfstack1 size: " << fstack1.size() << std::endl;
 		std::cout << "fstack2 size: " << fstack2.size() << std::endl;
 		fstack2.push(0.42f);
 		fstack1.pop();
-		MutantStack<float>::iterator it = fstack1.begin();
-		MutantStack<float>::iterator ite = fstack1.end();
-		MutantStack<float>::iterator itC = fstack2.begin();
-		MutantStack<float>::iterator iteC = fstack2.end();
+		MutantStack<float>::const_iterator it = fstack1.begin();
+		MutantStack<float>::const_iterator ite = fstack1.end();
+		MutantStack<float>::const_iterator itC = fstack2.begin();
+		MutantStack<float>::const_iterator iteC = fstack2.end();
+		--ite;
+		--iteC;
 		std::cout << "\nfstack1 values:\n";
 		while (ite != it)
 		{
 			std::cout << *ite << "f\n";
 			--ite;
 		}
+		std::cout << *ite << "f\n";
 		std::cout << "\nfstack2 values:\n";
-		--iteC;
 		while (iteC != itC)
 		{
 			std::cout << *iteC << "f\n";
-			--iteC;
+			iteC--;
 		}
+		std::cout << *iteC << "f\n";
 	}
 }
 

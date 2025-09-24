@@ -32,7 +32,7 @@ unsigned int	Span::getSize() const
 
 void	Span::addNumber(int nb)
 {
-	if (storage.size() >= size)
+	if (storage.size() + 1 > size)
 		throw FullStorageException();
 	storage.push_back(nb);
 }
