@@ -9,8 +9,9 @@ int	main(int argc, char **argv)
 	}
 	try
 	{
+		std::string	input = argv[1];
 		BitcoinExhange	test;
-		test.btc(static_cast<std::string>(argv[1]));
+		test.btc(input);
 	}
 	catch(const std::exception& e)
 	{

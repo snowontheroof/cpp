@@ -3,12 +3,15 @@
 # include <map>
 # include <fstream>
 # include <exception>
+# include <iomanip>
+# include <chrono>
+# include <sstream>
+# include <algorithm>
 
 class BitcoinExhange
 {
 	private:
 		std::map<std::string, float>	dataBase;
-		std::map<std::string, float>	inputData;
 
 	public:
 		BitcoinExhange();
@@ -16,7 +19,8 @@ class BitcoinExhange
 		BitcoinExhange&		operator=(const BitcoinExhange& other);
 		~BitcoinExhange();
 
-		void	btc(std::string input);
+		void	btc(std::string& inputFile);
 		void	handleDataBase(std::ifstream& file);
 		void	handleInput(std::ifstream& file);
+		void	displayExhange(void);
 };
