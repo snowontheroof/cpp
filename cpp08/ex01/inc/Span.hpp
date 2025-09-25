@@ -28,7 +28,7 @@ class Span
 			auto	dist = std::distance(begin, end);
 			if (dist <= 0)
 				throw InvalidRangeException();
-			if (size - storage.size() < dist)
+			if (dist + storage.size() > size)
 				throw FullStorageException();
 			storage.insert(storage.end(), begin, end);
 		}
