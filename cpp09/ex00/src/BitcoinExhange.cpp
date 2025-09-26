@@ -31,8 +31,9 @@ static bool	isValidDate(std::string date)
 	int					month;
 
 	size_t	pos = date.find('-');
-	if (pos != std::string::npos)
-		word = date.substr(0, pos);
+	if (pos == std::string::npos)
+		return false;
+	word = date.substr(0, pos);
 	if (word.length() != 4)
 		return false;
 	try
@@ -49,6 +50,8 @@ static bool	isValidDate(std::string date)
 	}
 	date = date.substr(pos + 1);
 	pos = date.find('-');
+	if (pos == std::string::npos)
+		return false;
 	word = date.substr(0, pos);
 	if (word.length() != 2)
 		return false;
@@ -57,7 +60,7 @@ static bool	isValidDate(std::string date)
 		month = std::stoi(word);
 		if (month < 1 || month > 12)
 			return false;
-		if (month == 6 || month == 9 || month == 11 || month == 4 || month == 2)
+		if (month == 4 || month == 2 || month == 6 || month == 9 || month == 11)
 			longMonth = false;
 	}
 	catch(const std::exception& e)
@@ -86,7 +89,7 @@ static bool	isValidValue(float value)
 {
 	if (value < 0)
 	{
-		std::cout << "Error: Not a positive integer.\n";
+		std::cout << "Error: Not a positive number.\n";
 		return false;
 	}
 	if (value > 1000)
@@ -128,7 +131,7 @@ void	BitcoinExhange::handleInput(std::ifstream& file)
 		{
 			std::cout << "Error: Not a valid value.\n";
 		}
-		float	closestValue = std::lower_bound(dataBase.begin()->second, dataBase.end()->second, value);
+		float	closestValue = *(dataBase.lower_bound(value))->second;
 		std::cout << date << " => " << value << " = "
 			<< dataBase.find(date)->second * value << std::endl;
 	}
