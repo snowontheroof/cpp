@@ -7,6 +7,7 @@
 # include <chrono>
 # include <sstream>
 # include <algorithm>
+# include <regex>
 
 class BitcoinExhange
 {

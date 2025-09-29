@@ -24,64 +24,18 @@ void	BitcoinExhange::handleDataBase(std::ifstream& file)
 
 static bool	isValidDate(std::string date)
 {
-	std::stringstream	ss(date);
-	std::string			word;
-	bool				longMonth = true;
-	bool				leapYear = false;
-	int					month;
-
-	size_t	pos = date.find('-');
-	if (pos == std::string::npos)
+	if (!std::regex_match(date, std::regex("(19|20)\\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])")))
 		return false;
-	word = date.substr(0, pos);
-	if (word.length() != 4)
+	int		year;
+	unsigned int	month, day;
+	char	separator;
+	std::stringstream	stream(date);
+	if (!(stream >> year >> separator >> month >> separator >> day))
 		return false;
-	try
-	{
-		int	year = std::stoi(word);
-		if (year < 0 || year >= 2100)
-			return false;
-		if (year % 4 == 0 || year % 100 == 0 || year % 400 == 0)
-			leapYear = true;
-	}
-	catch(const std::exception& e)
-	{
+	std::chrono::year_month_day	ymd = { std::chrono::year{year},
+		std::chrono::month{month}, std::chrono::day{day}};
+	if (!ymd.ok())
 		return false;
-	}
-	date = date.substr(pos + 1);
-	pos = date.find('-');
-	if (pos == std::string::npos)
-		return false;
-	word = date.substr(0, pos);
-	if (word.length() != 2)
-		return false;
-	try
-	{
-		month = std::stoi(word);
-		if (month < 1 || month > 12)
-			return false;
-		if (month == 4 || month == 2 || month == 6 || month == 9 || month == 11)
-			longMonth = false;
-	}
-	catch(const std::exception& e)
-	{
-		return false;
-	}
-	date = date.substr(pos + 1);
-	word = date;
-	if (word.length() != 2)
-		return false;
-	try
-	{
-		int	day = std::stoi(word);
-		if (day < 1 || (day > 31 && longMonth) || (day > 30 && !longMonth)
-				|| (month == 2 && ((day > 28 && !leapYear) || (day > 29 && leapYear))))
-			return false;
-	}
-	catch(const std::exception& e)
-	{
-		return false;
-	}
 	return true;
 }
 
@@ -89,12 +43,12 @@ static bool	isValidValue(float value)
 {
 	if (value < 0)
 	{
-		std::cout << "Error: Not a positive number.\n";
+		std::cout << "Error: not a positive number.\n";
 		return false;
 	}
 	if (value > 1000)
 	{
-		std::cout << "Error: Too large a number.\n";
+		std::cout << "Error: too large a number.\n";
 		return false;
 	}
 	return true;
@@ -112,28 +66,34 @@ void	BitcoinExhange::handleInput(std::ifstream& file)
 		std::string	date = line.substr(0, pos - 1);
 		if (pos == std::string::npos || !isValidDate(date))
 		{
-			std::cout << "Error: bad input => " << line << '\n';
-			return ;
+			std::cout << "Error: bad input => " << date << '\n';
+			continue ;
 		}
 		std::string	valueStr = line.substr(pos + 2);
 		if (valueStr.empty())
 		{
 			std::cout << "Error: bad input => " << line << '\n';
-			return ;
+			continue ;
 		}
 		try
 		{
 			value = std::stof(valueStr);
 			if (!isValidValue(value))
-				return ;
+				continue ;
 		}
 		catch(const std::out_of_range& e)
 		{
-			std::cout << "Error: Not a valid value.\n";
+			std::cout << "Error: not a valid value.\n";
 		}
-		float	closestValue = *(dataBase.lower_bound(value))->second;
+		std::map<std::string, float>::iterator	it = dataBase.lower_bound(date);
+		float	closestValue = it->second;
+		if (it->first != date)
+		{
+			it--;
+			closestValue = it->second;
+		}
 		std::cout << date << " => " << value << " = "
-			<< dataBase.find(date)->second * value << std::endl;
+			<< closestValue * value << std::endl;
 	}
 }
 
@@ -147,7 +107,4 @@ void	BitcoinExhange::btc(std::string& inputFile)
 	if (!file.is_open())
 		throw std::runtime_error("Error: failed to open file");
 	handleInput(file);
-	// std::map<std::string, float>::iterator	it;
-	// for (it = dataBase.begin(); it != dataBase.end(); it++)
-	// 	std::cout << it->first << " " << it->second << std::endl;
 }
