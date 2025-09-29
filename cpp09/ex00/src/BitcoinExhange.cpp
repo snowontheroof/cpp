@@ -89,6 +89,12 @@ void	BitcoinExhange::handleInput(std::ifstream& file)
 		float	closestValue = it->second;
 		if (it->first != date)
 		{
+			if (it == dataBase.begin())
+			{
+				std::cout
+				<< "Error: given date is before the earliest date available in database.\n";
+				continue ;
+			}
 			it--;
 			closestValue = it->second;
 		}
