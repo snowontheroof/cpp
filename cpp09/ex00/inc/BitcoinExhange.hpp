@@ -20,8 +20,8 @@ class BitcoinExhange
 		BitcoinExhange&		operator=(const BitcoinExhange& other);
 		~BitcoinExhange();
 
-		void	btc(std::string& inputFile);
-		void	handleDataBase(std::ifstream& file);
-		void	handleInput(std::ifstream& file);
-		void	displayExhange(void);
+		void				btc(std::string& inputFile);
+		void				handleDataBase(std::ifstream& file);
+		void				handleInput(std::ifstream& file);
+		void				displayExhange(void);
 };

@@ -26,29 +26,55 @@ static bool	isValidDate(std::string date)
 {
 	if (!std::regex_match(date, std::regex("(19|20)\\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])")))
 		return false;
-	int		year;
-	unsigned int	month, day;
-	char	separator;
+	int					year;
+	unsigned int		month, day;
+	char				separator;
 	std::stringstream	stream(date);
 	if (!(stream >> year >> separator >> month >> separator >> day))
 		return false;
 	std::chrono::year_month_day	ymd = { std::chrono::year{year},
-		std::chrono::month{month}, std::chrono::day{day}};
+		std::chrono::month{month}, std::chrono::day{day} };
 	if (!ymd.ok())
 		return false;
 	return true;
 }
 
-static bool	isValidValue(float value)
+static bool	isValidValue(std::string& line, std::string& valueStr, float& value)
 {
-	if (value < 0)
+	if (valueStr.empty())
 	{
-		std::cout << "Error: not a positive number.\n";
+		std::cout << "Error: bad input => " << line << '\n';
 		return false;
 	}
-	if (value > 1000)
+	unsigned int	dots = 0;
+	for (size_t i = 0; valueStr[i]; i++)
 	{
-		std::cout << "Error: too large a number.\n";
+		if (!((i == 0 && (valueStr[i] == '-' || valueStr[i] == '+'))
+			|| std::isdigit(valueStr[i]) || (valueStr[i] == '.' && !dots)))
+		{
+			std::cout << "Error: bad input => " << valueStr << '\n';
+			return false;
+		}
+		else if (valueStr[i] == '.')
+			dots++;
+	}
+	try
+	{
+		value = std::stof(valueStr);
+		if (value < 0)
+		{
+			std::cout << "Error: not a positive number.\n";
+			return false;
+		}
+		if (value > 1000)
+		{
+			std::cout << "Error: too large a number.\n";
+			return false;
+		}
+	}
+	catch(const std::out_of_range& e)
+	{
+		std::cout << "Error: not a valid value.\n";
 		return false;
 	}
 	return true;
@@ -60,6 +86,8 @@ void	BitcoinExhange::handleInput(std::ifstream& file)
 	float		value;
 
 	std::getline(file, line);
+	if (line != "date | value")
+		throw std::runtime_error("Error: invalid input file structure");
 	while (std::getline(file, line))
 	{
 		size_t	pos = line.find('|');
@@ -70,21 +98,8 @@ void	BitcoinExhange::handleInput(std::ifstream& file)
 			continue ;
 		}
 		std::string	valueStr = line.substr(pos + 2);
-		if (valueStr.empty())
-		{
-			std::cout << "Error: bad input => " << line << '\n';
+		if (!isValidValue(line, valueStr, value))
 			continue ;
-		}
-		try
-		{
-			value = std::stof(valueStr);
-			if (!isValidValue(value))
-				continue ;
-		}
-		catch(const std::out_of_range& e)
-		{
-			std::cout << "Error: not a valid value.\n";
-		}
 		std::map<std::string, float>::iterator	it = dataBase.lower_bound(date);
 		float	closestValue = it->second;
 		if (it->first != date)
