@@ -10,8 +10,7 @@ int	main(int argc, char **argv)
 	try
 	{
 		std::string	input = argv[1];
-		BitcoinExhange	test;
-		test.btc(input);
+		BitcoinExhange::btc(input);
 	}
 	catch(const std::exception& e)
 	{

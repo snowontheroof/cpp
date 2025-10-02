@@ -45,7 +45,7 @@ static bool	isValidToken(std::string token)
 
 RPN::RPN(std::string input)
 {
-	std::stringstream	ss(input);
+	std::istringstream	ss(input);
 	std::string			token;
 	while (ss >> token)
 	{

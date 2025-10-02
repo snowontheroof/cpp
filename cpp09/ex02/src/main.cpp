@@ -2,14 +2,18 @@
 
 int	main(int argc, char **argv)
 {
-	if (argc != 2)
+	if (argc == 1)
 	{
-		std::cout << "Expected usage: ./PmergeMe \"<sequence of positive integers>\"\n";
+		std::cout << "Expected usage: ./PmergeMe <sequence of positive integers>\n";
 		return 0;
 	}
 	try
 	{
-		PmergeMe(static_cast<std::string>(argv[1]));
+		PmergeMe	test;
+		if (argc == 2)
+			test.sortQuotes(static_cast<std::string>(argv[1]));
+		else
+			test.sort(argv);
 	}
 	catch(const std::exception& e)
 	{

@@ -12,16 +12,18 @@
 class BitcoinExhange
 {
 	private:
-		std::map<std::string, float>	dataBase;
+		static std::map<std::string, float>	dataBase;
 
-	public:
 		BitcoinExhange();
 		BitcoinExhange(const BitcoinExhange& obj) = delete;
-		BitcoinExhange&		operator=(const BitcoinExhange& other);
+		BitcoinExhange&		operator=(const BitcoinExhange& other) = delete;
+
+		static void			loadDataBase(std::ifstream& file);
+		static void			handleInput(std::ifstream& file);
+		static void			displayExhange(void);
+
+	public:
 		~BitcoinExhange();
 
-		void				btc(std::string& inputFile);
-		void				handleDataBase(std::ifstream& file);
-		void				handleInput(std::ifstream& file);
-		void				displayExhange(void);
+		static void			btc(std::string& inputFile);
 };

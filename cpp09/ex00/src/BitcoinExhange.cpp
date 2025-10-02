@@ -1,5 +1,7 @@
 #include "../inc/BitcoinExhange.hpp"
 
+std::map<std::string, float>	BitcoinExhange::dataBase;
+
 BitcoinExhange::BitcoinExhange()
 {
 }
@@ -8,7 +10,7 @@ BitcoinExhange::~BitcoinExhange()
 {
 }
 
-void	BitcoinExhange::handleDataBase(std::ifstream& file)
+void	BitcoinExhange::loadDataBase(std::ifstream& file)
 {
 	std::string	line;
 
@@ -123,7 +125,7 @@ void	BitcoinExhange::btc(std::string& inputFile)
 	std::ifstream	dataFile("data.csv");
 	if (!dataFile.is_open())
 		throw std::runtime_error("Error: failed to open database");
-	handleDataBase(dataFile);
+	loadDataBase(dataFile);
 	std::ifstream	file(inputFile);
 	if (!file.is_open())
 		throw std::runtime_error("Error: failed to open file");
