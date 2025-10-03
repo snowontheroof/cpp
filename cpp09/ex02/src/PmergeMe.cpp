@@ -1,6 +1,8 @@
 #include "../inc/PmergeMe.hpp"
 
-bool	isValidNb(std::string& nb)
+// static int	comparisons = 0;
+
+bool	PmergeMe::isValidNb(std::string& nb)
 {
 	size_t	i = 0;
 	if (nb[i] == '+')
@@ -14,47 +16,57 @@ bool	isValidNb(std::string& nb)
 	return true;
 }
 
-void	PmergeMe::sortQuotes(std::string input)
+void	PmergeMe::sortVector(std::vector<int>& myVector)
 {
-	std::istringstream	ss(input);
-	std::string			token;
-	while (ss >> token)
+	using Iterator = std::vector<std::vector<int>>::iterator;
+	using VectIterator = std::vector<int>::iterator;
+
+	std::vector<std::vector<int>>	comb;
+	VectIterator	start = myVector.begin();
+	VectIterator	finish = myVector.end();
+	while (start != finish)
 	{
-		if (!isValidNb(token))
-			throw std::runtime_error("Error");
-		int	nb = std::stoi(token);
-		vectorSort.push_back(nb);
-		dequeSort.push_back(nb);
+		std::vector<int>	tmp;
+		tmp.push_back(*start);
+		comb.push_back(tmp);
+		start++;
 	}
-	std::vector<int>::const_iterator	it = vectorSort.begin();
-	std::cout << "Before: ";
-	while (it != vectorSort.end())
+
+	Iterator	begin = comb.begin();
+	Iterator	next;
+	Iterator	end = comb.end();
+
+	size_t		range = 1;
+
+	while ((range * 2) <= comb.size())
 	{
-		std::cout << *it << " ";
-		it++;
+		if (range > 1)
+			begin = std::next(comb.begin()->back(), range - 1);
+		next = std::next(begin, range);
+		while (begin != end)
+		{
+			std::cout << "begin is " << *begin << " and next " << *next << std::endl;
+			if (*begin > *next)
+				std::iter_swap(begin, next);
+			std::cout << std::distance(begin , end) << " dist\n";
+			if (std::distance(begin, end) >= static_cast<int>(range * 3))
+				begin += (range * 2);
+			else
+				break ;
+			next = std::next(begin, range);
+		}
+		range *= 2;
+
 	}
-	std::cout << std::endl;
+	begin = comb.begin();
+	while (begin != end)
+	{
+		std::cout << *begin << std::endl;
+		begin++;
+	}
 }
 
-void	PmergeMe::sort(char **argv)
-{
-	size_t	i = 1;
-	while (argv[i])
-	{
-		std::string	arg = static_cast<std::string>(argv[i]);
-		if (!isValidNb(arg))
-			throw std::runtime_error("Error");
-		int	nb = std::stoi(arg);
-		vectorSort.push_back(nb);
-		dequeSort.push_back(nb);
-		i++;
-	}
-	std::vector<int>::const_iterator	it = vectorSort.begin();
-	std::cout << "Before: ";
-	while (it != vectorSort.end())
-	{
-		std::cout << *it << " ";
-		it++;
-	}
-	std::cout << std::endl;
-}
+// void	PmergeMe::sortDeque(std::deque<int>& myDeque)
+// {
+
+// }

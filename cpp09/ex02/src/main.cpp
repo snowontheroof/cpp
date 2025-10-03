@@ -9,11 +9,28 @@ int	main(int argc, char **argv)
 	}
 	try
 	{
-		PmergeMe	test;
+		PmergeMe	sorter;
+		std::string	argQuotes = static_cast<std::string>(argv[1]);
+
+		auto	vectorStart = std::chrono::high_resolution_clock::now();
+		std::vector<int>	vectorCont;
 		if (argc == 2)
-			test.sortQuotes(static_cast<std::string>(argv[1]));
+			vectorCont = sorter.parseQuotes<std::vector<int>>(argQuotes);
 		else
-			test.sort(argv);
+			vectorCont = sorter.parse<std::vector<int>>(argv);
+		sorter.sortVector(vectorCont);
+		auto	vectorEnd = std::chrono::high_resolution_clock::now();
+		std::cout << vectorEnd - vectorStart << "\n\n";
+
+		auto	dequeStart = std::chrono::high_resolution_clock::now();
+		std::deque<int>	dequeCont;
+		if (argc == 2)
+			dequeCont = sorter.parseQuotes<std::deque<int>>(argQuotes);
+		else
+			dequeCont = sorter.parse<std::deque<int>>(argv);
+		// sorter.sortDeque(dequeCont);
+		auto	dequeEnd = std::chrono::high_resolution_clock::now();
+		std::cout << dequeEnd - dequeStart << "\n\n";
 	}
 	catch(const std::exception& e)
 	{

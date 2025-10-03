@@ -3,19 +3,29 @@
 # include <sstream>
 # include <vector>
 # include <deque>
+# include <chrono>
+# include <cmath>
 
 class PmergeMe
 {
 	private:
-		std::vector<int>	vectorSort;
-		std::deque<int>		dequeSort;
+		// static int	comparisons;
 
 	public:
 		PmergeMe() = default;
 		PmergeMe(const PmergeMe& obj) = delete;
-		PmergeMe&			operator=(const PmergeMe& other) = delete;
+		PmergeMe&	operator=(const PmergeMe& other) = delete;
 		~PmergeMe() = default;
 
-		void	sortQuotes(std::string input);
-		void	sort(char** argv);
+		template <typename T>
+		static T	parseQuotes(std::string& input);
+
+		template <typename T>
+		static T	parse(char** argv);
+
+		void		sortVector(std::vector<int>& myVector);
+		// void		sortDeque(std::deque<int>& myDeque);
+		static bool		isValidNb(std::string& nb);
 };
+
+#include "../src/PmergeMe.tpp"

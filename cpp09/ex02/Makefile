@@ -8,6 +8,7 @@ OBJ_DIR = obj/
 
 INC_FILES = PmergeMe.hpp
 SRC_FILES = main.cpp PmergeMe.cpp
+TMPL_FILES = src/PmergeMe.tpp
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
 
 INC = $(addprefix $(INC_DIR), $(INC_FILES))
@@ -19,7 +20,7 @@ all: $(NAME)
 $(NAME): $(OBJ) $(INC)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
-$(OBJ_DIR)%.o:$(SRC_DIR)%.cpp $(INC)
+$(OBJ_DIR)%.o:$(SRC_DIR)%.cpp $(INC) $(TMPL_FILES)
 	@mkdir -p $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -I $(INC_DIR) -c $< -o $@
 
