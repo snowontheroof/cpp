@@ -10,6 +10,7 @@ int	main(int argc, char **argv)
 	try
 	{
 		PmergeMe	sorter;
+		std::vector<int>	res;
 		std::string	argQuotes = static_cast<std::string>(argv[1]);
 
 		auto	vectorStart = std::chrono::high_resolution_clock::now();
@@ -18,7 +19,9 @@ int	main(int argc, char **argv)
 			vectorCont = sorter.parseQuotes<std::vector<int>>(argQuotes);
 		else
 			vectorCont = sorter.parse<std::vector<int>>(argv);
-		sorter.sortVector(vectorCont);
+		res = sorter.sortVector(vectorCont);
+		for (std::vector<int>::iterator it = res.begin(); it != res.end(); it++)
+			std::cout << *it << std::endl;
 		auto	vectorEnd = std::chrono::high_resolution_clock::now();
 		std::cout << vectorEnd - vectorStart << "\n\n";
 

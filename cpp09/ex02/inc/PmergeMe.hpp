@@ -5,6 +5,7 @@
 # include <deque>
 # include <chrono>
 # include <cmath>
+# include <optional>
 
 class PmergeMe
 {
@@ -23,7 +24,7 @@ class PmergeMe
 		template <typename T>
 		static T	parse(char** argv);
 
-		void		sortVector(std::vector<int>& myVector);
+		std::vector<int>	sortVector(std::vector<int>& myVector);
 		// void		sortDeque(std::deque<int>& myDeque);
 		static bool		isValidNb(std::string& nb);
 };

@@ -16,14 +16,84 @@ bool	PmergeMe::isValidNb(std::string& nb)
 	return true;
 }
 
-void	PmergeMe::sortVector(std::vector<int>& myVector)
+static void	fillMainChain(std::vector<int>& mainChain,
+	std::vector<std::pair<int, int>>& pairs, std::optional<int> odd)
+{
+	using Iterator = std::vector<int>::iterator;
+	using pairIter = std::vector<std::pair<int, int>>::iterator;
+
+	for (Iterator it = mainChain.begin(); it != mainChain.end(); it++)
+		std::cout << " mainChain " << *it << std::endl;
+	for (pairIter it = pairs.begin(); it != pairs.end(); it++)
+		std::cout << it->first << " " << it->second << std::endl;
+	if (odd)
+		std::cout << "odd " << *odd << std::endl;
+}
+
+std::vector<int>	PmergeMe::sortVector(std::vector<int>& myVector)
+{
+	using Iterator = std::vector<int>::iterator;
+	using pairIter = std::vector<std::pair<int, int>>::iterator;
+
+	std::optional<int>	odd = std::nullopt;
+	if (myVector.size() % 2 != 0)
+	{
+		odd = myVector.back();
+		myVector.pop_back();
+	}
+	Iterator	begin = myVector.begin();
+	Iterator	next = std::next(begin, 1);
+	Iterator	end = myVector.end();
+	std::vector<int>	newVector;
+	std::vector<int>	mainChain;
+
+	std::vector<std::pair<int, int>>	pairs;
+	if (myVector.size() < 2)
+	{
+		mainChain.push_back(myVector.back());
+		for (pairIter it = pairs.begin(); it != pairs.end(); it++)
+			std::cout << it->first << " " << it->second << std::endl;
+		return mainChain;
+	}
+	while (begin != end && next != end)
+	{
+		if (*begin > *next)
+		{
+			newVector.push_back(*begin);
+			pairs.push_back({*next, *begin});
+		}
+		else
+		{
+			newVector.push_back(*next);
+			pairs.push_back({*begin, *next});
+		}
+		begin += 2;
+		next = std::next(begin, 1);
+	}
+	for (pairIter pit = pairs.begin(); pit != pairs.end(); pit++)
+		std::cout << pit->first << " " << pit->second << std::endl;
+	for (Iterator it = newVector.begin(); it != newVector.end(); it++)
+		std::cout << " newVector " << *it << std::endl;
+	mainChain = sortVector(newVector);
+	fillMainChain(mainChain, pairs, odd);
+	return mainChain;
+}
+
+/*void	PmergeMe::sortVector(std::vector<int>& myVector)
 {
 	using Iterator = std::vector<std::vector<int>>::iterator;
 	using VectIterator = std::vector<int>::iterator;
 
 	std::vector<std::vector<int>>	comb;
-	VectIterator	start = myVector.begin();
-	VectIterator	finish = myVector.end();
+	VectIterator		start = myVector.begin();
+	VectIterator		finish = myVector.end();
+	std::optional<int>	odd = std::nullopt;
+	if (myVector.size() % 2 != 0)
+	{
+		odd = myVector.back();
+		myVector.pop_back();
+		finish = myVector.end() - 1;
+	}
 	while (start != finish)
 	{
 		std::vector<int>	tmp;
@@ -36,35 +106,50 @@ void	PmergeMe::sortVector(std::vector<int>& myVector)
 	Iterator	next;
 	Iterator	end = comb.end();
 
-	size_t		range = 1;
-
-	while ((range * 2) <= comb.size())
+	while (comb.begin()->size() <= comb.size())
 	{
-		if (range > 1)
-			begin = std::next(comb.begin()->back(), range - 1);
-		next = std::next(begin, range);
-		while (begin != end)
+		begin = comb.begin();
+		next = std::next(begin, 1);
+		while (begin != end && next != end)
 		{
-			std::cout << "begin is " << *begin << " and next " << *next << std::endl;
-			if (*begin > *next)
+			std::cout << "begin is " << begin->back() << " and next " << next->back() << std::endl;
+			if (begin->back() > next->back())
 				std::iter_swap(begin, next);
-			std::cout << std::distance(begin , end) << " dist\n";
-			if (std::distance(begin, end) >= static_cast<int>(range * 3))
-				begin += (range * 2);
+			if (next + 1 != comb.end() && begin + 1 != comb.end() && begin + 2 != comb.end())
+			{
+				std::cout << "can add\n";
+				begin += 2;
+			}
 			else
+			{
+				std::cout << "cant add\n";
 				break ;
-			next = std::next(begin, range);
+			}
+			next = std::next(begin, 1);
 		}
-		range *= 2;
-
+		Iterator	looper = comb.begin();
+		int		loops = 0;
+		while (looper != comb.end() && looper + 1 != comb.end())
+		{
+			Iterator	follower = std::next(looper, 1);
+			std::cout << "looper back is " << looper->back() << " and follower back is " << follower->back() << std::endl;
+			for (VectIterator it = follower->begin(); it != follower->end(); it++)
+				looper->push_back(*it);
+			std::cout << "loop " << loops << ":\n";
+			for (VectIterator it = looper->begin(); it != looper->end(); it++)
+				std::cout << "element is " << *it << std::endl;
+			loops++;
+			looper++;
+			comb.erase(follower);
+		}
 	}
 	begin = comb.begin();
 	while (begin != end)
 	{
-		std::cout << *begin << std::endl;
+		std::cout << begin->back() << std::endl;
 		begin++;
 	}
-}
+}*/
 
 // void	PmergeMe::sortDeque(std::deque<int>& myDeque)
 // {
