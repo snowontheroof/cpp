@@ -19,13 +19,21 @@ bool	PmergeMe::isValidNb(std::string& nb)
 static void	fillMainChain(std::vector<int>& mainChain,
 	std::vector<std::pair<int, int>>& pairs, std::optional<int> odd)
 {
-	using Iterator = std::vector<int>::iterator;
 	using pairIter = std::vector<std::pair<int, int>>::iterator;
+	pairIter	it;
+	for (it = pairs.begin(); it != pairs.end(); it++)
+	{
+		if (it->second == mainChain.front())
+			break ;
+	}
+
+	mainChain.insert(mainChain.begin(), it->first);
+	using Iterator = std::vector<int>::iterator;
 
 	for (Iterator it = mainChain.begin(); it != mainChain.end(); it++)
 		std::cout << " mainChain " << *it << std::endl;
-	for (pairIter it = pairs.begin(); it != pairs.end(); it++)
-		std::cout << it->first << " " << it->second << std::endl;
+	// for (pairIter it = pairs.begin(); it != pairs.end(); it++)
+	// 	std::cout << it->first << " " << it->second << std::endl;
 	if (odd)
 		std::cout << "odd " << *odd << std::endl;
 }
@@ -34,26 +42,26 @@ std::vector<int>	PmergeMe::sortVector(std::vector<int>& myVector)
 {
 	using Iterator = std::vector<int>::iterator;
 	using pairIter = std::vector<std::pair<int, int>>::iterator;
-
-	std::optional<int>	odd = std::nullopt;
-	if (myVector.size() % 2 != 0)
-	{
-		odd = myVector.back();
-		myVector.pop_back();
-	}
 	Iterator	begin = myVector.begin();
 	Iterator	next = std::next(begin, 1);
 	Iterator	end = myVector.end();
 	std::vector<int>	newVector;
 	std::vector<int>	mainChain;
-
 	std::vector<std::pair<int, int>>	pairs;
+
 	if (myVector.size() < 2)
 	{
+		std::cout << "now pushing to main " << myVector.back() << std::endl;
 		mainChain.push_back(myVector.back());
 		for (pairIter it = pairs.begin(); it != pairs.end(); it++)
 			std::cout << it->first << " " << it->second << std::endl;
 		return mainChain;
+	}
+	std::optional<int>	odd = std::nullopt;
+	if (myVector.size() % 2 != 0)
+	{
+		odd = myVector.back();
+		myVector.pop_back();
 	}
 	while (begin != end && next != end)
 	{
@@ -75,6 +83,7 @@ std::vector<int>	PmergeMe::sortVector(std::vector<int>& myVector)
 	for (Iterator it = newVector.begin(); it != newVector.end(); it++)
 		std::cout << " newVector " << *it << std::endl;
 	mainChain = sortVector(newVector);
+	std::cout << "going here with " << mainChain.size() << std::endl;
 	fillMainChain(mainChain, pairs, odd);
 	return mainChain;
 }
