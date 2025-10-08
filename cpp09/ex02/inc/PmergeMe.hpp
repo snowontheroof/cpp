@@ -6,17 +6,20 @@
 # include <chrono>
 # include <cmath>
 # include <optional>
+# include <algorithm>
 
 class PmergeMe
 {
 	private:
 		// static int	comparisons;
+		static std::vector<int>	jacobsthalNbs;
 
-	public:
+		public:
 		PmergeMe() = default;
 		PmergeMe(const PmergeMe& obj) = delete;
 		PmergeMe&	operator=(const PmergeMe& other) = delete;
 		~PmergeMe() = default;
+
 
 		template <typename T>
 		static T	parseQuotes(std::string& input);

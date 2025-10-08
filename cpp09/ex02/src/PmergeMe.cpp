@@ -1,6 +1,8 @@
 #include "../inc/PmergeMe.hpp"
 
 // static int	comparisons = 0;
+std::vector<int>	jacobsthalNbs = { 0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461,
+	10923, 21845, 43691, 87381, 174763, 349525 };
 
 bool	PmergeMe::isValidNb(std::string& nb)
 {
@@ -16,10 +18,42 @@ bool	PmergeMe::isValidNb(std::string& nb)
 	return true;
 }
 
+static void	insertBValues(std::vector<int>& bChain, std::vector<int>& mainChain,
+	std::vector<std::pair<int, int>>& pairs)
+{
+	if (bChain.empty())
+		return ;
+	using Iter = std::vector<int>::iterator;
+	using pairIter = std::vector<std::pair<int, int>>::iterator;
+	pairIter	pos;
+	for (int i = 0; bChain[i]; i++)
+	{
+		for (pos = pairs.begin(); pos != pairs.end(); pos++)
+		{
+			if (bChain[i] == pos->first)
+				break ;
+		}
+		std::cout << "so pair is " << pos->second << std::endl;
+		Iter	match = std::find(mainChain.begin(), mainChain.end(), pos->second);
+		int	looker = std::distance(mainChain.begin(), match) / 2;
+		// THIS NEEDS TO BE FIXED: HOW TO LOOK FOR THE MIDDLE - is it from the beginning
+		// to the pair element or the one before that, how to handle odd and even amounts
+		std::cout << "looker is " << looker << " and mainchain[looker] " << mainChain[looker] << std::endl;
+		while (looker > 0 && bChain[i] < mainChain[looker])
+		{
+			Iter	other = mainChain.begin() + looker;
+			looker = std::distance(mainChain.begin(), other) / 2;
+			std::cout << "now looker is " << looker << " and mainchain[looker] " << mainChain[looker] << std::endl;
+		}
+		mainChain.insert(mainChain.begin() + looker, bChain[i]);
+	}
+}
+
 static void	fillMainChain(std::vector<int>& mainChain,
 	std::vector<std::pair<int, int>>& pairs, std::optional<int> odd)
 {
 	using pairIter = std::vector<std::pair<int, int>>::iterator;
+	using Iter = std::vector<int>::iterator;
 	pairIter	it;
 	for (it = pairs.begin(); it != pairs.end(); it++)
 	{
@@ -28,14 +62,39 @@ static void	fillMainChain(std::vector<int>& mainChain,
 	}
 
 	mainChain.insert(mainChain.begin(), it->first);
-	using Iterator = std::vector<int>::iterator;
-
-	for (Iterator it = mainChain.begin(); it != mainChain.end(); it++)
+	std::vector<int>	bChain;
+	int	mainSize = static_cast<int>(mainChain.size());
+	for (int i = 3; jacobsthalNbs[i] <= mainSize; i++)
+	{
+		std::cout << "now in iter loop with i = " << i << std::endl;
+		Iter	curr = mainChain.begin() + jacobsthalNbs[i];
+		Iter	prev = mainChain.begin() + jacobsthalNbs[i - 1];
+		while (curr != prev)
+		{
+			auto dist = std::distance(mainChain.begin(), curr);
+			if (dist == static_cast<int>(mainChain.size()) && odd)
+				bChain.push_back(*odd);
+			else if (dist < static_cast<int>(mainChain.size()))
+			{
+				std::cout << *curr << " is curr\n";
+				for (pairIter match = pairs.begin(); match != pairs.end(); match++)
+				{
+					if (match->second == *curr)
+					{
+						bChain.push_back(match->first);
+						std::cout << match->first << " is now in bchain\n";
+						break ;
+					}
+				}
+			}
+			curr--;
+		}
+	}
+	for (Iter it = bChain.begin(); it != bChain.end(); it++)
+			std::cout << " bChain " << *it << std::endl;
+	insertBValues(bChain, mainChain, pairs);
+	for (Iter it = mainChain.begin(); it != mainChain.end(); it++)
 		std::cout << " mainChain " << *it << std::endl;
-	// for (pairIter it = pairs.begin(); it != pairs.end(); it++)
-	// 	std::cout << it->first << " " << it->second << std::endl;
-	if (odd)
-		std::cout << "odd " << *odd << std::endl;
 }
 
 std::vector<int>	PmergeMe::sortVector(std::vector<int>& myVector)
