@@ -18,6 +18,22 @@ bool	PmergeMe::isValidNb(std::string& nb)
 	return true;
 }
 
+static size_t	findPos(size_t pos, std::vector<int>& mainChain,
+	int toInsert)
+{
+	size_t	start = 0;
+	size_t	end = pos;
+	while (start < end)
+	{
+		size_t	middle = start + (end - start) / 2;
+		if (mainChain[middle] < toInsert)
+			start = middle + 1;
+		else
+			end = middle;
+	}
+	return start;
+}
+
 static void	insertBValues(std::vector<int>& bChain, std::vector<int>& mainChain,
 	std::vector<std::pair<int, int>>& pairs)
 {
@@ -33,19 +49,20 @@ static void	insertBValues(std::vector<int>& bChain, std::vector<int>& mainChain,
 			if (bChain[i] == pos->first)
 				break ;
 		}
-		std::cout << "so pair is " << pos->second << std::endl;
-		Iter	match = std::find(mainChain.begin(), mainChain.end(), pos->second);
-		int	looker = std::distance(mainChain.begin(), match) / 2;
+		size_t	match;
+		if (pos != pairs.end())
+		{
+			std::cout << "so pair is " << pos->second << std::endl;
+			Iter	tmp = std::find(mainChain.begin(), mainChain.end(), pos->second);
+			match = static_cast<int>(std::distance(mainChain.begin(), tmp));
+		}
+		else
+			match = mainChain.size();
+		size_t index = findPos(match, mainChain, bChain[i]);
+		std::cout << index << " is index for " << bChain[i] << std::endl;
+		mainChain.insert(mainChain.begin() + index, bChain[i]);
 		// THIS NEEDS TO BE FIXED: HOW TO LOOK FOR THE MIDDLE - is it from the beginning
 		// to the pair element or the one before that, how to handle odd and even amounts
-		std::cout << "looker is " << looker << " and mainchain[looker] " << mainChain[looker] << std::endl;
-		while (looker > 0 && bChain[i] < mainChain[looker])
-		{
-			Iter	other = mainChain.begin() + looker;
-			looker = std::distance(mainChain.begin(), other) / 2;
-			std::cout << "now looker is " << looker << " and mainchain[looker] " << mainChain[looker] << std::endl;
-		}
-		mainChain.insert(mainChain.begin() + looker, bChain[i]);
 	}
 }
 
@@ -121,6 +138,7 @@ std::vector<int>	PmergeMe::sortVector(std::vector<int>& myVector)
 	{
 		odd = myVector.back();
 		myVector.pop_back();
+		std::cout << "odd " << *odd << std::endl;
 	}
 	while (begin != end && next != end)
 	{
