@@ -81,6 +81,12 @@ static void	fillMainChain(std::vector<int>& mainChain,
 	mainChain.insert(mainChain.begin(), it->first);
 	std::vector<int>	bChain;
 	int	mainSize = static_cast<int>(mainChain.size());
+	size_t	toInsertAmt = mainSize - 2;
+	if (odd)
+		toInsertAmt++;
+	// ISSUES IN THIS LOOP: with eg. 2 4 9 1 5 8 3 7 11 23 555
+	// do we loop jacobsthal until toinsertamt is reached, or what?
+	std::cout << "mainsize is " << mainChain.size() << "so toInsertAmt is " << toInsertAmt << std::endl;
 	for (int i = 3; jacobsthalNbs[i] <= mainSize; i++)
 	{
 		std::cout << "now in iter loop with i = " << i << std::endl;
