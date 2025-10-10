@@ -7,7 +7,7 @@ SRC_DIR = src/
 OBJ_DIR = obj/
 
 INC_FILES = PmergeMe.hpp
-SRC_FILES = main.cpp PmergeMe.cpp
+SRC_FILES = main.cpp
 TMPL_FILES = src/PmergeMe.tpp
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
 

@@ -8,28 +8,25 @@
 # include <optional>
 # include <algorithm>
 
+template <typename T, typename P>
 class PmergeMe
 {
 	private:
-		static int				comparisons;
-		static std::vector<int>	jacobsthalNbs;
+		int					comparisons;
+		std::vector<int>	jacobsthalNbs;
 
-		public:
-		PmergeMe() = default;
+	public:
+		PmergeMe();
 		PmergeMe(const PmergeMe& obj) = delete;
 		PmergeMe&	operator=(const PmergeMe& other) = delete;
 		~PmergeMe() = default;
 
-
-		template <typename T>
-		static T	parseQuotes(std::string& input);
-
-		template <typename T>
-		static T	parse(char** argv);
-
-		std::vector<int>	sortVector(std::vector<int>& myVector);
-		// void		sortDeque(std::deque<int>& myDeque);
-		static bool		isValidNb(std::string& nb);
+		T		parse(int argc, char** argv);
+		T		sort(T& inputCont);
+		size_t	findPos(size_t pos, T& mainChain, int toInsert);
+		void	insertBValues(T& bChain, T& mainChain, P& pairs);
+		void	fillMainChain(T& mainChain, P& pairs, std::optional<int> odd);
+		int		getComparisons();
 };
 
 #include "../src/PmergeMe.tpp"

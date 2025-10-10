@@ -9,31 +9,39 @@ int	main(int argc, char **argv)
 	}
 	try
 	{
-		PmergeMe	sorter;
-		std::vector<int>	res;
 		std::string	argQuotes = static_cast<std::string>(argv[1]);
 
+		PmergeMe<std::vector<int>, std::vector<std::pair<int, int>>>	vecSorter;
 		auto	vectorStart = std::chrono::high_resolution_clock::now();
-		std::vector<int>	vectorCont;
-		if (argc == 2)
-			vectorCont = sorter.parseQuotes<std::vector<int>>(argQuotes);
-		else
-			vectorCont = sorter.parse<std::vector<int>>(argv);
-		res = sorter.sortVector(vectorCont);
-		for (std::vector<int>::iterator it = res.begin(); it != res.end(); it++)
-			std::cout << *it << std::endl;
+		std::vector<int>	res;
+		std::vector<int>	vectorCont = vecSorter.parse(argc, argv);
+		std::cout << "Before:";
+		for (std::vector<int>::iterator it = vectorCont.begin(); it != vectorCont.end(); it++)
+			std::cout << " " << *it;
+		std::cout << '\n';
+		res = vecSorter.sort(vectorCont);
+		if (!std::is_sorted(res.begin(), res.end()))
+			throw std::runtime_error("Error: sorting failed");
 		auto	vectorEnd = std::chrono::high_resolution_clock::now();
-		std::cout << vectorEnd - vectorStart << "\n\n";
 
+		PmergeMe<std::deque<int>, std::deque<std::pair<int, int>>>	deqSorter;
 		auto	dequeStart = std::chrono::high_resolution_clock::now();
-		std::deque<int>	dequeCont;
-		if (argc == 2)
-			dequeCont = sorter.parseQuotes<std::deque<int>>(argQuotes);
-		else
-			dequeCont = sorter.parse<std::deque<int>>(argv);
-		// sorter.sortDeque(dequeCont);
+		std::deque<int>	deqRes;
+		std::deque<int>	dequeCont = deqSorter.parse(argc, argv);
+		deqRes = deqSorter.sort(dequeCont);
+		if (!std::is_sorted(deqRes.begin(), deqRes.end()))
+			throw std::runtime_error("Error: sorting failed");
+		std::cout << "After:";
+		for (std::deque<int>::iterator it = deqRes.begin(); it != deqRes.end(); it++)
+			std::cout << " " << *it;
+		std::cout << '\n';
 		auto	dequeEnd = std::chrono::high_resolution_clock::now();
-		std::cout << dequeEnd - dequeStart << "\n\n";
+		std::cout << "Time to process a range of " << deqRes.size()
+			<< " elements with std::vector<int>: " << vectorEnd - vectorStart << '\n';
+		std::cout << "Comparisons: " << vecSorter.getComparisons() << std::endl;
+		std::cout << "Time to process a range of " << deqRes.size()
+			<< " elements with std::deque<int>: " << dequeEnd - dequeStart << '\n';
+		std::cout << "Comparisons: " << deqSorter.getComparisons() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
