@@ -1,8 +1,11 @@
 #include "../inc/PmergeMe.hpp"
 
-// static int	comparisons = 0;
+static int			comparisons = 0;
 std::vector<int>	jacobsthalNbs = { 0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461,
 	10923, 21845, 43691, 87381, 174763, 349525 };
+
+using Iter = std::vector<int>::iterator;
+using pairIter = std::vector<std::pair<int, int>>::iterator;
 
 bool	PmergeMe::isValidNb(std::string& nb)
 {
@@ -30,6 +33,7 @@ static size_t	findPos(size_t pos, std::vector<int>& mainChain,
 			start = middle + 1;
 		else
 			end = middle;
+		comparisons++;
 	}
 	return start;
 }
@@ -39,10 +43,9 @@ static void	insertBValues(std::vector<int>& bChain, std::vector<int>& mainChain,
 {
 	if (bChain.empty())
 		return ;
-	using Iter = std::vector<int>::iterator;
-	using pairIter = std::vector<std::pair<int, int>>::iterator;
 	pairIter	pos;
-	for (int i = 0; bChain[i]; i++)
+	std::cout << "now bChain size " << bChain.size() << std::endl;
+	for (size_t i = 0; i < bChain.size(); i++)
 	{
 		for (pos = pairs.begin(); pos != pairs.end(); pos++)
 		{
@@ -59,18 +62,14 @@ static void	insertBValues(std::vector<int>& bChain, std::vector<int>& mainChain,
 		else
 			match = mainChain.size();
 		size_t index = findPos(match, mainChain, bChain[i]);
-		std::cout << index << " is index for " << bChain[i] << std::endl;
+		std::cout << index << " is index for " << bChain[i] << " and i " << i << std::endl;
 		mainChain.insert(mainChain.begin() + index, bChain[i]);
-		// THIS NEEDS TO BE FIXED: HOW TO LOOK FOR THE MIDDLE - is it from the beginning
-		// to the pair element or the one before that, how to handle odd and even amounts
 	}
 }
 
 static void	fillMainChain(std::vector<int>& mainChain,
 	std::vector<std::pair<int, int>>& pairs, std::optional<int> odd)
 {
-	using pairIter = std::vector<std::pair<int, int>>::iterator;
-	using Iter = std::vector<int>::iterator;
 	pairIter	it;
 	for (it = pairs.begin(); it != pairs.end(); it++)
 	{
@@ -84,10 +83,8 @@ static void	fillMainChain(std::vector<int>& mainChain,
 	size_t	toInsertAmt = mainSize - 2;
 	if (odd)
 		toInsertAmt++;
-	// ISSUES IN THIS LOOP: with eg. 2 4 9 1 5 8 3 7 11 23 555
-	// do we loop jacobsthal until toinsertamt is reached, or what?
 	std::cout << "mainsize is " << mainChain.size() << "so toInsertAmt is " << toInsertAmt << std::endl;
-	for (int i = 3; jacobsthalNbs[i] <= mainSize; i++)
+	for (int i = 3; bChain.size() < toInsertAmt; i++)
 	{
 		std::cout << "now in iter loop with i = " << i << std::endl;
 		Iter	curr = mainChain.begin() + jacobsthalNbs[i];
@@ -99,13 +96,11 @@ static void	fillMainChain(std::vector<int>& mainChain,
 				bChain.push_back(*odd);
 			else if (dist < static_cast<int>(mainChain.size()))
 			{
-				std::cout << *curr << " is curr\n";
 				for (pairIter match = pairs.begin(); match != pairs.end(); match++)
 				{
 					if (match->second == *curr)
 					{
 						bChain.push_back(match->first);
-						std::cout << match->first << " is now in bchain\n";
 						break ;
 					}
 				}
@@ -122,11 +117,9 @@ static void	fillMainChain(std::vector<int>& mainChain,
 
 std::vector<int>	PmergeMe::sortVector(std::vector<int>& myVector)
 {
-	using Iterator = std::vector<int>::iterator;
-	using pairIter = std::vector<std::pair<int, int>>::iterator;
-	Iterator	begin = myVector.begin();
-	Iterator	next = std::next(begin, 1);
-	Iterator	end = myVector.end();
+	Iter	begin = myVector.begin();
+	Iter	next = std::next(begin, 1);
+	Iter	end = myVector.end();
 	std::vector<int>	newVector;
 	std::vector<int>	mainChain;
 	std::vector<std::pair<int, int>>	pairs;
@@ -158,90 +151,20 @@ std::vector<int>	PmergeMe::sortVector(std::vector<int>& myVector)
 			newVector.push_back(*next);
 			pairs.push_back({*begin, *next});
 		}
+		comparisons++;
 		begin += 2;
 		next = std::next(begin, 1);
 	}
 	for (pairIter pit = pairs.begin(); pit != pairs.end(); pit++)
 		std::cout << pit->first << " " << pit->second << std::endl;
-	for (Iterator it = newVector.begin(); it != newVector.end(); it++)
+	for (Iter it = newVector.begin(); it != newVector.end(); it++)
 		std::cout << " newVector " << *it << std::endl;
 	mainChain = sortVector(newVector);
 	std::cout << "going here with " << mainChain.size() << std::endl;
 	fillMainChain(mainChain, pairs, odd);
+	std::cout << "Comparisons: " << comparisons << std::endl;
 	return mainChain;
 }
-
-/*void	PmergeMe::sortVector(std::vector<int>& myVector)
-{
-	using Iterator = std::vector<std::vector<int>>::iterator;
-	using VectIterator = std::vector<int>::iterator;
-
-	std::vector<std::vector<int>>	comb;
-	VectIterator		start = myVector.begin();
-	VectIterator		finish = myVector.end();
-	std::optional<int>	odd = std::nullopt;
-	if (myVector.size() % 2 != 0)
-	{
-		odd = myVector.back();
-		myVector.pop_back();
-		finish = myVector.end() - 1;
-	}
-	while (start != finish)
-	{
-		std::vector<int>	tmp;
-		tmp.push_back(*start);
-		comb.push_back(tmp);
-		start++;
-	}
-
-	Iterator	begin = comb.begin();
-	Iterator	next;
-	Iterator	end = comb.end();
-
-	while (comb.begin()->size() <= comb.size())
-	{
-		begin = comb.begin();
-		next = std::next(begin, 1);
-		while (begin != end && next != end)
-		{
-			std::cout << "begin is " << begin->back() << " and next " << next->back() << std::endl;
-			if (begin->back() > next->back())
-				std::iter_swap(begin, next);
-			if (next + 1 != comb.end() && begin + 1 != comb.end() && begin + 2 != comb.end())
-			{
-				std::cout << "can add\n";
-				begin += 2;
-			}
-			else
-			{
-				std::cout << "cant add\n";
-				break ;
-			}
-			next = std::next(begin, 1);
-		}
-		Iterator	looper = comb.begin();
-		int		loops = 0;
-		while (looper != comb.end() && looper + 1 != comb.end())
-		{
-			Iterator	follower = std::next(looper, 1);
-			std::cout << "looper back is " << looper->back() << " and follower back is " << follower->back() << std::endl;
-			for (VectIterator it = follower->begin(); it != follower->end(); it++)
-				looper->push_back(*it);
-			std::cout << "loop " << loops << ":\n";
-			for (VectIterator it = looper->begin(); it != looper->end(); it++)
-				std::cout << "element is " << *it << std::endl;
-			loops++;
-			looper++;
-			comb.erase(follower);
-		}
-	}
-	begin = comb.begin();
-	while (begin != end)
-	{
-		std::cout << begin->back() << std::endl;
-		begin++;
-	}
-}*/
 
 // void	PmergeMe::sortDeque(std::deque<int>& myDeque)
 // {

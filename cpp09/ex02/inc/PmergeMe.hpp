@@ -11,7 +11,7 @@
 class PmergeMe
 {
 	private:
-		// static int	comparisons;
+		static int				comparisons;
 		static std::vector<int>	jacobsthalNbs;
 
 		public:
