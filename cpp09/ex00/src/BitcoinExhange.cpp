@@ -26,7 +26,8 @@ void	BitcoinExhange::loadDataBase(std::ifstream& file)
 
 static bool	isValidDate(std::string date)
 {
-	if (!std::regex_match(date, std::regex("(19|20)\\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])")))
+	if (!std::regex_match(date,
+			std::regex("(19|20)\\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])")))
 		return false;
 	int					year;
 	unsigned int		month, day;

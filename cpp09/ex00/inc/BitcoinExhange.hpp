@@ -16,14 +16,14 @@ class BitcoinExhange
 
 		BitcoinExhange();
 		BitcoinExhange(const BitcoinExhange& obj) = delete;
-		BitcoinExhange&		operator=(const BitcoinExhange& other) = delete;
+		BitcoinExhange&	operator=(const BitcoinExhange& other) = delete;
 
-		static void			loadDataBase(std::ifstream& file);
-		static void			handleInput(std::ifstream& file);
-		static void			displayExhange(void);
+		static void		loadDataBase(std::ifstream& file);
+		static void		handleInput(std::ifstream& file);
+		static void		displayExhange(void);
 
 	public:
 		~BitcoinExhange();
 
-		static void			btc(std::string& inputFile);
+		static void		btc(std::string& inputFile);
 };
