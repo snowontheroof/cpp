@@ -1,4 +1,4 @@
-NAME = PMergeMe
+NAME = PmergeMe
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++20
 
