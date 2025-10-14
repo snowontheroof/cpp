@@ -12,12 +12,12 @@ class RPN
 	private:
 		std::stack<int>	_stack;
 
-		void	runOperation(long long a, long long b, char o);
+		void			runOperation(long long a, long long b, char o);
 
 	public:
 		RPN() = delete;
 		RPN(std::string input);
 		RPN(const RPN& obj) = delete;
-		RPN&	operator=(const RPN& other) = delete;
+		RPN&			operator=(const RPN& other) = delete;
 		~RPN() = default;
 };

@@ -3,6 +3,7 @@
 void	RPN::runOperation(long long a, long long b, char o)
 {
 	long long	res = 0;
+
 	switch (o)
 	{
 		case '+':
@@ -47,6 +48,7 @@ RPN::RPN(std::string input)
 {
 	std::istringstream	ss(input);
 	std::string			token;
+	
 	while (ss >> token)
 	{
 		if (!isValidToken(token))

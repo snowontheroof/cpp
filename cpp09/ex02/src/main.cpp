@@ -9,11 +9,11 @@ int	main(int argc, char **argv)
 	}
 	try
 	{
-		std::string	argQuotes = static_cast<std::string>(argv[1]);
-
-		PmergeMe<std::vector<int>>	vecSorter;
 		auto	vecStart = std::chrono::high_resolution_clock::now();
+		PmergeMe<std::vector<int>>	vecSorter;
 		std::vector<int>	vecCont = vecSorter.parse(argc, argv);
+		if (vecCont.size() == 0)
+			return 0;
 		std::cout << "Before:";
 		vecSorter.print(vecCont);
 		std::vector<int>	vecRes = vecSorter.sort(vecCont);
@@ -21,8 +21,8 @@ int	main(int argc, char **argv)
 			throw std::runtime_error("Error: sorting failed");
 		auto	vecEnd = std::chrono::high_resolution_clock::now();
 
-		PmergeMe<std::deque<int>>	deqSorter;
 		auto	deqStart = std::chrono::high_resolution_clock::now();
+		PmergeMe<std::deque<int>>	deqSorter;
 		std::deque<int>	deqCont = deqSorter.parse(argc, argv);
 		std::deque<int>	deqRes = deqSorter.sort(deqCont);
 		if (!std::is_sorted(deqRes.begin(), deqRes.end()))

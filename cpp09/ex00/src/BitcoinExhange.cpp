@@ -2,14 +2,6 @@
 
 std::map<std::string, float>	BitcoinExhange::dataBase;
 
-BitcoinExhange::BitcoinExhange()
-{
-}
-
-BitcoinExhange::~BitcoinExhange()
-{
-}
-
 void	BitcoinExhange::loadDataBase(std::ifstream& file)
 {
 	std::string	line;
@@ -24,15 +16,17 @@ void	BitcoinExhange::loadDataBase(std::ifstream& file)
 	}
 }
 
-static bool	isValidDate(std::string date)
+static bool	isValidDate(std::string& date)
 {
 	if (!std::regex_match(date,
 			std::regex("(19|20)\\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])")))
 		return false;
+
 	int					year;
 	unsigned int		month, day;
 	char				separator;
 	std::stringstream	stream(date);
+
 	if (!(stream >> year >> separator >> month >> separator >> day))
 		return false;
 	std::chrono::year_month_day	ymd = { std::chrono::year{year},
