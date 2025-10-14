@@ -9,18 +9,17 @@
 # include <algorithm>
 # include <unordered_map>
 
-template <typename T, typename P>
+template <typename T>
 class PmergeMe
 {
 	private:
 		int	comparisons;
 		T	jacobsthalNbs;
-		size_t	nbs;
 
-		size_t	findPos(size_t pos, T& mainChain, int toInsert);
-		void	binarySearchInsert(T& bChain, T& mainChain, std::unordered_map<int, int>& pairs);
+		size_t	binarySearch(size_t pos, T& mainChain, int toInsert);
+		void	fillMainWithB(T& bChain, T& mainChain, std::unordered_map<int, int>& pairs);
 		void	fillBChain(T& bChain, T& mainChain, std::unordered_map<int, int>& pairs, std::optional<int> odd);
-		void	fillMainChain(T& mainChain, T& bChain, std::unordered_map<int, int>& pairs);
+		void	fillMainChain(T& mainChain, std::unordered_map<int, int>& pairs, std::optional<int> odd);
 
 	public:
 		PmergeMe();
@@ -35,33 +34,20 @@ class PmergeMe
 		void	print(T& seq) const;
 };
 
-template <typename T, typename P>
-PmergeMe<T, P>::PmergeMe()
+bool	isValidNb(std::string& nb);
+
+template <typename T>
+PmergeMe<T>::PmergeMe()
 {
 	comparisons = 0;
 	jacobsthalNbs = { 0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461,
 		10923, 21845, 43691, 87381, 174763, 349525 };
 }
 
-template <typename T, typename P>
-int	PmergeMe<T, P>::getComparisons() const
+template <typename T>
+int	PmergeMe<T>::getComparisons() const
 {
 	return comparisons;
-}
-
-bool	isValidNb(std::string& nb)
-{
-	size_t	i = 0;
-
-	if (nb[i] == '+')
-		i++;
-	while (nb[i])
-	{
-		if (!std::isdigit(nb[i]))
-			return false;
-		i++;
-	}
-	return true;
 }
 
 template <typename T>
@@ -99,24 +85,19 @@ static T	parseArgs(char **argv)
 	return myCont;
 }
 
-template <typename T, typename P>
-T	PmergeMe<T, P>::parse(int argc, char **argv)
+template <typename T>
+T	PmergeMe<T>::parse(int argc, char **argv)
 {
-	T	res;
 	if (argc == 2)
 	{
 		std::string	input = static_cast<std::string>(argv[1]);
-		res = parseQuotes<T>(input);
-		nbs = res.size();
-		return res;
+		return parseQuotes<T>(input);
 	}
-	res = parseArgs<T>(argv);
-	nbs = res.size();
-	return res;
+	return parseArgs<T>(argv);
 }
 
-template <typename T, typename P>
-size_t	PmergeMe<T, P>::findPos(size_t pos, T& mainChain, int toInsert)
+template <typename T>
+size_t	PmergeMe<T>::binarySearch(size_t pos, T& mainChain, int toInsert)
 {
 	size_t	start = 0;
 	size_t	end = pos;
@@ -133,106 +114,67 @@ size_t	PmergeMe<T, P>::findPos(size_t pos, T& mainChain, int toInsert)
 	return start;
 }
 
-template <typename T, typename P>
-void	PmergeMe<T, P>::binarySearchInsert(T& bChain, T& mainChain, std::unordered_map<int, int>& pairs)
+template <typename T>
+void	PmergeMe<T>::fillMainWithB(T& bChain, T& mainChain,
+	std::unordered_map<int, int>& pairs)
 {
 	using Iter = typename T::iterator;
 
 	if (bChain.empty())
 		return ;
-	size_t	howMuch = bChain.size();
-	size_t	j = 0;
-	while (j < howMuch)
+	for (size_t i = 0; i < bChain.size(); i++)
 	{
-		int i = 3;
-		int curr = jacobsthalNbs[i];
-		int prev = jacobsthalNbs[i - 1];
-		int	amt = curr - prev;
-		while (amt)
+		size_t	match;
+		Iter	it;
+		for (it = mainChain.begin(); it != mainChain.end(); it++)
 		{
-			int	toInsert = bChain[curr];
-			Iter	end = std::find(mainChain.begin(), mainChain.end(), pairs[toInsert]);
-			size_t	match;
-			if (end != mainChain.end())
-				match = static_cast<int>(std::distance(mainChain.begin(), end));
-			else
-				match = mainChain.size();
-			size_t	index = findPos(match, mainChain, toInsert);
-			mainChain.insert(mainChain.begin() + index, toInsert);
-			j++;
-			amt--;
+			if (pairs[*it] == bChain[i])
+				break ;
+		}
+		if (it != mainChain.end())
+			match = std::distance(mainChain.begin(), it);
+		else
+			match = mainChain.size();
+		size_t	index = binarySearch(match, mainChain, bChain[i]);
+		mainChain.insert(mainChain.begin() + index, bChain[i]);
+	}
+}
+
+template <typename T>
+void	PmergeMe<T>::fillBChain(T& bChain, T& mainChain, std::unordered_map<int, int>& pairs,
+	std::optional<int> odd)
+{
+	size_t	toInsert = mainChain.size() - 2;
+	if (odd.has_value())
+		toInsert++;
+	for (int i = 3; bChain.size() < toInsert; i++)
+	{
+		size_t	curr = jacobsthalNbs[i];
+		size_t	prev = jacobsthalNbs[i - 1];
+		while (curr > prev)
+		{
+			if (curr == mainChain.size() && odd.has_value())
+				bChain.push_back(*odd);
+			else if (curr < mainChain.size())
+				bChain.push_back(pairs[mainChain[curr]]);
 			curr--;
 		}
 	}
-	for (size_t i = 0; i < bChain.size(); i++)
-	{
-		int	toInsert = bChain[i];
-		Iter	end = std::find(mainChain.begin(), mainChain.end(), pairs[toInsert]);
-		size_t	match;
-		if (end != mainChain.end())
-			match = static_cast<int>(std::distance(mainChain.begin(), end));
-		else
-			match = mainChain.size();
-		size_t	index = findPos(match, mainChain, toInsert);
-		std::cout << "NOW WE INSERT " << toInsert << " AT " << index << std::endl;
-		mainChain.insert(mainChain.begin() + index, toInsert);
-	}
 }
 
-// template <typename T, typename P>
-// void	PmergeMe<T, P>::fillBChain(T& bChain, T& mainChain, std::unordered_map<int, int>& pairs,
-// 	std::optional<int> odd)
-// {
-// 	using PairIter = typename P::iterator;
-
-// 	size_t	toInsert = mainChain.size() - 2;
-// 	if (odd.has_value())
-// 		toInsert++;
-// 	for (int i = 3; bChain.size() < toInsert; i++)
-// 	{
-// 		size_t	curr = jacobsthalNbs[i];
-// 		size_t	prev = jacobsthalNbs[i - 1];
-// 		while (curr > prev)
-// 		{
-// 			if (curr == mainChain.size() && odd.has_value())
-// 				bChain.push_back(*odd);
-// 			else if (curr < mainChain.size())
-// 			{
-// 				for (PairIter it = pairs.begin(); it != pairs.end(); it++)
-// 				{
-// 					if (it->second == mainChain[curr])
-// 					{
-// 						bChain.push_back(it->first);
-// 						break ;
-// 					}
-// 				}
-// 			}
-// 			curr--;
-// 		}
-// 	}
-// }
-
-template <typename T, typename P>
-void	PmergeMe<T, P>::fillMainChain(T& mainChain, T& bChain, std::unordered_map<int, int>& pairs)
+template <typename T>
+void	PmergeMe<T>::fillMainChain(T& mainChain, std::unordered_map<int, int>& pairs,
+		std::optional<int> odd)
 {
-	int i = 0;
-	for (typename T::iterator it = bChain.begin(); it != bChain.end(); it++)
-	{
-		std::cout << "bChain " << i << ": " << *it << std::endl;
-		i++;
-	}
-	i = 0;
-	for (typename T::iterator itm = mainChain.begin(); itm != mainChain.end(); itm++)
-	{
-		std::cout << "mainChain " << i << ": " << *itm << std::endl;
-		i++;
-	}
-	mainChain.insert(mainChain.begin(), bChain.front());
-	binarySearchInsert(bChain, mainChain, pairs);
+	T	bChain;
+
+	mainChain.insert(mainChain.begin(), pairs[mainChain.front()]);
+	fillBChain(bChain, mainChain, pairs, odd);
+	fillMainWithB(bChain, mainChain, pairs);
 }
 
-template <typename T, typename P>
-T	PmergeMe<T, P>::sort(T& inputSeq)
+template <typename T>
+T	PmergeMe<T>::sort(T& inputSeq)
 {
 	using Iter = typename T::iterator;
 
@@ -241,7 +183,6 @@ T	PmergeMe<T, P>::sort(T& inputSeq)
 	Iter	end = inputSeq.end();
 	T		newSeq;
 	T		mainChain;
-	T		bChain;
 	std::unordered_map<int, int>	pairs;
 
 	if (inputSeq.size() < 2)
@@ -260,28 +201,24 @@ T	PmergeMe<T, P>::sort(T& inputSeq)
 		if (*begin > *next)
 		{
 			newSeq.push_back(*begin);
-			bChain.push_back(*next);
 			pairs[*begin] = *next;
 		}
 		else
 		{
 			newSeq.push_back(*next);
-			bChain.push_back(*begin);
 			pairs[*next] = *begin;
 		}
 		comparisons++;
 		begin += 2;
 		next = std::next(begin, 1);
 	}
-	if (odd.has_value())
-		bChain.push_back(odd.value());
 	mainChain = sort(newSeq);
-	fillMainChain(mainChain, bChain, pairs);
+	fillMainChain(mainChain, pairs, odd);
 	return mainChain;
 }
 
-template <typename T, typename P>
-void	PmergeMe<T, P>::print(T& seq) const
+template <typename T>
+void	PmergeMe<T>::print(T& seq) const
 {
 	using Iter = typename T::iterator;
 
