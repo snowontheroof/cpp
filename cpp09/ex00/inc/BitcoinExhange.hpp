@@ -8,18 +8,22 @@
 # include <sstream>
 # include <algorithm>
 # include <regex>
+# define INV_DB "invalid database"
+# define INV_INPUT "invalid input file structure"
+# define DBOPEN_ERR "failed to open database"
+# define INPUTOPEN_ERR "failed to open input file"
 
 class BitcoinExhange
 {
 	private:
-		static std::map<std::string, float>	dataBase;
+		static std::map<std::string, float>	database;
 
 		BitcoinExhange() = delete;
 		BitcoinExhange(const BitcoinExhange& obj) = delete;
 		BitcoinExhange&	operator=(const BitcoinExhange& other) = delete;
 		~BitcoinExhange() = delete;
 
-		static void		loadDataBase(std::ifstream& file);
+		static void		loadDatabase(std::ifstream& file);
 		static void		handleInput(std::ifstream& file);
 
 	public:

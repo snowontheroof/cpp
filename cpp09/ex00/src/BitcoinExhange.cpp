@@ -1,19 +1,31 @@
 #include "../inc/BitcoinExhange.hpp"
 
-std::map<std::string, float>	BitcoinExhange::dataBase;
+std::map<std::string, float>	BitcoinExhange::database;
 
-void	BitcoinExhange::loadDataBase(std::ifstream& file)
+void	BitcoinExhange::loadDatabase(std::ifstream& file)
 {
 	std::string	line;
 
-	std::getline(file, line);
+	if (!std::getline(file, line) || line != "date,exchange_rate")
+		throw std::runtime_error(INV_DB);
 	while (std::getline(file, line))
 	{
 		size_t	pos = line.find(',');
+		if (pos == std::string::npos)
+			throw std::runtime_error(INV_DB);
 		std::string	date = line.substr(0, pos);
 		std::string	value = line.substr(pos + 1);
-		dataBase.insert({date, std::stof(value)});
+		try
+		{
+			database[date] = std::stof(value);
+		}
+		catch(...)
+		{
+			throw std::runtime_error(INV_DB);
+		}
 	}
+	if (database.empty())
+		throw std::runtime_error(INV_DB);
 }
 
 static bool	isValidDate(std::string& date)
@@ -84,7 +96,7 @@ void	BitcoinExhange::handleInput(std::ifstream& file)
 
 	std::getline(file, line);
 	if (line != "date | value")
-		throw std::runtime_error("Error: invalid input file structure");
+		throw std::runtime_error(INV_INPUT);
 	while (std::getline(file, line))
 	{
 		size_t	pos = line.find('|');
@@ -97,11 +109,11 @@ void	BitcoinExhange::handleInput(std::ifstream& file)
 		std::string	valueStr = line.substr(pos + 2);
 		if (!isValidValue(line, valueStr, value))
 			continue ;
-		std::map<std::string, float>::iterator	it = dataBase.lower_bound(date);
+		std::map<std::string, float>::iterator	it = database.lower_bound(date);
 		float	closestValue = it->second;
 		if (it->first != date)
 		{
-			if (it == dataBase.begin())
+			if (it == database.begin())
 			{
 				std::cout
 				<< "Error: given date is before the earliest date available in database.\n";
@@ -119,10 +131,10 @@ void	BitcoinExhange::btc(std::string& inputFile)
 {
 	std::ifstream	dataFile("data.csv");
 	if (!dataFile.is_open())
-		throw std::runtime_error("Error: failed to open database");
-	loadDataBase(dataFile);
+		throw std::runtime_error(DBOPEN_ERR);
+	loadDatabase(dataFile);
 	std::ifstream	file(inputFile);
 	if (!file.is_open())
-		throw std::runtime_error("Error: failed to open file");
+		throw std::runtime_error(INPUTOPEN_ERR);
 	handleInput(file);
 }
