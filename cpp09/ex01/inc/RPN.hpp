@@ -3,9 +3,9 @@
 # include <iostream>
 # include <sstream>
 # include <limits>
-# define ARGERR "numeric arguments and operators not in balance"
-# define DIVERR "division by zero"
-# define RESERR "calculation result is outside of int limits"
+# define ARGERR ": numeric arguments and operators not in balance"
+# define DIVERR ": division by zero"
+# define RESERR ": calculation result is outside of int limits"
 
 class RPN
 {
