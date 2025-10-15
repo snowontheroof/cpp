@@ -8,6 +8,7 @@
 # include <optional>
 # include <algorithm>
 # include <unordered_map>
+# include <unordered_set>
 
 template <typename T>
 class PmergeMe
@@ -53,6 +54,20 @@ int	PmergeMe<T>::getComparisons() const
 }
 
 template <typename T>
+static bool	hasDuplicates(T& parsedCont)
+{
+	std::unordered_set<int>	uniques;
+	for (int nb : parsedCont)
+	{
+		if (uniques.find(nb) != uniques.end())
+			return true;
+		else
+			uniques.insert(nb);
+	}
+	return false;
+}
+
+template <typename T>
 static T	parseQuotes(std::string& input)
 {
 	T					parsedCont;
@@ -74,6 +89,8 @@ static T	parseQuotes(std::string& input)
 		}
 		parsedCont.push_back(nb);
 	}
+	if (hasDuplicates(parsedCont))
+		throw std::runtime_error("Error");
 	return parsedCont;
 }
 
@@ -100,6 +117,8 @@ static T	parseArgs(char **argv)
 		parsedCont.push_back(nb);
 		i++;
 	}
+	if (hasDuplicates(parsedCont))
+		throw std::runtime_error("Error");
 	return parsedCont;
 }
 
