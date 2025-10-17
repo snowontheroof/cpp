@@ -4,7 +4,7 @@ int	main(int argc, char **argv)
 {
 	if (argc == 1)
 	{
-		std::cout << "Expected usage: ./PmergeMe <sequence of positive integers>\n";
+		std::cout << "Usage: ./PmergeMe <sequence of positive integers>\n";
 		return 0;
 	}
 	try
@@ -13,7 +13,10 @@ int	main(int argc, char **argv)
 		PmergeMe<std::vector<int>>	vecSorter;
 		std::vector<int>	vecCont = vecSorter.parse(argc, argv);
 		if (vecCont.size() == 0)
+		{
+			std::cout << "Usage: ./PmergeMe <sequence of positive integers>\n";
 			return 0;
+		}
 		std::cout << "Before:";
 		vecSorter.print(vecCont);
 		std::vector<int>	vecRes = vecSorter.sort(vecCont);
@@ -35,7 +38,8 @@ int	main(int argc, char **argv)
 			<< " elements with std::vector<int>: " << vecEnd - vecStart << '\n';
 		std::cout << "Time to process a range of " << deqRes.size()
 			<< " elements with std::deque<int>: " << deqEnd - deqStart << '\n';
-		// std::cout << "Comparisons: " << deqSorter.getComparisons() << std::endl;
+		// std::cout << "Comparisons: std::vector<int> " << vecSorter.getComparisons()
+		// 	<< ", std::deque<int> " << deqSorter.getComparisons() << std::endl;
 	}
 	catch(const std::exception& e)
 	{

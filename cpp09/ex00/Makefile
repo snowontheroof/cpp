@@ -6,8 +6,8 @@ INC_DIR = inc/
 SRC_DIR = src/
 OBJ_DIR = obj/
 
-INC_FILES = BitcoinExhange.hpp
-SRC_FILES = main.cpp BitcoinExhange.cpp
+INC_FILES = BitcoinExchange.hpp
+SRC_FILES = main.cpp BitcoinExchange.cpp
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
 
 INC = $(addprefix $(INC_DIR), $(INC_FILES))

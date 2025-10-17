@@ -1,4 +1,4 @@
-#include "../inc/BitcoinExhange.hpp"
+#include "../inc/BitcoinExchange.hpp"
 
 int	main(int argc, char **argv)
 {
@@ -10,7 +10,7 @@ int	main(int argc, char **argv)
 	try
 	{
 		std::string	input = static_cast<std::string>(argv[1]);
-		BitcoinExhange::btc(input);
+		BitcoinExchange::btc(input);
 	}
 	catch(const std::exception& e)
 	{

@@ -37,9 +37,9 @@ static bool	isOperator(char c, bool sign)
 
 static bool	isValidToken(std::string token)
 {
-	if (token.size() == 1 && ((isOperator(token[0], 0)) || std::isdigit(token[0])))
+	if (token.size() == 1 && ((isOperator(token[0], false)) || std::isdigit(token[0])))
 		return true;
-	if (token.size() == 2 && isOperator(token[0], 1) && std::isdigit(token[1]))
+	if (token.size() == 2 && isOperator(token[0], true) && std::isdigit(token[1]))
 		return true;
 	return false;
 }
@@ -48,12 +48,12 @@ RPN::RPN(std::string input)
 {
 	std::istringstream	ss(input);
 	std::string			token;
-	
+
 	while (ss >> token)
 	{
 		if (!isValidToken(token))
 			throw std::runtime_error("");
-		if (token.size() == 1 && isOperator(token[0], 0))
+		if (token.size() == 1 && isOperator(token[0], false))
 		{
 			if (_stack.size() < 2)
 				throw std::runtime_error(ARGERR);

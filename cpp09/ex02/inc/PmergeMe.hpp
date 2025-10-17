@@ -157,7 +157,7 @@ void	PmergeMe<T>::jacobsthalInsert(T& pendChain, T& mainChain,
 	using Iter = typename T::iterator;
 	size_t	j = 1;
 
-	for (int i = 3; j < pendChain.size(); i++)
+	for (size_t i = 3; j < pendChain.size() && i < jacobsthalNbs.size(); i++)
 	{
 		size_t	curr = jacobsthalNbs[i] - 1;
 		size_t	prev = jacobsthalNbs[i - 1] - 1;
@@ -189,11 +189,12 @@ template <typename T>
 void	PmergeMe<T>::fillMainChain(T& mainChain, std::unordered_map<int, int>& pairs,
 	std::optional<int> odd)
 {
+	using Iter = typename T::iterator;
 	T	pendChain;
 
 	mainChain.insert(mainChain.begin(), pairs[mainChain.front()]);
-	for (size_t i = 1; mainChain[i]; i++)
-		pendChain.push_back(pairs[mainChain[i]]);
+	for (Iter it = mainChain.begin() + 1; it != mainChain.end(); it++)
+		pendChain.push_back(pairs[*it]);
 	if (odd.has_value())
 		pendChain.push_back(odd.value());
 	jacobsthalInsert(pendChain, mainChain, pairs);

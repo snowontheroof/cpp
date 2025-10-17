@@ -1,8 +1,8 @@
-#include "../inc/BitcoinExhange.hpp"
+#include "../inc/BitcoinExchange.hpp"
 
-std::map<std::string, float>	BitcoinExhange::database;
+std::map<std::string, float>	BitcoinExchange::database;
 
-void	BitcoinExhange::loadDatabase(std::ifstream& file)
+void	BitcoinExchange::loadDatabase(std::ifstream& file)
 {
 	std::string	line;
 
@@ -89,13 +89,12 @@ static bool	isValidValue(std::string& line, std::string& valueStr, float& value)
 	return true;
 }
 
-void	BitcoinExhange::handleInput(std::ifstream& file)
+void	BitcoinExchange::handleInput(std::ifstream& file)
 {
 	std::string	line;
 	float		value;
 
-	std::getline(file, line);
-	if (line != "date | value")
+	if (!std::getline(file, line) || line != "date | value")
 		throw std::runtime_error(INV_INPUT);
 	while (std::getline(file, line))
 	{
@@ -127,7 +126,7 @@ void	BitcoinExhange::handleInput(std::ifstream& file)
 	}
 }
 
-void	BitcoinExhange::btc(std::string& inputFile)
+void	BitcoinExchange::btc(std::string& inputFile)
 {
 	std::ifstream	dataFile("data.csv");
 	if (!dataFile.is_open())

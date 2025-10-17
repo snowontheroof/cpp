@@ -13,15 +13,15 @@
 # define DBOPEN_ERR "failed to open database"
 # define INPUTOPEN_ERR "failed to open input file"
 
-class BitcoinExhange
+class BitcoinExchange
 {
 	private:
 		static std::map<std::string, float>	database;
 
-		BitcoinExhange() = delete;
-		BitcoinExhange(const BitcoinExhange& obj) = delete;
-		BitcoinExhange&	operator=(const BitcoinExhange& other) = delete;
-		~BitcoinExhange() = delete;
+		BitcoinExchange() = delete;
+		BitcoinExchange(const BitcoinExchange& obj) = delete;
+		BitcoinExchange&	operator=(const BitcoinExchange& other) = delete;
+		~BitcoinExchange() = delete;
 
 		static void		loadDatabase(std::ifstream& file);
 		static void		handleInput(std::ifstream& file);
